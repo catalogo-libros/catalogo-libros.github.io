@@ -47,7 +47,18 @@ def load_books():
         if "images" not in b:
             b["images"] = [b["image"]] if b.get("image") else []
         b.pop("image", None)
-        b.setdefault("description", "")
+        # Pages CMS escribe rutas como "/imagenes/x.jpg"; las pasamos a relativas
+        # para que funcionen dentro de https://usuario.github.io/catalogo-libros/
+        b["images"] = [p[1:] if p.startswith("/imagenes/") else p for p in (b["images"] or [])]
+        b["title"] = b.get("title") or "Sin título"
+        for k in ("author", "publisher", "description"):
+            b[k] = b.get(k) or ""
+        b["category"] = b.get("category") or "General"
+        b["year"] = num(b.get("year"))
+        b["price"] = num(b.get("price"))
+    for b in books:  # los libros cargados desde Pages CMS no traen id
+        if not b.get("id"):
+            b["id"] = next_id(books)
     return books
 
 
@@ -56,7 +67,7 @@ def save_books(books):
 
 
 def next_id(books):
-    nums = [int(m.group(1)) for b in books if (m := re.fullmatch(r"LIB-(\d+)", b["id"]))]
+    nums = [int(m.group(1)) for b in books if (m := re.fullmatch(r"LIB-(\d+)", b.get("id", "")))]
     return f"LIB-{max(nums, default=0) + 1:03d}"
 
 
@@ -592,6 +603,9 @@ if __name__ == "__main__":
         publish_site()
         print("Sitio generado en", SITE_DIR)
         sys.exit(0)
+    publish_site()  # deja el sitio actualizado al abrir
+    threading.Timer(1.2, lambda: webbrowser.open(f"http://127.0.0.1:{PORT}")).start()
+    app.run(host="127.0.0.1", port=PORT, debug=False)
     publish_site()  # deja el sitio actualizado al abrir
     threading.Timer(1.2, lambda: webbrowser.open(f"http://127.0.0.1:{PORT}")).start()
     app.run(host="127.0.0.1", port=PORT, debug=False)
