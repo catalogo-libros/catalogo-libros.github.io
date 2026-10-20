@@ -1,0 +1,38 @@
+media:
+  input: imagenes
+  output: /imagenes
+
+content:
+  - name: libros
+    label: Libros
+    type: file
+    path: books.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: author
+        label: Autor
+        type: string
+      - name: year
+        label: Año
+        type: number
+      - name: publisher
+        label: Editorial
+        type: string
+      - name: price
+        label: Precio (ARS)
+        type: number
+      - name: category
+        label: Categoría
+        type: string
+      - name: description
+        label: Descripción
+        type: text
+      - name: images
+        label: Imágenes (la primera es la portada)
+        type: image
+        list: true
