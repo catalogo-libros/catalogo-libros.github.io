@@ -8,6 +8,7 @@ Uso:           python catalogo.py        (se abre el navegador solo)
 
 Resultado:     carpeta "sitio/" con index.html + imagenes/  -> eso es lo que subís a la web.
 """
+import io
 import json
 import re
 import shutil
@@ -33,6 +34,27 @@ IMG_DIR = BASE / "imagenes"
 SITE_DIR = BASE / "sitio"
 ALLOWED = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 IMG_DIR.mkdir(exist_ok=True)
+MAX_SIDE = 1200  # lado máximo en píxeles de las imágenes guardadas
+
+
+def save_image(fileobj, dest):
+    """Guarda la imagen achicada a MAX_SIDE px y corregida de rotación.
+    Necesita Pillow (pip install pillow); si no está o falla, guarda el original."""
+    fileobj.seek(0)
+    raw = fileobj.read()
+    try:
+        from PIL import Image, ImageOps
+        if dest.suffix.lower() == ".gif":
+            raise ValueError("los GIF se guardan tal cual")
+        img = ImageOps.exif_transpose(Image.open(io.BytesIO(raw)))
+        img.thumbnail((MAX_SIDE, MAX_SIDE))
+        if dest.suffix.lower() in (".jpg", ".jpeg"):
+            img.convert("RGB").save(dest, quality=85, optimize=True)
+        else:
+            img.save(dest)
+    except Exception:
+        dest.write_bytes(raw)
+
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 128 * 1024 * 1024
@@ -151,7 +173,7 @@ def ig_post_data(post):
         r = requests.get(u, timeout=30)
         r.raise_for_status()
         name = f"ig_{post.shortcode}_{i}.jpg"
-        (IMG_DIR / name).write_bytes(r.content)
+        save_image(io.BytesIO(r.content), IMG_DIR / name)
         imgs.append(f"imagenes/{name}")
     data = parse_caption(post.caption or "")
     data["images"] = imgs
@@ -180,7 +202,7 @@ def apply_form(book):
         ext = Path(file.filename or "").suffix.lower()
         if file and ext in ALLOWED:
             name = f"{uuid.uuid4().hex[:10]}{ext}"
-            file.save(IMG_DIR / name)
+            save_image(file, IMG_DIR / name)
             imgs.append(f"imagenes/{name}")
     book["images"] = imgs
     return book
@@ -378,7 +400,7 @@ function render() {
   $('cats').innerHTML = [...new Set(books.map(b => b.category))].map(c => `<option value="${esc(c)}">`).join('');
   $('grid').innerHTML = list.map(b => `
     <div class="bg-white rounded shadow-sm border overflow-hidden flex flex-col">
-      <div class="h-44 bg-stone-200">${b.images[0] ? `<img src="${esc(b.images[0])}" class="w-full h-full object-cover">` : ''}</div>
+      <div class="h-48 bg-stone-100">${b.images[0] ? `<img src="${esc(b.images[0])}" class="w-full h-full object-contain">` : ''}</div>
       <div class="p-3 flex-1 flex flex-col justify-between">
         <div><p class="font-serif font-bold text-sm leading-tight">${esc(b.title)}</p>
         <p class="text-xs text-stone-500">${esc(b.author)} ${b.year ? '· ' + b.year : ''}</p>
@@ -514,8 +536,8 @@ const money = n => '$' + Number(n).toLocaleString('es-AR');
 function renderBooks(list) {
   $('grid').innerHTML = list.map(b => `
     <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden flex flex-col">
-      <div class="h-64 bg-stone-200 overflow-hidden relative cursor-pointer" onclick="openDetail('${b.id}')">
-        ${b.images[0] ? `<img src="${esc(b.images[0])}" alt="${esc(b.title)}" loading="lazy" class="w-full h-full object-cover">` : ''}
+      <div class="aspect-[3/4] bg-stone-100 overflow-hidden relative cursor-pointer" onclick="openDetail('${b.id}')">
+        ${b.images[0] ? `<img src="${esc(b.images[0])}" alt="${esc(b.title)}" loading="lazy" class="w-full h-full object-contain">` : ''}
         ${b.year ? `<span class="absolute top-2 right-2 bg-stone-900 text-white text-xs px-2 py-1 rounded">${b.year}</span>` : ''}
       </div>
       <div class="p-4 flex-1 flex flex-col justify-between">
@@ -542,7 +564,7 @@ function openDetail(id) {
   $('detail-body').innerHTML = `
     <div>
       <img id="main-img" src="${esc(b.images[0] || '')}" class="w-full rounded object-contain max-h-96 bg-stone-100">
-      <div class="flex gap-2 mt-2 flex-wrap">${b.images.map(s => `<img src="${esc(s)}" onclick="document.getElementById('main-img').src=this.src" class="w-16 h-16 object-cover rounded cursor-pointer border">`).join('')}</div>
+      <div class="flex gap-2 mt-2 flex-wrap">${b.images.map(s => `<img src="${esc(s)}" onclick="document.getElementById('main-img').src=this.src" class="w-16 h-16 object-contain bg-stone-100 rounded cursor-pointer border">`).join('')}</div>
     </div>
     <div class="flex flex-col">
       <button onclick="closeDetail()" class="self-end text-2xl text-stone-500">&times;</button>
@@ -603,9 +625,6 @@ if __name__ == "__main__":
         publish_site()
         print("Sitio generado en", SITE_DIR)
         sys.exit(0)
-    publish_site()  # deja el sitio actualizado al abrir
-    threading.Timer(1.2, lambda: webbrowser.open(f"http://127.0.0.1:{PORT}")).start()
-    app.run(host="127.0.0.1", port=PORT, debug=False)
     publish_site()  # deja el sitio actualizado al abrir
     threading.Timer(1.2, lambda: webbrowser.open(f"http://127.0.0.1:{PORT}")).start()
     app.run(host="127.0.0.1", port=PORT, debug=False)
