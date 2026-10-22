@@ -11,6 +11,7 @@ Resultado:     carpeta "sitio/" con index.html + imagenes/  -> eso es lo que sub
 import io
 import json
 import re
+import hashlib
 import shutil
 import sys
 import threading
@@ -78,6 +79,15 @@ def load_books():
         b["category"] = b.get("category") or "General"
         b["year"] = num(b.get("year"))
         b["price"] = num(b.get("price"))
+        b["language"] = b.get("language") or ""
+        b["edition"] = b.get("edition") or ""
+        b["binding"] = b.get("binding") or ""
+        b["pages"] = num(b.get("pages"))
+        b["isbn"] = b.get("isbn") or ""
+        b["condition"] = b.get("condition") or ""
+        for k in ("identification_notes", "uncertain_fields"):
+            if not isinstance(b.get(k), list):
+                b[k] = [str(b[k])] if b.get(k) else []
     for b in books:  # los libros cargados desde Pages CMS no traen id
         if not b.get("id"):
             b["id"] = next_id(books)
@@ -100,6 +110,50 @@ def num(value, default=0):
         return default
 
 
+def normalize_lines(value):
+    """Convierte un array JSON o texto multilínea en una lista limpia."""
+    if isinstance(value, list):
+        return [str(x).strip() for x in value if str(x).strip()]
+    if value is None:
+        return []
+    return [line.strip() for line in str(value).splitlines() if line.strip()]
+
+
+def norm_identity(value):
+    return re.sub(r"\s+", " ", str(value or "").strip().casefold())
+
+
+def gemini_fingerprint(book):
+    identity = {
+        "title": norm_identity(book.get("title")),
+        "author": norm_identity(book.get("author")),
+        "year": num(book.get("year")),
+        "publisher": norm_identity(book.get("publisher")),
+        "edition": norm_identity(book.get("edition")),
+        "isbn": re.sub(r"[^0-9xX]", "", str(book.get("isbn") or "")).upper(),
+    }
+    raw = json.dumps(identity, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def same_catalog_identity(a, b):
+    """Deduplicación conservadora: ISBN exacto o identidad bibliográfica suficientemente completa."""
+    isbn_a = re.sub(r"[^0-9xX]", "", str(a.get("isbn") or "")).upper()
+    isbn_b = re.sub(r"[^0-9xX]", "", str(b.get("isbn") or "")).upper()
+    if isbn_a and isbn_b and isbn_a == isbn_b:
+        return True
+    title_a, title_b = norm_identity(a.get("title")), norm_identity(b.get("title"))
+    author_a, author_b = norm_identity(a.get("author")), norm_identity(b.get("author"))
+    if not title_a or title_a != title_b or not author_a or author_a != author_b:
+        return False
+    # Exigimos al menos un discriminador visible para no confundir ediciones distintas.
+    discriminators = ("year", "publisher", "edition")
+    supplied = [k for k in discriminators if b.get(k)]
+    if not supplied:
+        return False
+    return all(norm_identity(a.get(k)) == norm_identity(b.get(k)) for k in supplied)
+
+
 def make_book(d, books):
     return {
         "id": next_id(books),
@@ -110,6 +164,14 @@ def make_book(d, books):
         "price": num(d.get("price")),
         "category": (d.get("category") or "General").strip(),
         "description": (d.get("description") or "").strip(),
+        "language": (d.get("language") or "").strip(),
+        "edition": (d.get("edition") or "").strip(),
+        "binding": (d.get("binding") or "").strip(),
+        "pages": num(d.get("pages")),
+        "isbn": (d.get("isbn") or "").strip(),
+        "condition": (d.get("condition") or "").strip(),
+        "identification_notes": normalize_lines(d.get("identification_notes")),
+        "uncertain_fields": normalize_lines(d.get("uncertain_fields")),
         "images": d.get("images", []),
         "ig_shortcode": d.get("ig_shortcode"),
         "date_added": datetime.now().strftime("%Y-%m-%d"),
@@ -146,6 +208,7 @@ def parse_caption(caption):
         "publisher": find("editorial", "ed", "publisher", "edici[oó]n"),
         "price": price,
         "description": caption,
+        "category": find("genero", "genre")
     }
 
 
@@ -191,6 +254,14 @@ def apply_form(book):
     book["price"] = num(f.get("price"))
     book["category"] = f.get("category", "").strip() or "General"
     book["description"] = f.get("description", "").strip()
+    book["language"] = f.get("language", "").strip()
+    book["edition"] = f.get("edition", "").strip()
+    book["binding"] = f.get("binding", "").strip()
+    book["pages"] = num(f.get("pages"))
+    book["isbn"] = f.get("isbn", "").strip()
+    book["condition"] = f.get("condition", "").strip()
+    book["identification_notes"] = normalize_lines(f.get("identification_notes", ""))
+    book["uncertain_fields"] = normalize_lines(f.get("uncertain_fields", ""))
 
     keep = [p for p in json.loads(f.get("existing_images", "[]"))
             if p.startswith(("imagenes/", "http"))]
@@ -221,6 +292,81 @@ def serve_img(name):
 @app.get("/api/books")
 def api_list():
     return jsonify(load_books())
+
+
+@app.get("/api/health")
+def api_health():
+    return jsonify(ok=True, service="catalogo", gemini_import=True)
+
+
+@app.post("/api/gemini_import")
+def api_gemini_import():
+    """Recibe desde la extensión el JSON de Gemini y guarda fichas sin imágenes."""
+    if not request.is_json:
+        return jsonify(ok=False, error="Se esperaba JSON."), 415
+    body = request.get_json(silent=True)
+    if isinstance(body, dict) and "books" in body:
+        items = body.get("books")
+    elif isinstance(body, dict) and "data" in body:
+        items = body.get("data")
+    else:
+        items = body
+    if isinstance(items, dict):
+        items = [items]
+    if not isinstance(items, list) or not items:
+        return jsonify(ok=False, error="No encontré una ficha JSON o una lista de fichas."), 400
+
+    books = load_books()
+    added_ids, duplicates, errors = [], [], []
+    known_fingerprints = {
+        b.get("gemini_fingerprint") for b in books if b.get("gemini_fingerprint")
+    }
+
+    for index, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            errors.append({"item": index, "error": "La ficha no es un objeto JSON."})
+            continue
+        data = dict(item)
+        title = str(data.get("title") or "").strip()
+        if not title:
+            errors.append({"item": index, "error": "Falta el título; no se importó."})
+            continue
+        data["title"] = title
+        # En esta primera versión no se importan archivos de imagen desde Gemini.
+        data["images"] = []
+        data["ig_shortcode"] = None
+        data["price"] = num(data.get("price"))
+        data["year"] = num(data.get("year"))
+        data["pages"] = num(data.get("pages"))
+        fingerprint = gemini_fingerprint(data)
+
+        is_duplicate = fingerprint in known_fingerprints
+        if not is_duplicate:
+            is_duplicate = any(same_catalog_identity(existing, data) for existing in books)
+        if is_duplicate:
+            duplicates.append(title)
+            known_fingerprints.add(fingerprint)
+            continue
+
+        book = make_book(data, books)
+        book["source"] = "gemini_extension"
+        book["gemini_fingerprint"] = fingerprint
+        books.append(book)
+        known_fingerprints.add(fingerprint)
+        added_ids.append(book["id"])
+
+    if not added_ids and errors and not duplicates:
+        return jsonify(ok=False, error="No se importó ninguna ficha válida.", details=errors), 400
+    if added_ids:
+        save_books(books)
+    return jsonify(
+        ok=True,
+        added=len(added_ids),
+        ids=added_ids,
+        duplicates=duplicates,
+        errors=errors,
+        message=f"Agregados: {len(added_ids)}; duplicados omitidos: {len(duplicates)}; errores: {len(errors)}.",
+    )
 
 
 @app.post("/api/books")
@@ -366,6 +512,14 @@ ADMIN_HTML = r"""<!DOCTYPE html>
       <label class="sm:col-span-2 text-sm">Categoría<input id="f-category" list="cats" placeholder="Clásicos, Infantil, Historia..." class="w-full px-3 py-2 border rounded"></label>
       <datalist id="cats"></datalist>
       <label class="sm:col-span-2 text-sm">Descripción<textarea id="f-description" rows="5" class="w-full px-3 py-2 border rounded"></textarea></label>
+      <label class="text-sm">Idioma<input id="f-language" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Edición<input id="f-edition" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Encuadernación<input id="f-binding" class="w-full px-3 py-2 border rounded" placeholder="Tapa dura, rústica..."></label>
+      <label class="text-sm">Páginas<input id="f-pages" type="number" min="0" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">ISBN<input id="f-isbn" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Estado de conservación<input id="f-condition" class="w-full px-3 py-2 border rounded"></label>
+      <label class="sm:col-span-2 text-sm">Notas para identificar la edición (una por línea)<textarea id="f-identification_notes" rows="2" class="w-full px-3 py-2 border rounded"></textarea></label>
+      <label class="sm:col-span-2 text-sm">Datos que faltan verificar (uno por línea)<textarea id="f-uncertain_fields" rows="2" class="w-full px-3 py-2 border rounded"></textarea></label>
     </div>
 
     <div class="mt-4">
@@ -389,7 +543,8 @@ ADMIN_HTML = r"""<!DOCTYPE html>
 let books = [], editingId = null, existing = [], newFiles = [];
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const FIELDS = ['title','author','year','publisher','price','category','description'];
+const FIELDS = ['title','author','year','publisher','price','category','description','language','edition','binding','pages','isbn','condition','identification_notes','uncertain_fields'];
+const ARRAY_FIELDS = ['identification_notes','uncertain_fields'];
 
 async function load() { books = await (await fetch('/api/books')).json(); render(); }
 
@@ -417,7 +572,7 @@ function openModal(id = null) {
   editingId = id; newFiles = [];
   const b = id ? books.find(x => x.id === id) : {};
   existing = [...(b.images || [])];
-  FIELDS.forEach(f => $('f-' + f).value = b[f] || '');
+  FIELDS.forEach(f => $('f-' + f).value = ARRAY_FIELDS.includes(f) ? (Array.isArray(b[f]) ? b[f].join('\n') : (b[f] || '')) : (b[f] || ''));
   $('modal-title').textContent = id ? 'Editar libro' : 'Agregar libro';
   $('ig-box').classList.toggle('hidden', !!id);
   $('ig-url').value = ''; $('ig-caption').value = ''; $('ig-msg').textContent = '';
@@ -492,7 +647,7 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
 <body class="bg-stone-100 text-stone-800 font-sans">
 <header class="bg-stone-900 text-stone-100 py-6 shadow-md">
   <div class="container mx-auto px-4 flex justify-between items-center">
-    <h1 class="text-2xl font-serif tracking-wide">Libros Británicos & Colección</h1>
+    <h1 class="text-2xl font-serif tracking-wide">Libros Británicos & Americanos de Colección</h1>
     <button onclick="toggleCart()" class="bg-amber-700 hover:bg-amber-600 px-4 py-2 rounded text-sm font-medium">🛒 Carrito (<span id="cart-count">0</span>)</button>
   </div>
 </header>
@@ -572,7 +727,17 @@ function openDetail(id) {
       <h2 class="font-serif font-bold text-2xl">${esc(b.title)}</h2>
       <p class="text-stone-600">${esc(b.author)}</p>
       <p class="text-sm text-stone-500 mb-3">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
+      <div class="text-sm text-stone-600 mb-3 space-y-1">${[
+        b.language ? 'Idioma: ' + esc(b.language) : '',
+        b.edition ? 'Edición: ' + esc(b.edition) : '',
+        b.binding ? 'Encuadernación: ' + esc(b.binding) : '',
+        b.pages ? 'Páginas: ' + esc(b.pages) : '',
+        b.isbn ? 'ISBN: ' + esc(b.isbn) : '',
+        b.condition ? 'Estado: ' + esc(b.condition) : ''
+      ].filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div>
       <p class="text-sm whitespace-pre-line flex-1">${esc(b.description)}</p>
+      ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="list-disc ml-5">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
+      ${(b.uncertain_fields || []).length ? `<div class="mt-3 text-sm text-amber-800"><strong>Datos por verificar</strong><ul class="list-disc ml-5">${b.uncertain_fields.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
       <div class="mt-4 flex items-center justify-between">
         <span class="font-bold text-xl">${b.price ? money(b.price) : 'Consultar'}</span>
         <button onclick="addToCart('${b.id}');closeDetail()" class="bg-stone-900 hover:bg-amber-800 text-white px-4 py-2 rounded">Agregar</button>
