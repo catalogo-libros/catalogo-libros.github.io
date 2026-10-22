@@ -3,7 +3,7 @@ Catálogo de Libros Británicos
 -----------------------------
 Panel de administración local + generador del sitio público.
 
-Instalación:   pip install flask instaloader
+Instalación:   pip install flask instaloader pillow
 Uso:           python catalogo.py        (se abre el navegador solo)
 
 Resultado:     carpeta "sitio/" con index.html + imagenes/  -> eso es lo que subís a la web.
@@ -35,26 +35,41 @@ IMG_DIR = BASE / "imagenes"
 SITE_DIR = BASE / "sitio"
 ALLOWED = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 IMG_DIR.mkdir(exist_ok=True)
-MAX_SIDE = 1200  # lado máximo en píxeles de las imágenes guardadas
+MAX_SIDE = 900  # límite para que las tapas no pesen demasiado en el repositorio
 
 
 def save_image(fileobj, dest):
-    """Guarda la imagen achicada a MAX_SIDE px y corregida de rotación.
-    Necesita Pillow (pip install pillow); si no está o falla, guarda el original."""
+    """Optimiza la tapa y devuelve la ruta realmente guardada.
+
+    Con Pillow convierte las imágenes a WebP, limita el lado mayor a 900 px y
+    comprime con calidad moderada. Guarda un solo archivo por foto; no conserva
+    también una copia original. Si Pillow falta o el archivo no se puede leer,
+    conserva el original con su extensión.
+    """
     fileobj.seek(0)
     raw = fileobj.read()
     try:
         from PIL import Image, ImageOps
-        if dest.suffix.lower() == ".gif":
-            raise ValueError("los GIF se guardan tal cual")
-        img = ImageOps.exif_transpose(Image.open(io.BytesIO(raw)))
-        img.thumbnail((MAX_SIDE, MAX_SIDE))
-        if dest.suffix.lower() in (".jpg", ".jpeg"):
-            img.convert("RGB").save(dest, quality=85, optimize=True)
-        else:
-            img.save(dest)
-    except Exception:
+    except ImportError:
         dest.write_bytes(raw)
+        return dest
+
+    output = dest.with_suffix(".webp")
+    try:
+        with Image.open(io.BytesIO(raw)) as source:
+            img = ImageOps.exif_transpose(source)
+            resampling = getattr(Image, "Resampling", Image).LANCZOS
+            img.thumbnail((MAX_SIDE, MAX_SIDE), resampling)
+            if img.mode not in ("RGB", "RGBA"):
+                img = img.convert("RGBA" if "transparency" in img.info else "RGB")
+            img.save(output, format="WEBP", quality=76, method=6)
+        if output != dest:
+            dest.unlink(missing_ok=True)
+        return output
+    except Exception:
+        output.unlink(missing_ok=True)
+        dest.write_bytes(raw)
+        return dest
 
 
 app = Flask(__name__)
@@ -236,8 +251,8 @@ def ig_post_data(post):
         r = requests.get(u, timeout=30)
         r.raise_for_status()
         name = f"ig_{post.shortcode}_{i}.jpg"
-        save_image(io.BytesIO(r.content), IMG_DIR / name)
-        imgs.append(f"imagenes/{name}")
+        saved = save_image(io.BytesIO(r.content), IMG_DIR / name)
+        imgs.append(f"imagenes/{saved.name}")
     data = parse_caption(post.caption or "")
     data["images"] = imgs
     data["ig_shortcode"] = post.shortcode
@@ -273,8 +288,8 @@ def apply_form(book):
         ext = Path(file.filename or "").suffix.lower()
         if file and ext in ALLOWED:
             name = f"{uuid.uuid4().hex[:10]}{ext}"
-            save_image(file, IMG_DIR / name)
-            imgs.append(f"imagenes/{name}")
+            saved = save_image(file, IMG_DIR / name)
+            imgs.append(f"imagenes/{saved.name}")
     book["images"] = imgs
     return book
 
@@ -457,9 +472,77 @@ def api_publish():
 
 # ----------------------- sitio público -----------------------
 def publish_site():
+    """Genera el sitio optimizando imágenes viejas y copiando solo las usadas."""
+    books = load_books()
+
+    # Migra imágenes antiguas (JPG/PNG/GIF) a WebP una sola vez, sin mantener
+    # simultáneamente la imagen original y la optimizada.
+    optimized_paths = {}
+    books_changed = False
+    for book in books:
+        old_images = book.get("images", []) or []
+        new_images = []
+        for image_path in old_images:
+            if not isinstance(image_path, str) or not image_path.startswith("imagenes/"):
+                new_images.append(image_path)
+                continue
+            source = (BASE / image_path).resolve()
+            try:
+                source.relative_to(IMG_DIR.resolve())
+            except ValueError:
+                new_images.append(image_path)
+                continue
+            if not source.is_file():
+                new_images.append(image_path)
+                continue
+            key = str(source)
+            if key not in optimized_paths:
+                if source.suffix.lower() != ".webp":
+                    with source.open("rb") as fileobj:
+                        saved = save_image(fileobj, source)
+                else:
+                    saved = source
+                try:
+                    relative_saved = saved.resolve().relative_to(IMG_DIR.resolve())
+                    optimized_paths[key] = "imagenes/" + relative_saved.as_posix()
+                except ValueError:
+                    optimized_paths[key] = image_path
+            new_images.append(optimized_paths[key])
+        if new_images != old_images:
+            book["images"] = new_images
+            books_changed = True
+    if books_changed:
+        save_books(books)
+
     SITE_DIR.mkdir(exist_ok=True)
-    shutil.copytree(IMG_DIR, SITE_DIR / "imagenes", dirs_exist_ok=True)
-    books_json = json.dumps(load_books(), ensure_ascii=False).replace("</", "<\\/")
+    published_images = SITE_DIR / "imagenes"
+    if published_images.exists():
+        shutil.rmtree(published_images)
+    published_images.mkdir(parents=True, exist_ok=True)
+
+    referenced = set()
+    for book in books:
+        for image_path in book.get("images", []):
+            if not isinstance(image_path, str) or not image_path.startswith("imagenes/"):
+                continue
+            source = (BASE / image_path).resolve()
+            try:
+                relative = source.relative_to(IMG_DIR.resolve())
+            except ValueError:
+                continue
+            if not source.is_file():
+                continue
+            target = published_images / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+            referenced.add(source)
+
+    # Evita acumular en el directorio de trabajo archivos sin ficha asociada.
+    for image_file in IMG_DIR.rglob("*"):
+        if image_file.is_file() and image_file.resolve() not in referenced:
+            image_file.unlink(missing_ok=True)
+
+    books_json = json.dumps(books, ensure_ascii=False).replace("</", "<\\/")
     html = PUBLIC_HTML.replace("__BOOKS__", books_json).replace("__PHONE__", WHATSAPP)
     (SITE_DIR / "index.html").write_text(html, encoding="utf-8")
 
@@ -529,7 +612,7 @@ ADMIN_HTML = r"""<!DOCTYPE html>
         <input id="f-files" type="file" accept="image/*" multiple class="hidden" onchange="addFiles(this)">
       </label>
       <div id="thumbs" class="flex flex-wrap gap-2 mt-3"></div>
-      <p class="text-xs text-stone-500 mt-1">La primera imagen es la portada.</p>
+      <p class="text-xs text-stone-500 mt-1">La primera imagen es la portada. Al guardar, las fotos se optimizan a WebP (máx. 900 px) para ocupar menos espacio.</p>
     </div>
 
     <div class="flex justify-end gap-2 mt-6">
@@ -543,14 +626,15 @@ ADMIN_HTML = r"""<!DOCTYPE html>
 let books = [], editingId = null, existing = [], newFiles = [];
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es');
 const FIELDS = ['title','author','year','publisher','price','category','description','language','edition','binding','pages','isbn','condition','identification_notes','uncertain_fields'];
 const ARRAY_FIELDS = ['identification_notes','uncertain_fields'];
 
 async function load() { books = await (await fetch('/api/books')).json(); render(); }
 
 function render() {
-  const q = $('q').value.toLowerCase();
-  const list = books.filter(b => [b.title,b.author,b.publisher,b.category,b.year].join(' ').toLowerCase().includes(q));
+  const q = norm($('q').value);
+  const list = books.filter(b => norm([b.title,b.author,b.publisher,b.category,b.year].join(' ')).includes(q));
   $('count').textContent = `(${books.length} libros)`;
   $('cats').innerHTML = [...new Set(books.map(b => b.category))].map(c => `<option value="${esc(c)}">`).join('');
   $('grid').innerHTML = list.map(b => `
@@ -665,6 +749,17 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
   <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-5 grid md:grid-cols-2 gap-5" id="detail-body"></div>
 </div>
 
+<!-- Visor de imagen a pantalla completa -->
+<div id="image-lightbox" class="fixed inset-0 bg-black/95 hidden items-center justify-center z-[80] p-3 sm:p-6"
+     role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="if(event.target===this)closeLightbox()">
+  <button type="button" onclick="closeLightbox()" aria-label="Cerrar imagen ampliada"
+          class="absolute top-3 right-4 sm:top-5 sm:right-6 text-white text-4xl leading-none p-2">&times;</button>
+  <div class="w-full h-full flex flex-col items-center justify-center gap-3">
+    <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[88vh] object-contain cursor-zoom-out" onclick="closeLightbox()">
+    <p id="lightbox-caption" class="text-white text-sm text-center"></p>
+  </div>
+</div>
+
 <!-- Carrito -->
 <div id="cart-modal" class="fixed inset-0 bg-black/50 hidden justify-end z-50">
   <div class="bg-white w-full max-w-md h-full p-6 flex flex-col shadow-xl">
@@ -680,19 +775,27 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
   </div>
 </div>
 
+<a href="https://wa.me/__PHONE__" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
+   class="fixed bottom-5 right-5 z-[60] rounded-full bg-green-600 hover:bg-green-700 text-white px-5 py-3 shadow-xl font-semibold flex items-center gap-2">
+  <span aria-hidden="true">💬</span><span>WhatsApp</span>
+</a>
+<div id="toast" role="status" aria-live="polite"
+     class="hidden fixed bottom-24 right-5 z-[70] max-w-xs rounded-lg bg-stone-900 text-white px-4 py-3 text-sm shadow-xl"></div>
+
 <script>
 const books = __BOOKS__;
 const PHONE = "__PHONE__";
 let cart = [];
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es');
 const money = n => '$' + Number(n).toLocaleString('es-AR');
 
 function renderBooks(list) {
   $('grid').innerHTML = list.map(b => `
     <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden flex flex-col">
       <div class="aspect-[3/4] bg-stone-100 overflow-hidden relative cursor-pointer" onclick="openDetail('${b.id}')">
-        ${b.images[0] ? `<img src="${esc(b.images[0])}" alt="${esc(b.title)}" loading="lazy" class="w-full h-full object-contain">` : ''}
+        ${b.images[0] ? `<img src="${esc(b.images[0])}" alt="${esc(b.title)}" loading="lazy" decoding="async" class="w-full h-full object-contain">` : `<div class="w-full h-full flex flex-col items-center justify-center text-stone-500"><span class="text-4xl" aria-hidden="true">📚</span><span class="mt-2 text-sm font-medium">Sin foto</span></div>`}
         ${b.year ? `<span class="absolute top-2 right-2 bg-stone-900 text-white text-xs px-2 py-1 rounded">${b.year}</span>` : ''}
       </div>
       <div class="p-4 flex-1 flex flex-col justify-between">
@@ -701,25 +804,35 @@ function renderBooks(list) {
           <h3 class="font-serif font-bold text-lg text-stone-900 mt-1">${esc(b.title)}</h3>
           <p class="text-sm text-stone-600">${esc(b.author)}</p>
         </div>
-        <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between">
-          <span class="font-bold text-lg">${b.price ? money(b.price) : 'Consultar'}</span>
-          <button onclick="addToCart('${b.id}')" class="bg-stone-900 hover:bg-amber-800 text-white text-sm px-3 py-2 rounded">Agregar</button>
+        <div class="mt-4 pt-4 border-t border-stone-100">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-lg">${b.price ? money(b.price) : 'Consultar'}</span>
+            ${cart.some(i => i.id === b.id)
+              ? `<button disabled class="bg-stone-300 text-stone-600 text-sm px-3 py-2 rounded cursor-not-allowed">En carrito</button>`
+              : `<button onclick="addToCart('${b.id}')" class="bg-stone-900 hover:bg-amber-800 text-white text-sm px-3 py-2 rounded">Agregar</button>`}
+          </div>
+          <button onclick="shareBook('${b.id}')" class="w-full mt-2 text-xs text-amber-800 hover:underline text-left">🔗 Copiar enlace individual</button>
         </div>
       </div>
     </div>`).join('') || '<p class="col-span-full text-center text-stone-500 py-10">No se encontraron libros.</p>';
 }
 
 function filterBooks() {
-  const q = $('search').value.toLowerCase();
-  renderBooks(books.filter(b => [b.title, b.author, b.publisher, b.year, b.category, b.description].join(' ').toLowerCase().includes(q)));
+  const q = norm($('search').value);
+  renderBooks(books.filter(b => norm([b.title, b.author, b.publisher, b.year, b.category, b.description].join(' ')).includes(q)));
 }
 
 function openDetail(id) {
   const b = books.find(x => x.id === id);
+  if (!b) return;
+  const images = Array.isArray(b.images) ? b.images : [];
   $('detail-body').innerHTML = `
     <div>
-      <img id="main-img" src="${esc(b.images[0] || '')}" class="w-full rounded object-contain max-h-96 bg-stone-100">
-      <div class="flex gap-2 mt-2 flex-wrap">${b.images.map(s => `<img src="${esc(s)}" onclick="document.getElementById('main-img').src=this.src" class="w-16 h-16 object-contain bg-stone-100 rounded cursor-pointer border">`).join('')}</div>
+      ${images[0]
+        ? `<img id="main-img" src="${esc(images[0])}" alt="${esc(b.title)}" onclick="openLightbox(this.src, this.alt)" title="Hacé clic para ampliar" class="w-full rounded object-contain max-h-96 bg-stone-100 cursor-zoom-in">`
+        : `<div class="w-full min-h-64 md:min-h-80 rounded bg-stone-100 flex flex-col items-center justify-center text-stone-500"><span class="text-5xl" aria-hidden="true">📚</span><span class="mt-3 text-base font-medium">Sin foto</span></div>`}
+      <div class="flex gap-2 mt-2 flex-wrap">${images.map(s => `<img src="${esc(s)}" alt="${esc(b.title)}" onclick="document.getElementById('main-img').src=this.src" class="w-16 h-16 object-contain bg-stone-100 rounded cursor-pointer border" loading="lazy">`).join('')}</div>
+      ${images.length ? `<p class="text-xs text-stone-500 mt-2">Tocá la imagen principal para verla a pantalla completa.</p>` : ''}
     </div>
     <div class="flex flex-col">
       <button onclick="closeDetail()" class="self-end text-2xl text-stone-500">&times;</button>
@@ -737,24 +850,52 @@ function openDetail(id) {
       ].filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div>
       <p class="text-sm whitespace-pre-line flex-1">${esc(b.description)}</p>
       ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="list-disc ml-5">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
-      ${(b.uncertain_fields || []).length ? `<div class="mt-3 text-sm text-amber-800"><strong>Datos por verificar</strong><ul class="list-disc ml-5">${b.uncertain_fields.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
-      <div class="mt-4 flex items-center justify-between">
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-2">
         <span class="font-bold text-xl">${b.price ? money(b.price) : 'Consultar'}</span>
-        <button onclick="addToCart('${b.id}');closeDetail()" class="bg-stone-900 hover:bg-amber-800 text-white px-4 py-2 rounded">Agregar</button>
+        ${cart.some(i => i.id === b.id)
+          ? `<button disabled class="bg-stone-300 text-stone-600 px-4 py-2 rounded cursor-not-allowed">En carrito</button>`
+          : `<button onclick="addToCart('${b.id}');closeDetail()" class="bg-stone-900 hover:bg-amber-800 text-white px-4 py-2 rounded">Agregar</button>`}
       </div>
+      <button onclick="shareBook('${b.id}')" class="mt-3 text-sm text-amber-800 hover:underline text-left">🔗 Copiar enlace individual de este libro</button>
     </div>`;
   $('detail').classList.replace('hidden', 'flex');
 }
 function closeDetail() { $('detail').classList.replace('flex', 'hidden'); }
 
+function openLightbox(src, caption = '') {
+  if (!src) return;
+  $('lightbox-img').src = src;
+  $('lightbox-img').alt = caption;
+  $('lightbox-caption').textContent = caption;
+  $('image-lightbox').classList.replace('hidden', 'flex');
+}
+function closeLightbox() {
+  $('image-lightbox').classList.replace('flex', 'hidden');
+  $('lightbox-img').src = '';
+}
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    closeLightbox();
+    closeDetail();
+  }
+});
+
 function toggleCart() { const m = $('cart-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
 
 function addToCart(id) {
-  const b = books.find(x => x.id === id), ex = cart.find(i => i.id === id);
-  if (ex) ex.quantity++; else cart.push({ ...b, quantity: 1 });
+  const b = books.find(x => x.id === id);
+  if (!b) return;
+  if (cart.some(i => i.id === id)) {
+    showToast('Ya agregaste este libro. Solo hay un ejemplar disponible.');
+    return;
+  }
+  // Cada ficha representa un ejemplar único: nunca se aumenta la cantidad.
+  cart.push({ ...b, quantity: 1 });
   updateCart();
+  filterBooks();
+  showToast('Agregado al carrito: ' + b.title);
 }
-function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCart(); }
+function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCart(); filterBooks(); }
 
 function updateCart() {
   $('cart-count').innerText = cart.reduce((a, i) => a + i.quantity, 0);
@@ -769,6 +910,26 @@ function updateCart() {
   $('cart-total').innerText = money(total) + ' ARS';
 }
 
+let toastTimer = null;
+function showToast(message) {
+  const toast = $('toast');
+  toast.textContent = message;
+  toast.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+}
+
+async function shareBook(id) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('libro', id);
+  try {
+    await navigator.clipboard.writeText(url.toString());
+    showToast('Enlace individual copiado. Ya podés compartirlo.');
+  } catch (err) {
+    window.prompt('Copiá este enlace individual:', url.toString());
+  }
+}
+
 function checkout() {
   if (!cart.length) { alert('Tu carrito está vacío.'); return; }
   let msg = '¡Hola! Quiero encargar los siguientes libros de tu catálogo:\n\n', total = 0;
@@ -781,6 +942,10 @@ function checkout() {
 }
 
 renderBooks(books);
+const requestedBookId = new URLSearchParams(window.location.search).get('libro');
+if (requestedBookId && books.some(b => b.id === requestedBookId)) {
+  openDetail(requestedBookId);
+}
 </script>
 </body></html>
 """
