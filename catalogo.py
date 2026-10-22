@@ -724,102 +724,185 @@ load();
 
 PUBLIC_HTML = r"""<!DOCTYPE html>
 <html lang="es"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#292524">
 <title>Catálogo de Libros - Libros Británicos</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { -webkit-tap-highlight-color: transparent; }
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  .book-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; line-height: 1.25; min-height: 2.5em; }
+  .book-author { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 2.5em; }
+  .category-strip { scrollbar-width: none; }
+  .category-strip::-webkit-scrollbar { display: none; }
+  .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  button, select, input { touch-action: manipulation; }
+  @media (max-width: 639px) {
+    .catalog-card { border-radius: .65rem; }
+    .catalog-card .cover-area { aspect-ratio: 3 / 3.5; }
+  }
+</style>
 </head>
-<body class="bg-stone-100 text-stone-800 font-sans">
-<header class="bg-stone-900 text-stone-100 py-6 shadow-md">
-  <div class="container mx-auto px-4 flex justify-between items-center">
-    <h1 class="text-2xl font-serif tracking-wide">Libros Británicos & Americanos de Colección</h1>
-    <button onclick="toggleCart()" class="bg-amber-700 hover:bg-amber-600 px-4 py-2 rounded text-sm font-medium">🛒 Carrito (<span id="cart-count">0</span>)</button>
+<body class="bg-stone-100 text-stone-800 font-sans antialiased">
+<header class="sticky top-0 z-30 bg-stone-900 text-stone-100 shadow-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:px-4 sm:py-4">
+    <div class="min-w-0">
+      <h1 class="truncate font-serif text-base font-bold tracking-wide sm:text-xl md:text-2xl">Libros Británicos &amp; Americanos</h1>
+      <p class="hidden text-xs text-stone-300 sm:block">Libros de colección</p>
+    </div>
+    <button onclick="toggleCart()" class="shrink-0 rounded-lg bg-amber-700 px-3 py-2.5 text-sm font-semibold hover:bg-amber-600 sm:px-4" aria-label="Abrir carrito">
+      <span aria-hidden="true">🛒</span> <span class="hidden sm:inline">Carrito</span> <span class="rounded-full bg-stone-900/30 px-1.5 py-0.5"><span id="cart-count">0</span></span>
+    </button>
   </div>
 </header>
 
-<main class="container mx-auto px-4 py-8">
-  <div class="mb-8 max-w-xl mx-auto">
-    <input id="search" oninput="filterBooks()" placeholder="Buscar por título, autor, año o temática..."
-      class="w-full px-4 py-3 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 shadow-sm">
-  </div>
-  <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+<main class="mx-auto max-w-7xl px-3 pb-24 pt-4 sm:px-4 sm:py-7">
+  <section aria-label="Buscar y filtrar libros" class="mb-4 sm:mb-6">
+    <label for="search" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-500 sm:text-sm">Encontrá tu próximo libro</label>
+    <div class="relative">
+      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" aria-hidden="true">⌕</span>
+      <input id="search" oninput="filterBooks()" autocomplete="off" placeholder="Título, autor, año o temática..."
+        class="w-full rounded-xl border border-stone-300 bg-white py-3 pl-10 pr-10 text-base shadow-sm outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-700/20">
+      <button id="clear-search" onclick="clearSearch()" class="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-lg px-3 py-2 text-stone-500 hover:bg-stone-100" aria-label="Borrar búsqueda">×</button>
+    </div>
+    <div id="category-strip" class="category-strip -mx-3 mt-3 flex gap-2 overflow-x-auto px-3 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"></div>
+    <div class="mt-3 flex items-center justify-between gap-3">
+      <p id="results-count" class="text-xs text-stone-500 sm:text-sm" aria-live="polite"></p>
+      <label class="flex shrink-0 items-center gap-2 text-xs text-stone-600 sm:text-sm">
+        <span>Ordenar</span>
+        <select id="sort" onchange="filterBooks()" class="max-w-[155px] rounded-lg border border-stone-300 bg-white px-2 py-2 text-xs outline-none focus:border-amber-700 sm:max-w-none sm:text-sm">
+          <option value="default">Orden original</option>
+          <option value="title">Título A–Z</option>
+          <option value="price-asc">Menor precio</option>
+          <option value="price-desc">Mayor precio</option>
+          <option value="year-desc">Más recientes</option>
+          <option value="year-asc">Más antiguos</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <div id="grid" class="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"></div>
 </main>
 
-<!-- Detalle -->
-<div id="detail" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-40 p-4" onclick="if(event.target===this)closeDetail()">
-  <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-5 grid md:grid-cols-2 gap-5" id="detail-body"></div>
+<!-- Detalle: panel inferior en celular, modal centrado en pantallas grandes -->
+<div id="detail" class="fixed inset-0 z-40 hidden items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4" onclick="if(event.target===this)closeDetail()">
+  <div class="max-h-[94dvh] w-full max-w-3xl overflow-y-auto rounded-t-2xl bg-white p-4 shadow-xl sm:max-h-[90vh] sm:rounded-xl sm:p-5" id="detail-body" style="padding-bottom:max(1rem, env(safe-area-inset-bottom))"></div>
 </div>
 
 <!-- Visor de imagen a pantalla completa -->
-<div id="image-lightbox" class="fixed inset-0 bg-black/95 hidden items-center justify-center z-[80] p-3 sm:p-6"
+<div id="image-lightbox" class="fixed inset-0 z-[80] hidden items-center justify-center bg-black/95 p-3 sm:p-6"
      role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="if(event.target===this)closeLightbox()">
   <button type="button" onclick="closeLightbox()" aria-label="Cerrar imagen ampliada"
-          class="absolute top-3 right-4 sm:top-5 sm:right-6 text-white text-4xl leading-none p-2">&times;</button>
-  <div class="w-full h-full flex flex-col items-center justify-center gap-3">
-    <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[88vh] object-contain cursor-zoom-out" onclick="closeLightbox()">
-    <p id="lightbox-caption" class="text-white text-sm text-center"></p>
+          class="absolute right-3 top-2 rounded-full bg-white/10 px-3 py-1 text-4xl leading-none text-white sm:right-6 sm:top-5">&times;</button>
+  <div class="flex h-full w-full flex-col items-center justify-center gap-3">
+    <img id="lightbox-img" src="" alt="" class="max-h-[84dvh] max-w-full cursor-zoom-out object-contain sm:max-h-[88vh]" onclick="closeLightbox()">
+    <p id="lightbox-caption" class="max-w-full break-words text-center text-sm text-white"></p>
   </div>
 </div>
 
-<!-- Carrito -->
-<div id="cart-modal" class="fixed inset-0 bg-black/50 hidden justify-end z-50">
-  <div class="bg-white w-full max-w-md h-full p-6 flex flex-col shadow-xl">
-    <div class="flex justify-between items-center border-b pb-4">
-      <h2 class="text-xl font-serif font-bold">Tu pedido</h2>
-      <button onclick="toggleCart()" class="text-stone-500 text-2xl font-bold">&times;</button>
+<!-- Carrito: panel inferior en celulares y lateral en escritorio -->
+<div id="cart-modal" class="fixed inset-0 z-50 hidden items-end justify-end bg-black/50 sm:items-stretch">
+  <div class="safe-bottom flex h-[88dvh] w-full max-w-md flex-col rounded-t-2xl bg-white p-4 shadow-xl sm:h-full sm:rounded-none sm:p-6">
+    <div class="flex items-center justify-between border-b pb-3 sm:pb-4">
+      <h2 class="font-serif text-xl font-bold">Tu pedido</h2>
+      <button onclick="toggleCart()" class="rounded-lg px-3 py-1 text-3xl leading-none text-stone-500" aria-label="Cerrar carrito">&times;</button>
     </div>
-    <div id="cart-items" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
+    <div id="cart-items" class="flex-1 space-y-3 overflow-y-auto py-4"></div>
     <div class="border-t pt-4">
-      <div class="flex justify-between font-bold text-lg mb-4"><span>Total estimado:</span><span id="cart-total">$0 ARS</span></div>
-      <button onclick="checkout()" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium shadow">Enviar pedido por WhatsApp 📱</button>
+      <div class="mb-4 flex justify-between gap-3 text-lg font-bold"><span>Total estimado:</span><span id="cart-total">$0 ARS</span></div>
+      <button onclick="checkout()" class="w-full rounded-xl bg-green-600 py-3.5 font-semibold text-white shadow hover:bg-green-700">Enviar pedido por WhatsApp 📱</button>
     </div>
   </div>
 </div>
 
 <a href="https://wa.me/__PHONE__" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
-   class="fixed bottom-5 right-5 z-[60] rounded-full bg-green-600 hover:bg-green-700 text-white px-5 py-3 shadow-xl font-semibold flex items-center gap-2">
-  <span aria-hidden="true">💬</span><span>WhatsApp</span>
+   class="fixed bottom-4 right-3 z-[60] flex h-12 w-12 items-center justify-center rounded-full bg-green-600 text-2xl text-white shadow-xl hover:bg-green-700 sm:bottom-5 sm:right-5 sm:h-auto sm:w-auto sm:gap-2 sm:px-5 sm:py-3 sm:text-base">
+  <span aria-hidden="true">💬</span><span class="hidden sm:inline">WhatsApp</span>
 </a>
 <div id="toast" role="status" aria-live="polite"
-     class="hidden fixed bottom-24 right-5 z-[70] max-w-xs rounded-lg bg-stone-900 text-white px-4 py-3 text-sm shadow-xl"></div>
+     class="fixed bottom-20 left-3 right-3 z-[70] hidden rounded-xl bg-stone-900 px-4 py-3 text-sm text-white shadow-xl sm:bottom-24 sm:left-auto sm:right-5 sm:max-w-xs"></div>
 
 <script>
 const books = __BOOKS__;
 const PHONE = "__PHONE__";
 let cart = [];
+let selectedCategory = 'Todos';
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es');
-const money = n => '$' + Number(n).toLocaleString('es-AR');
+const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').trim();
+const money = n => '$' + Number(n || 0).toLocaleString('es-AR');
 
-function renderBooks(list) {
-  $('grid').innerHTML = list.map(b => `
-    <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden flex flex-col">
-      <div class="aspect-[3/4] bg-stone-100 overflow-hidden relative cursor-pointer" onclick="openDetail('${b.id}')">
-        ${b.images[0] ? `<img src="${esc(b.images[0])}" alt="${esc(b.title)}" loading="lazy" decoding="async" class="w-full h-full object-contain">` : `<div class="w-full h-full flex flex-col items-center justify-center text-stone-500"><span class="text-4xl" aria-hidden="true">📚</span><span class="mt-2 text-sm font-medium">Sin foto</span></div>`}
-        ${b.year ? `<span class="absolute top-2 right-2 bg-stone-900 text-white text-xs px-2 py-1 rounded">${b.year}</span>` : ''}
-      </div>
-      <div class="p-4 flex-1 flex flex-col justify-between">
-        <div class="cursor-pointer" onclick="openDetail('${b.id}')">
-          <span class="text-xs uppercase tracking-wider text-amber-800 font-semibold">${esc(b.category)}</span>
-          <h3 class="font-serif font-bold text-lg text-stone-900 mt-1">${esc(b.title)}</h3>
-          <p class="text-sm text-stone-600">${esc(b.author)}</p>
-        </div>
-        <div class="mt-4 pt-4 border-t border-stone-100">
-          <div class="flex items-center justify-between gap-2">
-            <span class="font-bold text-lg">${b.price ? money(b.price) : 'Consultar'}</span>
-            ${cart.some(i => i.id === b.id)
-              ? `<button disabled class="bg-stone-300 text-stone-600 text-sm px-3 py-2 rounded cursor-not-allowed">En carrito</button>`
-              : `<button onclick="addToCart('${b.id}')" class="bg-stone-900 hover:bg-amber-800 text-white text-sm px-3 py-2 rounded">Agregar</button>`}
-          </div>
-          <button onclick="shareBook('${b.id}')" class="w-full mt-2 text-xs text-amber-800 hover:underline text-left">🔗 Copiar enlace individual</button>
-        </div>
-      </div>
-    </div>`).join('') || '<p class="col-span-full text-center text-stone-500 py-10">No se encontraron libros.</p>';
+// Cinco grupos amplios para filtrar sin tener que editar las categorías guardadas.
+const CATEGORY_GROUPS = ['Literatura', 'Historia y sociedad', 'Arte y cultura', 'Idiomas y consulta', 'Otros temas'];
+function categoryGroup(book) {
+  const originalCategory = String(book.category || 'General').trim();
+  const categoryText = norm(originalCategory);
+  const generic = !categoryText || ['general', 'otros', 'otro', 'sin categoria', 'varios', 'miscellaneous'].includes(categoryText);
+  // En fichas sin categoría útil, el título y la descripción ayudan a clasificarlas automáticamente.
+  const source = generic ? norm([book.title, book.description, book.author].join(' ')) : categoryText;
+
+  if (/literatura|literary|ficcion|fiction|novela|novel|narrativa|poesia|poetry|poema|cuento|short stor|teatro|drama|clasico|classic|romance|thriller|misterio|detective|comic|humor|infantil|juvenil|ensayo literario/.test(source)) return 'Literatura';
+  if (/historia|history|biograf|autobiograf|politic|sociedad|society|sociolog|econom|religion|mitolog|mytholog|filosof|philosoph|antropolog|arqueolog|geograf|geograph|guerra|militar|derecho|law|educacion|education|psicolog|psycholog/.test(source)) return 'Historia y sociedad';
+  if (/arte|artes|art |painting|pintura|fotograf|photograph|musica|music|cine|cinema|film|cultura|culture|arquitect|architecture|diseno|design|ilustracion|illustration|moda|fashion|artesania|craft|teatro|decoracion/.test(source)) return 'Arte y cultura';
+  if (/idioma|idiomas|language|lengua|linguist|diccionario|dictionary|gramatic|grammar|latin|ingles|english|espanol|spanish|frances|french|aleman|german|italiano|italian|vocabulario|vocabulary|atlas|enciclopedia|encyclopedia|referencia|reference|manual|handbook|guia|guide|textbook|libro de texto|consulta/.test(source)) return 'Idiomas y consulta';
+  return 'Otros temas';
 }
+function renderCategories() {
+  const categories = ['Todos', ...CATEGORY_GROUPS];
+  if (!categories.some(c => norm(c) === norm(selectedCategory))) selectedCategory = 'Todos';
+  $('category-strip').innerHTML = categories.map(c => {
+    const active = norm(c) === norm(selectedCategory);
+    return `<button type="button" data-category="${esc(c)}" class="shrink-0 rounded-full border px-3.5 py-2 text-xs font-semibold transition sm:text-sm ${active ? 'border-stone-900 bg-stone-900 text-white' : 'border-stone-300 bg-white text-stone-700 hover:border-stone-500'}">${esc(c)}</button>`;
+  }).join('');
+  $('category-strip').querySelectorAll('[data-category]').forEach(button => {
+    button.addEventListener('click', () => selectCategory(button.dataset.category));
+  });
+}
+function selectCategory(category) { selectedCategory = category; renderCategories(); filterBooks(); }
+function clearSearch() { $('search').value = ''; filterBooks(); $('search').focus(); }
 
 function filterBooks() {
   const q = norm($('search').value);
-  renderBooks(books.filter(b => norm([b.title, b.author, b.publisher, b.year, b.category, b.description].join(' ')).includes(q)));
+  $('clear-search').classList.toggle('hidden', !$('search').value);
+  let list = books.filter(b => {
+    const matchesText = norm([b.title, b.author, b.publisher, b.year, b.category, b.description, b.isbn].join(' ')).includes(q);
+    const matchesCategory = norm(selectedCategory) === 'todos' || norm(categoryGroup(b)) === norm(selectedCategory);
+    return matchesText && matchesCategory;
+  });
+  const sort = $('sort').value;
+  if (sort === 'title') list.sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'es', { sensitivity: 'base' }));
+  if (sort === 'price-asc') list.sort((a, b) => (Number(a.price) || Number.MAX_SAFE_INTEGER) - (Number(b.price) || Number.MAX_SAFE_INTEGER));
+  if (sort === 'price-desc') list.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+  if (sort === 'year-desc') list.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
+  if (sort === 'year-asc') list.sort((a, b) => (Number(a.year) || Number.MAX_SAFE_INTEGER) - (Number(b.year) || Number.MAX_SAFE_INTEGER));
+  $('results-count').textContent = `${list.length} ${list.length === 1 ? 'libro' : 'libros'} encontrados`;
+  renderBooks(list);
+}
+
+function renderBooks(list) {
+  $('grid').innerHTML = list.map(b => {
+    const images = Array.isArray(b.images) ? b.images : [];
+    const inCart = cart.some(i => i.id === b.id);
+    return `
+    <article class="catalog-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
+      <button type="button" class="cover-area aspect-[3/4] relative block w-full overflow-hidden bg-stone-200 text-left" onclick="openDetail('${esc(b.id)}')" aria-label="Ver detalles de ${esc(b.title)}">
+        ${images[0] ? `<img src="${esc(images[0])}" alt="${esc(b.title)}" loading="lazy" decoding="async" class="h-full w-full object-contain">` : `<span class="flex h-full w-full flex-col items-center justify-center bg-stone-100 text-stone-500"><span class="text-3xl sm:text-4xl" aria-hidden="true">📚</span><span class="mt-1 text-xs font-semibold sm:text-sm">Sin foto</span></span>`}
+        ${b.year ? `<span class="absolute right-1.5 top-1.5 rounded-md bg-stone-900/90 px-1.5 py-1 text-[10px] font-medium text-white sm:right-2 sm:top-2 sm:px-2 sm:text-xs">${esc(b.year)}</span>` : ''}
+      </button>
+      <div class="flex flex-1 flex-col p-2.5 sm:p-3.5">
+        <div class="mb-1 text-[9px] font-bold uppercase tracking-wide text-amber-800 sm:text-[11px]">${esc(b.category || 'General')}</div>
+        <button type="button" onclick="openDetail('${esc(b.id)}')" class="text-left font-serif text-sm font-bold text-stone-900 hover:text-amber-800 sm:text-base"><span class="book-title">${esc(b.title)}</span></button>
+        <p class="book-author mt-1 text-[11px] leading-snug text-stone-500 sm:text-sm">${esc(b.author || 'Autor no indicado')}</p>
+        <div class="mt-auto pt-2.5 sm:pt-3">
+          <div class="flex min-h-8 flex-wrap items-center justify-between gap-1.5 border-t border-stone-100 pt-2">
+            <span class="text-sm font-bold sm:text-base">${Number(b.price) > 0 ? money(b.price) : 'Consultar'}</span>
+            ${inCart ? `<button disabled class="cursor-not-allowed rounded-lg bg-stone-200 px-2.5 py-2 text-[11px] font-semibold text-stone-500 sm:text-sm">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}')" class="rounded-lg bg-stone-900 px-2.5 py-2 text-[11px] font-semibold text-white hover:bg-amber-800 sm:px-3 sm:text-sm">Agregar +</button>`}
+          </div>
+        </div>
+      </div>
+    </article>`;
+  }).join('') || '<p class="col-span-full rounded-xl border border-dashed border-stone-300 bg-white px-4 py-12 text-center text-sm text-stone-500">No encontramos libros con esos criterios. Probá otra palabra o categoría.</p>';
 }
 
 function openDetail(id) {
@@ -827,127 +910,126 @@ function openDetail(id) {
   if (!b) return;
   const images = Array.isArray(b.images) ? b.images : [];
   $('detail-body').innerHTML = `
-    <div>
-      ${images[0]
-        ? `<img id="main-img" src="${esc(images[0])}" alt="${esc(b.title)}" onclick="openLightbox(this.src, this.alt)" title="Hacé clic para ampliar" class="w-full rounded object-contain max-h-96 bg-stone-100 cursor-zoom-in">`
-        : `<div class="w-full min-h-64 md:min-h-80 rounded bg-stone-100 flex flex-col items-center justify-center text-stone-500"><span class="text-5xl" aria-hidden="true">📚</span><span class="mt-3 text-base font-medium">Sin foto</span></div>`}
-      <div class="flex gap-2 mt-2 flex-wrap">${images.map(s => `<img src="${esc(s)}" alt="${esc(b.title)}" onclick="document.getElementById('main-img').src=this.src" class="w-16 h-16 object-contain bg-stone-100 rounded cursor-pointer border" loading="lazy">`).join('')}</div>
-      ${images.length ? `<p class="text-xs text-stone-500 mt-2">Tocá la imagen principal para verla a pantalla completa.</p>` : ''}
-    </div>
-    <div class="flex flex-col">
-      <button onclick="closeDetail()" class="self-end text-2xl text-stone-500">&times;</button>
-      <span class="text-xs uppercase tracking-wider text-amber-800 font-semibold">${esc(b.category)}</span>
-      <h2 class="font-serif font-bold text-2xl">${esc(b.title)}</h2>
-      <p class="text-stone-600">${esc(b.author)}</p>
-      <p class="text-sm text-stone-500 mb-3">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
-      <div class="text-sm text-stone-600 mb-3 space-y-1">${[
-        b.language ? 'Idioma: ' + esc(b.language) : '',
-        b.edition ? 'Edición: ' + esc(b.edition) : '',
-        b.binding ? 'Encuadernación: ' + esc(b.binding) : '',
-        b.pages ? 'Páginas: ' + esc(b.pages) : '',
-        b.isbn ? 'ISBN: ' + esc(b.isbn) : '',
-        b.condition ? 'Estado: ' + esc(b.condition) : ''
-      ].filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div>
-      <p class="text-sm whitespace-pre-line flex-1">${esc(b.description)}</p>
-      ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="list-disc ml-5">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
-      <div class="mt-4 flex flex-wrap items-center justify-between gap-2">
-        <span class="font-bold text-xl">${b.price ? money(b.price) : 'Consultar'}</span>
-        ${cart.some(i => i.id === b.id)
-          ? `<button disabled class="bg-stone-300 text-stone-600 px-4 py-2 rounded cursor-not-allowed">En carrito</button>`
-          : `<button onclick="addToCart('${b.id}');closeDetail()" class="bg-stone-900 hover:bg-amber-800 text-white px-4 py-2 rounded">Agregar</button>`}
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+      <div class="min-w-0">
+        ${images[0]
+          ? `<button type="button" class="block w-full cursor-zoom-in rounded-lg bg-stone-100" onclick="openLightbox(document.getElementById('main-img').src, document.getElementById('main-img').alt)" aria-label="Ampliar foto del libro"><img id="main-img" src="${esc(images[0])}" alt="${esc(b.title)}" class="max-h-[42vh] w-full rounded-lg object-contain sm:max-h-96"></button>`
+          : `<div class="flex min-h-48 w-full flex-col items-center justify-center rounded-lg bg-stone-100 text-stone-500 sm:min-h-64"><span class="text-5xl" aria-hidden="true">📚</span><span class="mt-2 font-medium">Sin foto</span></div>`}
+        <div class="mt-2 flex flex-wrap gap-2">${images.map((s, i) => `<button type="button" aria-label="Ver foto ${i + 1}" onclick="changeMainImage('${esc(s)}')" class="h-14 w-14 overflow-hidden rounded-md border bg-stone-50 sm:h-16 sm:w-16"><img src="${esc(s)}" alt="" loading="lazy" class="h-full w-full object-contain"></button>`).join('')}</div>
+        ${images.length ? `<p class="mt-2 text-xs text-stone-500">Tocá la foto para ampliarla.</p>` : ''}
       </div>
-      <button onclick="shareBook('${b.id}')" class="mt-3 text-sm text-amber-800 hover:underline text-left">🔗 Copiar enlace individual de este libro</button>
+      <div class="flex min-w-0 flex-col">
+        <button onclick="closeDetail()" class="-mr-1 -mt-2 self-end rounded-lg px-3 py-1 text-3xl leading-none text-stone-500" aria-label="Cerrar detalle">&times;</button>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">${esc(b.category || 'General')}</span>
+        <h2 class="mt-1 break-words font-serif text-xl font-bold sm:text-2xl">${esc(b.title)}</h2>
+        <p class="mt-1 text-sm text-stone-600">${esc(b.author)}</p>
+        <p class="mb-3 mt-1 text-xs text-stone-500 sm:text-sm">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
+        <div class="mb-3 space-y-1 text-sm text-stone-600">${[
+          b.language ? 'Idioma: ' + esc(b.language) : '',
+          b.edition ? 'Edición: ' + esc(b.edition) : '',
+          b.binding ? 'Encuadernación: ' + esc(b.binding) : '',
+          b.pages ? 'Páginas: ' + esc(b.pages) : '',
+          b.isbn ? 'ISBN: ' + esc(b.isbn) : '',
+          b.condition ? 'Estado: ' + esc(b.condition) : ''
+        ].filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div>
+        ${b.description ? `<p class="whitespace-pre-line text-sm leading-relaxed text-stone-700">${esc(b.description)}</p>` : ''}
+        ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="ml-5 list-disc">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-stone-100 pt-4">
+          <span class="text-xl font-bold">${Number(b.price) > 0 ? money(b.price) : 'Consultar'}</span>
+          ${cart.some(i => i.id === b.id) ? `<button disabled class="cursor-not-allowed rounded-xl bg-stone-200 px-4 py-3 font-semibold text-stone-500">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}');closeDetail()" class="rounded-xl bg-stone-900 px-5 py-3 font-semibold text-white hover:bg-amber-800">Agregar al carrito</button>`}
+        </div>
+        <button onclick="shareBook('${esc(b.id)}')" class="mt-3 rounded-lg py-2 text-left text-sm font-semibold text-amber-800 hover:underline">🔗 Copiar enlace individual</button>
+      </div>
     </div>`;
   $('detail').classList.replace('hidden', 'flex');
+  document.body.style.overflow = 'hidden';
 }
-function closeDetail() { $('detail').classList.replace('flex', 'hidden'); }
-
+function closeDetail() {
+  $('detail').classList.replace('flex', 'hidden');
+  if ($('image-lightbox').classList.contains('hidden') && $('cart-modal').classList.contains('hidden')) document.body.style.overflow = '';
+}
+function changeMainImage(src) {
+  const img = $('main-img');
+  if (!img) return;
+  img.src = src;
+}
 function openLightbox(src, caption = '') {
   if (!src) return;
   $('lightbox-img').src = src;
   $('lightbox-img').alt = caption;
   $('lightbox-caption').textContent = caption;
   $('image-lightbox').classList.replace('hidden', 'flex');
+  document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
   $('image-lightbox').classList.replace('flex', 'hidden');
   $('lightbox-img').src = '';
+  if ($('detail').classList.contains('hidden') && $('cart-modal').classList.contains('hidden')) document.body.style.overflow = '';
 }
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     closeLightbox();
     closeDetail();
+    if (!$('cart-modal').classList.contains('hidden')) toggleCart();
   }
 });
 
-function toggleCart() { const m = $('cart-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
-
+function toggleCart() {
+  const m = $('cart-modal');
+  const opening = m.classList.contains('hidden');
+  m.classList.toggle('hidden'); m.classList.toggle('flex');
+  document.body.style.overflow = opening ? 'hidden' : '';
+}
 function addToCart(id) {
   const b = books.find(x => x.id === id);
   if (!b) return;
-  if (cart.some(i => i.id === id)) {
-    showToast('Ya agregaste este libro. Solo hay un ejemplar disponible.');
-    return;
-  }
-  // Cada ficha representa un ejemplar único: nunca se aumenta la cantidad.
+  if (cart.some(i => i.id === id)) { showToast('Ya agregaste este libro. Solo hay un ejemplar disponible.'); return; }
   cart.push({ ...b, quantity: 1 });
   updateCart();
   filterBooks();
   showToast('Agregado al carrito: ' + b.title);
 }
 function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCart(); filterBooks(); }
-
 function updateCart() {
-  $('cart-count').innerText = cart.reduce((a, i) => a + i.quantity, 0);
+  $('cart-count').innerText = cart.length;
   let total = 0;
   $('cart-items').innerHTML = cart.map(i => {
-    total += i.price * i.quantity;
-    return `<div class="flex justify-between items-center bg-stone-50 p-3 rounded">
-      <div><h4 class="font-bold text-sm">${esc(i.title)}</h4>
-      <p class="text-xs text-stone-500">${money(i.price)} x ${i.quantity}</p></div>
-      <button onclick="removeFromCart('${i.id}')" class="text-red-500 font-bold">🗑️</button></div>`;
-  }).join('');
+    total += (Number(i.price) || 0) * i.quantity;
+    return `<div class="flex items-center justify-between gap-3 rounded-xl bg-stone-50 p-3">
+      <div class="min-w-0"><h4 class="break-words text-sm font-bold">${esc(i.title)}</h4><p class="mt-1 text-xs text-stone-500">${Number(i.price) > 0 ? money(i.price) : 'Precio a consultar'}</p></div>
+      <button onclick="removeFromCart('${esc(i.id)}')" class="shrink-0 rounded-lg px-3 py-2 text-lg text-red-600 hover:bg-red-50" aria-label="Quitar ${esc(i.title)} del carrito">🗑️</button></div>`;
+  }).join('') || '<p class="py-8 text-center text-sm text-stone-500">Todavía no agregaste libros.</p>';
   $('cart-total').innerText = money(total) + ' ARS';
 }
-
 let toastTimer = null;
 function showToast(message) {
-  const toast = $('toast');
-  toast.textContent = message;
-  toast.classList.remove('hidden');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+  const toast = $('toast'); toast.textContent = message; toast.classList.remove('hidden');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
 }
-
 async function shareBook(id) {
-  const url = new URL(window.location.href);
-  url.searchParams.set('libro', id);
-  try {
-    await navigator.clipboard.writeText(url.toString());
-    showToast('Enlace individual copiado. Ya podés compartirlo.');
-  } catch (err) {
-    window.prompt('Copiá este enlace individual:', url.toString());
-  }
+  const url = new URL(window.location.href); url.searchParams.set('libro', id);
+  try { await navigator.clipboard.writeText(url.toString()); showToast('Enlace individual copiado.'); }
+  catch (err) { window.prompt('Copiá este enlace individual:', url.toString()); }
 }
-
 function checkout() {
-  if (!cart.length) { alert('Tu carrito está vacío.'); return; }
-  let msg = '¡Hola! Quiero encargar los siguientes libros de tu catálogo:\n\n', total = 0;
+  if (!cart.length) { showToast('Tu carrito está vacío.'); return; }
+  let msg = '¡Hola! Quiero consultar/encargar estos libros de tu catálogo:\n\n', total = 0;
   cart.forEach(i => {
-    msg += `• ${i.quantity}x ${i.title}${i.year ? ' (' + i.year + ')' : ''} - ${money(i.price * i.quantity)}\n`;
-    total += i.price * i.quantity;
+    msg += `• ${i.title}${i.year ? ' (' + i.year + ')' : ''} - ${Number(i.price) > 0 ? money(i.price) : 'precio a consultar'}\n`;
+    total += (Number(i.price) || 0) * i.quantity;
   });
-  msg += `\n*Total estimado:* ${money(total)} ARS`;
-  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+  if (total > 0) msg += `\n*Total estimado:* ${money(total)} ARS`;
+  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 }
 
-renderBooks(books);
+renderCategories();
+filterBooks();
+updateCart();
 const requestedBookId = new URLSearchParams(window.location.search).get('libro');
-if (requestedBookId && books.some(b => b.id === requestedBookId)) {
-  openDetail(requestedBookId);
-}
+if (requestedBookId && books.some(b => b.id === requestedBookId)) openDetail(requestedBookId);
 </script>
 </body></html>
+
 """
 
 if __name__ == "__main__":
