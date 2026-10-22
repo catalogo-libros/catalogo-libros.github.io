@@ -23,7 +23,7 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory
 
 # ======================= CONFIGURACIÓN =======================
-WHATSAPP = "5492211234567"      # código de país + área + número, sin espacios ni signos
+WHATSAPP = "5492215050333"      # código de país + área + número, sin espacios ni signos
 IG_PERFIL = "librosbritanicos"  # perfil de Instagram del que se importan publicaciones
 IG_USER = ""                    # (opcional) usuario con sesión guardada de instaloader, ver explicación
 PORT = 5000
