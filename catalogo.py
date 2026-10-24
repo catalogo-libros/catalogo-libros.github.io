@@ -11,6 +11,8 @@ Resultado:     carpeta "sitio/" con index.html + imagenes/  -> eso es lo que sub
 import io
 import json
 import re
+import os
+import html as html_lib
 import hashlib
 import shutil
 import sys
@@ -25,7 +27,7 @@ from flask import Flask, jsonify, request, send_from_directory
 # ======================= CONFIGURACIÓN =======================
 WHATSAPP = "5492215050333"      # código de país + área + número, sin espacios ni signos
 IG_PERFIL = "librosbritanicos"  # perfil de Instagram del que se importan publicaciones
-IG_USER = ""                    # (opcional) usuario con sesión guardada de instaloader, ver explicación
+IG_USER = os.getenv("INSTAGRAM_USER", "").strip()  # opcional; también se detecta instagram_session_user.txt
 PORT = 5000
 # =============================================================
 
@@ -100,6 +102,11 @@ def load_books():
         b["pages"] = num(b.get("pages"))
         b["isbn"] = b.get("isbn") or ""
         b["condition"] = b.get("condition") or ""
+        sold_value = b.get("sold_out", False)
+        if isinstance(sold_value, str):
+            b["sold_out"] = sold_value.strip().lower() in {"1", "true", "yes", "si", "sí", "on", "agotado"}
+        else:
+            b["sold_out"] = bool(sold_value)
         for k in ("identification_notes", "uncertain_fields"):
             if not isinstance(b.get(k), list):
                 b[k] = [str(b[k])] if b.get(k) else []
@@ -177,6 +184,7 @@ def make_book(d, books):
         "year": num(d.get("year")),
         "publisher": (d.get("publisher") or "").strip(),
         "price": num(d.get("price")),
+        "sold_out": False,
         "category": (d.get("category") or "General").strip(),
         "description": (d.get("description") or "").strip(),
         "language": (d.get("language") or "").strip(),
@@ -227,20 +235,52 @@ def parse_caption(caption):
     }
 
 
+def instagram_session_user():
+    """Devuelve el usuario de Instagram configurado o guardado localmente."""
+    if IG_USER:
+        return IG_USER
+    user_file = BASE / "instagram_session_user.txt"
+    if user_file.exists():
+        return user_file.read_text(encoding="utf-8").strip()
+    return ""
+
+
 def ig_loader():
     import instaloader
     L = instaloader.Instaloader(
         download_pictures=False, download_videos=False, download_comments=False,
         save_metadata=False, quiet=True,
-        max_connection_attempts=1,  # sin reintentos infinitos: falla rápido y avisa
+        max_connection_attempts=1,
     )
-    if IG_USER:
-        L.load_session_from_file(IG_USER)
+    username = instagram_session_user()
+    if username:
+        try:
+            L.load_session_from_file(username)
+        except Exception as exc:
+            raise RuntimeError(
+                f"No se pudo cargar la sesión guardada de Instagram para '{username}'. "
+                "Creá/renová la sesión ejecutando: python catalogo_actualizado.py --login-instagram"
+            ) from exc
     return instaloader, L
 
 
+def create_instagram_session(username=""):
+    """Inicio de sesión interactivo de una sola vez; no guarda la contraseña en este archivo."""
+    import instaloader
+    username = (username or input("Usuario de Instagram: ")).strip()
+    if not username:
+        raise RuntimeError("Tenés que indicar tu usuario de Instagram.")
+    loader = instaloader.Instaloader(quiet=False, max_connection_attempts=1)
+    print("Instagram te va a pedir la contraseña en la consola. No la pegues en el código.")
+    loader.interactive_login(username)
+    loader.save_session_to_file()
+    (BASE / "instagram_session_user.txt").write_text(username, encoding="utf-8")
+    print("Sesión guardada localmente para", username)
+    print("Ya podés cerrar esta consola y abrir el catálogo normalmente.")
+
+
 def ig_post_data(post):
-    """Descarga las fotos de la publicación a /imagenes (las URLs de Instagram vencen) y parsea el texto."""
+    """Descarga las fotos de una publicación y parsea el texto."""
     import requests
     if post.typename == "GraphSidecar":
         urls = [n.display_url for n in post.get_sidecar_nodes()]
@@ -248,7 +288,7 @@ def ig_post_data(post):
         urls = [post.url]
     imgs = []
     for i, u in enumerate(urls, 1):
-        r = requests.get(u, timeout=30)
+        r = requests.get(u, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
         r.raise_for_status()
         name = f"ig_{post.shortcode}_{i}.jpg"
         saved = save_image(io.BytesIO(r.content), IMG_DIR / name)
@@ -256,6 +296,57 @@ def ig_post_data(post):
     data = parse_caption(post.caption or "")
     data["images"] = imgs
     data["ig_shortcode"] = post.shortcode
+    return data
+
+
+def ig_public_metadata_fallback(shortcode):
+    """Intenta recuperar al menos la descripción y portada desde metadatos públicos OG."""
+    import requests
+
+    url = f"https://www.instagram.com/p/{shortcode}/"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        "Accept-Language": "es-AR,es;q=0.9,en;q=0.8",
+    }
+    response = requests.get(url, headers=headers, timeout=(6, 18), allow_redirects=True)
+    response.raise_for_status()
+    if "accounts/login" in response.url or "challenge" in response.url:
+        raise RuntimeError("Instagram redirigió a inicio de sesión o verificación.")
+
+    metadata = {}
+    for tag in re.findall(r"<meta\b[^>]*>", response.text, flags=re.I):
+        attrs = {}
+        for match in re.finditer(r"([\w:-]+)\s*=\s*(['\"])(.*?)\2", tag, flags=re.S):
+            attrs[match.group(1).lower()] = html_lib.unescape(match.group(3))
+        key = attrs.get("property") or attrs.get("name") or ""
+        if key in {"og:description", "og:image", "og:title", "description"}:
+            metadata[key] = attrs.get("content", "")
+
+    description = metadata.get("og:description") or metadata.get("description", "")
+    # Instagram suele anteponer likes/fecha/usuario. Extraemos el texto si viene entre comillas.
+    caption = ""
+    caption_match = re.search(r":\s*[\"“](.*?)[\"”]\s*$", description, flags=re.S)
+    if caption_match:
+        caption = caption_match.group(1).strip()
+    elif description and not re.search(r"\b(likes?|me gusta|comments?|comentarios)\b", description, flags=re.I):
+        caption = description.strip()
+
+    images = []
+    image_url = metadata.get("og:image", "")
+    if image_url.startswith("https://") or image_url.startswith("http://"):
+        image_response = requests.get(image_url, headers=headers, timeout=(6, 18))
+        image_response.raise_for_status()
+        content_type = image_response.headers.get("Content-Type", "")
+        if content_type.startswith("image/") and image_response.content:
+            saved = save_image(io.BytesIO(image_response.content), IMG_DIR / f"ig_{shortcode}_1.jpg")
+            images.append(f"imagenes/{saved.name}")
+
+    if not caption and not images:
+        raise RuntimeError("La página no entregó metadatos públicos aprovechables.")
+    data = parse_caption(caption)
+    data["images"] = images
+    data["ig_shortcode"] = shortcode
     return data
 
 
@@ -267,6 +358,7 @@ def apply_form(book):
     book["year"] = num(f.get("year"))
     book["publisher"] = f.get("publisher", "").strip()
     book["price"] = num(f.get("price"))
+    book["sold_out"] = f.get("sold_out", "").strip().lower() in {"on", "1", "true", "yes"}
     book["category"] = f.get("category", "").strip() or "General"
     book["description"] = f.get("description", "").strip()
     book["language"] = f.get("language", "").strip()
@@ -418,26 +510,47 @@ def api_delete(book_id):
 
 @app.post("/api/instagram")
 def api_instagram():
-    """Importa UNA publicación (por URL) y devuelve los datos para revisar en el formulario."""
+    """Importa una publicación por URL; usa metadatos públicos si Instaloader falla."""
     body = request.get_json(silent=True) or {}
-    url, caption = body.get("url", "").strip(), body.get("caption", "").strip()
+    url, caption = str(body.get("url") or "").strip(), str(body.get("caption") or "").strip()
     result, warning = {}, ""
+    shortcode = ""
     if url:
-        m = re.search(r"instagram\.com/(?:[^/]+/)?(?:p|reel|tv)/([\w-]+)", url)
-        if not m:
-            return jsonify(ok=False, error="El link no parece de una publicación de Instagram."), 400
+        match = re.search(r"instagram\.com/(?:[^/?#]+/)?(?:p|reel|reels|tv)/([\w-]+)", url, flags=re.I)
+        if not match:
+            return jsonify(ok=False, error="El enlace no parece una publicación válida. Pegá un enlace /p/ o /reel/ de Instagram."), 400
+        shortcode = match.group(1)
         try:
-            ig, L = ig_loader()
-            post = ig.Post.from_shortcode(L.context, m.group(1))
+            ig, loader = ig_loader()
+            post = ig.Post.from_shortcode(loader.context, shortcode)
             result = ig_post_data(post)
-        except Exception as e:
-            warning = (f"Instagram bloqueó la consulta ({e}). "
-                       "Pegá la descripción abajo y subí las fotos a mano, o probá más tarde / con sesión iniciada.")
+        except Exception as exc:
+            warning = (
+                "Instagram bloqueó la lectura automática con la sesión actual. "
+                "Se intentará recuperar la vista previa pública; si no alcanza, pegá la descripción y subí las fotos manualmente."
+            )
+            try:
+                result = ig_public_metadata_fallback(shortcode)
+                warning = (
+                    "Instagram no entregó todos los datos. Se recuperó solo la vista previa pública "
+                    "(como máximo la primera foto); revisá el formulario y completá lo que falte."
+                )
+            except Exception:
+                # No exponemos trazas enormes ni secretos de sesión al panel.
+                detail = str(exc).replace("\n", " ")[:180]
+                warning += f" Detalle: {detail or type(exc).__name__}."
+
     if caption:
         parsed = parse_caption(caption)
         result = {**result, **{k: v for k, v in parsed.items() if v}}
+    if shortcode and result:
+        result.setdefault("ig_shortcode", shortcode)
     if not result:
-        return jsonify(ok=False, error=warning or "Pegá un link o una descripción."), 502
+        return jsonify(
+            ok=False,
+            error=(warning + " Pegá la descripción de la publicación en el cuadro de texto y volvé a importar; las fotos se pueden seleccionar abajo.")
+                  if url else "Pegá un enlace de publicación o su descripción.",
+        ), 502
     return jsonify(ok=True, data=result, warning=warning)
 
 
@@ -461,7 +574,8 @@ def api_instagram_perfil():
         save_books(books)
         return jsonify(ok=True, agregados=added)
     except Exception as e:
-        return jsonify(ok=False, error=str(e)), 502
+        detail = str(e).replace("\n", " ")[:240]
+        return jsonify(ok=False, error=(detail + "\n\nSi Instagram bloquea la consulta, ejecutá `python catalogo_actualizado.py --login-instagram` en CMD para crear una sesión local, y volvé a intentarlo.")), 502
 
 
 @app.post("/api/publicar")
@@ -581,8 +695,9 @@ ADMIN_HTML = r"""<!DOCTYPE html>
     <div id="ig-box" class="mb-5 p-3 rounded bg-amber-50 border border-amber-200">
       <p class="text-sm font-semibold mb-2">📷 Importar desde una publicación de Instagram</p>
       <input id="ig-url" placeholder="https://www.instagram.com/p/XXXXXXXX/" class="w-full px-3 py-2 border rounded text-sm mb-2">
-      <textarea id="ig-caption" rows="2" placeholder="(Opcional) Pegá acá la descripción de la publicación si Instagram no deja leerla" class="w-full px-3 py-2 border rounded text-sm mb-2"></textarea>
+      <textarea id="ig-caption" rows="2" placeholder="Pegá acá el texto de la publicación si Instagram no deja leerla automáticamente" class="w-full px-3 py-2 border rounded text-sm mb-2"></textarea>
       <button onclick="importPost()" class="bg-amber-700 hover:bg-amber-600 text-white px-3 py-1.5 rounded text-sm">Importar y completar formulario</button>
+      <p class="text-xs text-stone-600 mt-2">Instagram a veces bloquea la importación automática. Si no trae las fotos, cargalas manualmente en Imágenes. Para probar con tu sesión, ejecutá en CMD: <code>python catalogo_actualizado.py --login-instagram</code>.</p>
       <p id="ig-msg" class="text-sm mt-2"></p>
     </div>
 
@@ -592,6 +707,10 @@ ADMIN_HTML = r"""<!DOCTYPE html>
       <label class="text-sm">Año<input id="f-year" type="number" class="w-full px-3 py-2 border rounded"></label>
       <label class="text-sm">Editorial<input id="f-publisher" class="w-full px-3 py-2 border rounded"></label>
       <label class="text-sm">Precio (ARS)<input id="f-price" type="number" min="0" class="w-full px-3 py-2 border rounded"></label>
+      <label class="sm:col-span-2 flex items-start gap-2 rounded border border-red-200 bg-red-50 p-3 text-sm">
+        <input id="f-sold_out" type="checkbox" class="mt-0.5 h-4 w-4 accent-red-700">
+        <span><strong>Agotado / vendido</strong><span class="block text-xs text-stone-600">La ficha seguirá visible en el catálogo, pero sin opción de agregar al carrito.</span></span>
+      </label>
       <label class="sm:col-span-2 text-sm">Categoría<input id="f-category" list="cats" placeholder="Clásicos, Infantil, Historia..." class="w-full px-3 py-2 border rounded"></label>
       <datalist id="cats"></datalist>
       <label class="sm:col-span-2 text-sm">Descripción<textarea id="f-description" rows="5" class="w-full px-3 py-2 border rounded"></textarea></label>
@@ -643,7 +762,7 @@ function render() {
       <div class="p-3 flex-1 flex flex-col justify-between">
         <div><p class="font-serif font-bold text-sm leading-tight">${esc(b.title)}</p>
         <p class="text-xs text-stone-500">${esc(b.author)} ${b.year ? '· ' + b.year : ''}</p>
-        <p class="text-sm font-semibold mt-1">${b.price ? '$' + b.price.toLocaleString('es-AR') : '<span class="text-red-600">Sin precio</span>'}</p></div>
+        <p class="text-sm font-semibold mt-1">${b.sold_out ? '<span class="text-red-700 font-bold">AGOTADO</span>' : (b.price ? '$' + b.price.toLocaleString('es-AR') : '<span class="text-red-600">Sin precio</span>')}</p></div>
         <div class="flex gap-2 mt-2 text-xs">
           <button onclick="openModal('${b.id}')" class="flex-1 border rounded py-1 hover:bg-stone-100">Editar</button>
           <button onclick="del('${b.id}')" class="border rounded px-2 py-1 text-red-600 hover:bg-red-50">🗑️</button>
@@ -657,6 +776,7 @@ function openModal(id = null) {
   const b = id ? books.find(x => x.id === id) : {};
   existing = [...(b.images || [])];
   FIELDS.forEach(f => $('f-' + f).value = ARRAY_FIELDS.includes(f) ? (Array.isArray(b[f]) ? b[f].join('\n') : (b[f] || '')) : (b[f] || ''));
+  $('f-sold_out').checked = Boolean(b.sold_out);
   $('modal-title').textContent = id ? 'Editar libro' : 'Agregar libro';
   $('ig-box').classList.toggle('hidden', !!id);
   $('ig-url').value = ''; $('ig-caption').value = ''; $('ig-msg').textContent = '';
@@ -678,6 +798,7 @@ async function save() {
   if (!$('f-title').value.trim()) { alert('Poné al menos el título.'); return; }
   const fd = new FormData();
   FIELDS.forEach(f => fd.append(f, $('f-' + f).value));
+  fd.append('sold_out', $('f-sold_out').checked ? 'on' : '');
   fd.append('existing_images', JSON.stringify(existing));
   newFiles.forEach(f => fd.append('images', f));
   $('btn-save').disabled = true;
@@ -694,22 +815,31 @@ async function del(id) {
 
 async function importPost() {
   const msg = $('ig-msg'); msg.className = 'text-sm mt-2 text-stone-600'; msg.textContent = 'Importando...';
-  const r = await fetch('/api/instagram', { method: 'POST', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ url: $('ig-url').value, caption: $('ig-caption').value }) });
-  const j = await r.json();
-  if (!j.ok) { msg.className = 'text-sm mt-2 text-red-600'; msg.textContent = j.error; return; }
-  FIELDS.forEach(f => { if (j.data[f]) $('f-' + f).value = j.data[f]; });
-  existing.push(...(j.data.images || [])); thumbs();
-  msg.className = 'text-sm mt-2 ' + (j.warning ? 'text-amber-700' : 'text-green-700');
-  msg.textContent = j.warning || '¡Listo! Revisá los datos y guardá.';
+  try {
+    const r = await fetch('/api/instagram', { method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ url: $('ig-url').value, caption: $('ig-caption').value }) });
+    const j = await r.json();
+    if (!r.ok || !j.ok) { msg.className = 'text-sm mt-2 text-red-600'; msg.textContent = j.error || 'Instagram no permitió la importación.'; return; }
+    FIELDS.forEach(f => { if (j.data[f]) $('f-' + f).value = j.data[f]; });
+    existing.push(...(j.data.images || [])); thumbs();
+    msg.className = 'text-sm mt-2 ' + (j.warning ? 'text-amber-700' : 'text-green-700');
+    msg.textContent = j.warning || '¡Listo! Revisá los datos y guardá.';
+  } catch (err) {
+    msg.className = 'text-sm mt-2 text-red-600';
+    msg.textContent = 'No pude conectar con el panel. Confirmá que catalogo_actualizado.py esté abierto y que la página use http://127.0.0.1:5000.';
+  }
 }
 
 async function importProfile() {
   if (!confirm('Se van a traer las últimas publicaciones de Instagram como libros nuevos (revisalos y completá precios). ¿Seguir?')) return;
-  const r = await fetch('/api/instagram_perfil', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{}' });
-  const j = await r.json();
-  alert(j.ok ? `Se agregaron ${j.agregados} publicaciones nuevas.` : 'Instagram no respondió: ' + j.error +
-    '\n\nProbá más tarde, iniciá sesión con instaloader, o importá publicación por publicación con "+ Agregar libro".');
+  try {
+    const r = await fetch('/api/instagram_perfil', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{}' });
+    const j = await r.json();
+    alert(j.ok ? `Se agregaron ${j.agregados} publicaciones nuevas.` : 'Instagram no respondió: ' + j.error +
+      '\n\nCreá una sesión local con el comando indicado o importá la publicación desde "+ Agregar libro".');
+  } catch (err) {
+    alert('No pude conectar con el panel. Confirmá que catalogo_actualizado.py siga abierto en http://127.0.0.1:5000.');
+  }
   load();
 }
 
@@ -884,10 +1014,12 @@ function renderBooks(list) {
   $('grid').innerHTML = list.map(b => {
     const images = Array.isArray(b.images) ? b.images : [];
     const inCart = cart.some(i => i.id === b.id);
+    const soldOut = Boolean(b.sold_out);
     return `
     <article class="catalog-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
       <button type="button" class="cover-area aspect-[3/4] relative block w-full overflow-hidden bg-stone-200 text-left" onclick="openDetail('${esc(b.id)}')" aria-label="Ver detalles de ${esc(b.title)}">
         ${images[0] ? `<img src="${esc(images[0])}" alt="${esc(b.title)}" loading="lazy" decoding="async" class="h-full w-full object-contain">` : `<span class="flex h-full w-full flex-col items-center justify-center bg-stone-100 text-stone-500"><span class="text-3xl sm:text-4xl" aria-hidden="true">📚</span><span class="mt-1 text-xs font-semibold sm:text-sm">Sin foto</span></span>`}
+        ${soldOut ? `<span class="pointer-events-none absolute left-1.5 top-1.5 rounded-md bg-red-700 px-2 py-1 text-[10px] font-bold tracking-wide text-white sm:left-2 sm:top-2 sm:text-xs">AGOTADO</span>` : ''}
         ${b.year ? `<span class="absolute right-1.5 top-1.5 rounded-md bg-stone-900/90 px-1.5 py-1 text-[10px] font-medium text-white sm:right-2 sm:top-2 sm:px-2 sm:text-xs">${esc(b.year)}</span>` : ''}
       </button>
       <div class="flex flex-1 flex-col p-2.5 sm:p-3.5">
@@ -896,8 +1028,8 @@ function renderBooks(list) {
         <p class="book-author mt-1 text-[11px] leading-snug text-stone-500 sm:text-sm">${esc(b.author || 'Autor no indicado')}</p>
         <div class="mt-auto pt-2.5 sm:pt-3">
           <div class="flex min-h-8 flex-wrap items-center justify-between gap-1.5 border-t border-stone-100 pt-2">
-            <span class="text-sm font-bold sm:text-base">${Number(b.price) > 0 ? money(b.price) : 'Consultar'}</span>
-            ${inCart ? `<button disabled class="cursor-not-allowed rounded-lg bg-stone-200 px-2.5 py-2 text-[11px] font-semibold text-stone-500 sm:text-sm">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}')" class="rounded-lg bg-stone-900 px-2.5 py-2 text-[11px] font-semibold text-white hover:bg-amber-800 sm:px-3 sm:text-sm">Agregar +</button>`}
+            <span class="text-sm font-bold sm:text-base ${soldOut ? 'text-red-700' : ''}">${soldOut ? 'Agotado' : (Number(b.price) > 0 ? money(b.price) : 'Consultar')}</span>
+            ${soldOut ? `<button disabled class="cursor-not-allowed rounded-lg bg-red-100 px-2.5 py-2 text-[11px] font-semibold text-red-700 sm:text-sm">Agotado</button>` : (inCart ? `<button disabled class="cursor-not-allowed rounded-lg bg-stone-200 px-2.5 py-2 text-[11px] font-semibold text-stone-500 sm:text-sm">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}')" class="rounded-lg bg-stone-900 px-2.5 py-2 text-[11px] font-semibold text-white hover:bg-amber-800 sm:px-3 sm:text-sm">Agregar +</button>`)}
           </div>
         </div>
       </div>
@@ -921,6 +1053,7 @@ function openDetail(id) {
       <div class="flex min-w-0 flex-col">
         <button onclick="closeDetail()" class="-mr-1 -mt-2 self-end rounded-lg px-3 py-1 text-3xl leading-none text-stone-500" aria-label="Cerrar detalle">&times;</button>
         <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">${esc(b.category || 'General')}</span>
+        ${b.sold_out ? `<span class="mt-2 self-start rounded-md bg-red-700 px-2.5 py-1 text-xs font-bold tracking-wide text-white">AGOTADO · EJEMPLAR VENDIDO</span>` : ''}
         <h2 class="mt-1 break-words font-serif text-xl font-bold sm:text-2xl">${esc(b.title)}</h2>
         <p class="mt-1 text-sm text-stone-600">${esc(b.author)}</p>
         <p class="mb-3 mt-1 text-xs text-stone-500 sm:text-sm">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
@@ -935,8 +1068,8 @@ function openDetail(id) {
         ${b.description ? `<p class="whitespace-pre-line text-sm leading-relaxed text-stone-700">${esc(b.description)}</p>` : ''}
         ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="ml-5 list-disc">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
         <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-stone-100 pt-4">
-          <span class="text-xl font-bold">${Number(b.price) > 0 ? money(b.price) : 'Consultar'}</span>
-          ${cart.some(i => i.id === b.id) ? `<button disabled class="cursor-not-allowed rounded-xl bg-stone-200 px-4 py-3 font-semibold text-stone-500">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}');closeDetail()" class="rounded-xl bg-stone-900 px-5 py-3 font-semibold text-white hover:bg-amber-800">Agregar al carrito</button>`}
+          <span class="text-xl font-bold ${b.sold_out ? 'text-red-700' : ''}">${b.sold_out ? 'Agotado' : (Number(b.price) > 0 ? money(b.price) : 'Consultar')}</span>
+          ${b.sold_out ? `<span class="rounded-xl bg-red-100 px-4 py-3 font-semibold text-red-700">No disponible</span>` : (cart.some(i => i.id === b.id) ? `<button disabled class="cursor-not-allowed rounded-xl bg-stone-200 px-4 py-3 font-semibold text-stone-500">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}');closeDetail()" class="rounded-xl bg-stone-900 px-5 py-3 font-semibold text-white hover:bg-amber-800">Agregar al carrito</button>`)}
         </div>
         <button onclick="shareBook('${esc(b.id)}')" class="mt-3 rounded-lg py-2 text-left text-sm font-semibold text-amber-800 hover:underline">🔗 Copiar enlace individual</button>
       </div>
@@ -983,6 +1116,7 @@ function toggleCart() {
 function addToCart(id) {
   const b = books.find(x => x.id === id);
   if (!b) return;
+  if (b.sold_out) { showToast('Este libro está agotado y ya no se puede pedir.'); return; }
   if (cart.some(i => i.id === id)) { showToast('Ya agregaste este libro. Solo hay un ejemplar disponible.'); return; }
   cart.push({ ...b, quantity: 1 });
   updateCart();
@@ -1013,6 +1147,12 @@ async function shareBook(id) {
 }
 function checkout() {
   if (!cart.length) { showToast('Tu carrito está vacío.'); return; }
+  if (cart.some(i => books.some(b => b.id === i.id && b.sold_out))) {
+    cart = cart.filter(i => !books.some(b => b.id === i.id && b.sold_out));
+    updateCart(); filterBooks();
+    showToast('Quité del pedido los libros que figuran agotados.');
+    return;
+  }
   let msg = '¡Hola! Quiero consultar/encargar estos libros de tu catálogo:\n\n', total = 0;
   cart.forEach(i => {
     msg += `• ${i.title}${i.year ? ' (' + i.year + ')' : ''} - ${Number(i.price) > 0 ? money(i.price) : 'precio a consultar'}\n`;
@@ -1033,6 +1173,15 @@ if (requestedBookId && books.some(b => b.id === requestedBookId)) openDetail(req
 """
 
 if __name__ == "__main__":
+    if "--login-instagram" in sys.argv:
+        try:
+            arg_index = sys.argv.index("--login-instagram")
+            login_user = sys.argv[arg_index + 1] if arg_index + 1 < len(sys.argv) and not sys.argv[arg_index + 1].startswith("--") else ""
+            create_instagram_session(login_user)
+        except Exception as exc:
+            print("No se pudo guardar la sesión de Instagram:", str(exc))
+            sys.exit(1)
+        sys.exit(0)
     if "--build" in sys.argv:  # modo para GitHub Actions: solo genera sitio/ y termina
         publish_site()
         print("Sitio generado en", SITE_DIR)

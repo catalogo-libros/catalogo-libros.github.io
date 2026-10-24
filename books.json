@@ -23,7 +23,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-002",
@@ -49,7 +50,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-003",
@@ -75,7 +77,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-004",
@@ -101,7 +104,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": true
   },
   {
     "id": "LIB-005",
@@ -128,7 +132,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-006",
@@ -156,7 +161,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-007",
@@ -181,7 +187,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": false
   },
   {
     "id": "LIB-008",
@@ -208,7 +215,8 @@
     "isbn": "",
     "condition": "",
     "identification_notes": [],
-    "uncertain_fields": []
+    "uncertain_fields": [],
+    "sold_out": true
   },
   {
     "id": "LIB-009",
@@ -239,7 +247,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "8e0e055c6b6d77bcae80af4dfd6d17f43db64cb00f5428d544d3ed2fefc3c1d6"
+    "gemini_fingerprint": "8e0e055c6b6d77bcae80af4dfd6d17f43db64cb00f5428d544d3ed2fefc3c1d6",
+    "sold_out": false
   },
   {
     "id": "LIB-010",
@@ -269,7 +278,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "18aa0c38d830af8fa20f047e81fbb9d897bb4569ec71adb73ca202fecc010503"
+    "gemini_fingerprint": "18aa0c38d830af8fa20f047e81fbb9d897bb4569ec71adb73ca202fecc010503",
+    "sold_out": false
   },
   {
     "id": "LIB-011",
@@ -277,7 +287,7 @@
     "author": "L. P. Hartley",
     "year": 1968,
     "publisher": "Hamish Hamilton Ltd",
-    "price": 0,
+    "price": 10000,
     "category": "Literatura británica / Novela",
     "description": "Primera edición de 1968 de 'Poor Clare', novela del destacado autor británico L. P. Hartley, publicada en Londres por Hamish Hamilton. Ejemplar impreso en Gran Bretaña por Ebenezer Baylis and Son Ltd.",
     "language": "Inglés",
@@ -299,7 +309,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "1203f2e305c3c548ac9036aa73e4a96f8995465cf193b6722d8e50dca85bf703"
+    "gemini_fingerprint": "1203f2e305c3c548ac9036aa73e4a96f8995465cf193b6722d8e50dca85bf703",
+    "sold_out": false
   },
   {
     "id": "LIB-012",
@@ -329,7 +340,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "3fa88e0b8a7252bf3c61385a8f47b35cf47c932c10a9e88403bf51b472108f71"
+    "gemini_fingerprint": "3fa88e0b8a7252bf3c61385a8f47b35cf47c932c10a9e88403bf51b472108f71",
+    "sold_out": false
   },
   {
     "id": "LIB-013",
@@ -337,7 +349,7 @@
     "author": "A. J. Cronin",
     "year": 1948,
     "publisher": "Little, Brown and Company",
-    "price": 0,
+    "price": 8000,
     "category": "Literatura / Novela",
     "description": "Primera edición estadounidense de julio de 1948 de 'Shannon's Way', célebre novela del médico y escritor escocés A. J. Cronin, publicada en Boston por Little, Brown and Company. Secuela de 'The Green Years', la obra sigue las ambiciones científicas y vicisitudes personales del joven investigador médico Robert Shannon.",
     "language": "Inglés",
@@ -359,7 +371,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "b65cdc770eb874747c5652efb6a5d732678c47008d127cc524f65f0617eda0f6"
+    "gemini_fingerprint": "b65cdc770eb874747c5652efb6a5d732678c47008d127cc524f65f0617eda0f6",
+    "sold_out": false
   },
   {
     "id": "LIB-014",
@@ -367,7 +380,7 @@
     "author": "Tony Morrison",
     "year": 1974,
     "publisher": "André Deutsch Limited",
-    "price": 0,
+    "price": 12000,
     "category": "Historia Natural / Zoología / Vida Silvestre Sudamericana",
     "description": "Primera edición británica de 1974 de 'Land above the clouds: A Survival Special on South American Wildlife', escrita por el zoólogo y documentalista Tony Morrison y editada por Colin Willock, publicada en Londres por André Deutsch. La obra examina la fauna y la naturaleza de los Andes y las regiones altoandinas de Sudamérica. Impreso en Gran Bretaña por Ebenezer Baylis & Son Ltd.",
     "language": "Inglés",
@@ -389,7 +402,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "c233e813e2bfcd400c63243870fbaaa7f93e95c1d1a6b10fb4ba25fecb3830dd"
+    "gemini_fingerprint": "c233e813e2bfcd400c63243870fbaaa7f93e95c1d1a6b10fb4ba25fecb3830dd",
+    "sold_out": false
   },
   {
     "id": "LIB-015",
@@ -397,7 +411,7 @@
     "author": "Sandra Jobson Darroch",
     "year": 1975,
     "publisher": "Coward, McCann & Geoghegan, Inc.",
-    "price": 0,
+    "price": 15000,
     "category": "Biografía / Historia / Literatura británica",
     "description": "Biografía exhaustiva de Lady Ottoline Morrell, figura central del círculo de Bloomsbury, escrita por Sandra Jobson Darroch y publicada en Nueva York por Coward, McCann & Geoghegan en 1975. Una obra fundamental para explorar las redes intelectuales, artísticas y sociales de la Inglaterra de principios del siglo XX.",
     "language": "Inglés",
@@ -420,7 +434,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "e3fdf81091f2e45fab191d788488ffe54681b7d959638299cc7a52ab1d2d746e"
+    "gemini_fingerprint": "e3fdf81091f2e45fab191d788488ffe54681b7d959638299cc7a52ab1d2d746e",
+    "sold_out": false
   },
   {
     "id": "LIB-016",
@@ -428,7 +443,7 @@
     "author": "A. E. W. Mason",
     "year": 0,
     "publisher": "Eveleigh Nash & Grayson Ltd.",
-    "price": 0,
+    "price": 20000,
     "category": "Literatura británica / Novela de aventuras / Ficción histórica",
     "description": "Edición británica vintage de la clásica novela de aventuras y honor 'The Four Feathers' de A. E. W. Mason, publicada en Londres por Eveleigh Nash & Grayson Ltd. como parte de la colección 'Nash's Great Novel Library'. Ambientada a finales del siglo XIX durante la guerra del Mahdi en Sudán, narra la historia de Harry Feversham y su búsqueda de redención. Impreso en Inglaterra por The Garden City Press Ltd., Letchworth.",
     "language": "Inglés",
@@ -452,7 +467,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "1486b01c5e8754785b7065639f0e6cd8910cc8de50c2cefc919452fce9fecf2e"
+    "gemini_fingerprint": "1486b01c5e8754785b7065639f0e6cd8910cc8de50c2cefc919452fce9fecf2e",
+    "sold_out": false
   },
   {
     "id": "LIB-017",
@@ -460,7 +476,7 @@
     "author": "Sumner Welles",
     "year": 1944,
     "publisher": "Harper & Brothers Publishers",
-    "price": 0,
+    "price": 15000,
     "category": "Historia / Política / Relaciones Internacionales / Segunda Guerra Mundial",
     "description": "Primera edición estadounidense de 1944 de 'The Time for Decision', obra escrita por el diplomático y subsecretario de Estado estadounidense Sumner Welles, publicada en Nueva York y Londres por Harper & Brothers Publishers. El libro aborda los planes para el orden mundial de posguerra y la política exterior de EE. UU. Ejemplar fabricado durante la Segunda Guerra Mundial bajo las regulaciones gubernamentales de ahorro de papel ('manufactured in strict conformity with Government regulations for saving paper').",
     "language": "Inglés",
@@ -483,7 +499,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-21",
     "source": "gemini_extension",
-    "gemini_fingerprint": "801f5db2f838a35215ddf871d1d0c41f29a9d0d59335594bab4c814beea14fed"
+    "gemini_fingerprint": "801f5db2f838a35215ddf871d1d0c41f29a9d0d59335594bab4c814beea14fed",
+    "sold_out": false
   },
   {
     "id": "LIB-018",
@@ -491,7 +508,7 @@
     "author": "Harold Robbins",
     "year": 1979,
     "publisher": "Simon and Schuster",
-    "price": 0,
+    "price": 8000,
     "category": "Literatura estadounidense / Novela",
     "description": "Primera edición estadounidense de 1979 de la novela 'Memories of Another Day' del célebre autor de bestsellers Harold Robbins, publicada en Nueva York por Simon and Schuster. La obra narra la ascensión y luchas en la historia del movimiento sindical estadounidense a través de la vida de Daniel Patrick MacDeere. Ejemplar diseñado por Irving Perkins, impreso y encuadernado en EE. UU. por The Book Press.",
     "language": "Inglés",
@@ -516,7 +533,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "e8c4ab115260de3795db09003b6aedad2cd468205d5cdf90b4bee25c56262947"
+    "gemini_fingerprint": "e8c4ab115260de3795db09003b6aedad2cd468205d5cdf90b4bee25c56262947",
+    "sold_out": false
   },
   {
     "id": "LIB-019",
@@ -524,7 +542,7 @@
     "author": "Bernard Shaw",
     "year": 1950,
     "publisher": "Constable and Company Limited",
-    "price": 0,
+    "price": 18000,
     "category": "Ensayo / Filosofía / Crítica Social",
     "description": "Reimpresión de 1950 de la 'Standard Edition' de las obras de George Bernard Shaw, titulada 'Doctors' Delusions, Crude Criminology and Sham Education', publicada en Londres por Constable and Company Limited[cite: 40, 41]. El volumen reúne agudos ensayos críticos del Nobel irlandés sobre la medicina tradicional, la vivisección, el sistema penal y la educación contemporánea[cite: 40]. Impreso en Gran Bretaña por R. & R. Clark, Limited, en Edimburgo[cite: 41].",
     "language": "Inglés",
@@ -535,7 +553,7 @@
     "condition": "Usado, con significativo desgaste y daño en la cofia/parte superior del lomo, y descoloramiento general en la encuadernación",
     "identification_notes": [
       "Publicado en Londres por Constable and Company Limited[cite: 40].",
-      "Perteneciente a la célebre 'Standard Edition' de Bernard Shaw[cite: 41].",
+      "Perteneciente a la célebre 'Standard Edition' de Bernard Shaw.",
       "Detalle de impresiones en verso de portada: Publicado originalmente en la 'Limited Collected Edition' en 1931; revisado y reimpreso para la 'Standard Edition' en 1932; reimpresión correspondiente a 1950[cite: 41].",
       "Impreso en Gran Bretaña por R. & R. Clark, Limited, Edimburgo[cite: 41].",
       "Encuadernación de editorial en tela roja/rosácea con grabado y títulos dorados en el lomo[cite: 42]."
@@ -547,7 +565,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "b4a6e3cf18c0a60ed172c298ccbf327d8a0d0fddc5baef151bf8ba338846bfc9"
+    "gemini_fingerprint": "b4a6e3cf18c0a60ed172c298ccbf327d8a0d0fddc5baef151bf8ba338846bfc9",
+    "sold_out": false
   },
   {
     "id": "LIB-020",
@@ -579,7 +598,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "4e0c3dab40da42755f552589df7c1482569de34022603f3331384dfc5428f09a"
+    "gemini_fingerprint": "4e0c3dab40da42755f552589df7c1482569de34022603f3331384dfc5428f09a",
+    "sold_out": false
   },
   {
     "id": "LIB-021",
@@ -608,7 +628,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "56414d211e86df2144f02a4c2a03ceda3f89d4e146557c48dfaad5bf3feb26d8"
+    "gemini_fingerprint": "56414d211e86df2144f02a4c2a03ceda3f89d4e146557c48dfaad5bf3feb26d8",
+    "sold_out": false
   },
   {
     "id": "LIB-022",
@@ -642,7 +663,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "cbe7ff491899f90264c972368583d283b4a74fccf75605bb18f0c0f1087a4b3f"
+    "gemini_fingerprint": "cbe7ff491899f90264c972368583d283b4a74fccf75605bb18f0c0f1087a4b3f",
+    "sold_out": false
   },
   {
     "id": "LIB-023",
@@ -678,7 +700,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "a51f721a524759b906d2916958b956836f966534cdecf79798c34e62a0bcdcef"
+    "gemini_fingerprint": "a51f721a524759b906d2916958b956836f966534cdecf79798c34e62a0bcdcef",
+    "sold_out": false
   },
   {
     "id": "LIB-024",
@@ -714,7 +737,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "b460e1b10a65200561b7da2eb4801d001b11944d6232091d3bb424b4b57fff25"
+    "gemini_fingerprint": "b460e1b10a65200561b7da2eb4801d001b11944d6232091d3bb424b4b57fff25",
+    "sold_out": false
   },
   {
     "id": "LIB-025",
@@ -748,7 +772,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "45db2636d369fd0b833ae12a58a16871b85f111f9583f5703b9392f06b77fe94"
+    "gemini_fingerprint": "45db2636d369fd0b833ae12a58a16871b85f111f9583f5703b9392f06b77fe94",
+    "sold_out": false
   },
   {
     "id": "LIB-026",
@@ -782,7 +807,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "136e547a0a3cfd618ad0b657fab62197a11ae64d1f4e1e9d6a79fb6fd40ecb96"
+    "gemini_fingerprint": "136e547a0a3cfd618ad0b657fab62197a11ae64d1f4e1e9d6a79fb6fd40ecb96",
+    "sold_out": false
   },
   {
     "id": "LIB-027",
@@ -816,7 +842,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "44f7ff62d760c6442dcb3a4aa9d537b581e67fca5d6fd0552a91fb368a9b2063"
+    "gemini_fingerprint": "44f7ff62d760c6442dcb3a4aa9d537b581e67fca5d6fd0552a91fb368a9b2063",
+    "sold_out": false
   },
   {
     "id": "LIB-028",
@@ -848,7 +875,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "bdbf34d3bc99d974fe00bf7d429c5f61a91d933dd9a0002af5b7c8490b164d19"
+    "gemini_fingerprint": "bdbf34d3bc99d974fe00bf7d429c5f61a91d933dd9a0002af5b7c8490b164d19",
+    "sold_out": false
   },
   {
     "id": "LIB-029",
@@ -877,7 +905,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "be87f1ad3dc44b19295474756786a6f76e4c1311891ab6f1f032858b88b0bdaa"
+    "gemini_fingerprint": "be87f1ad3dc44b19295474756786a6f76e4c1311891ab6f1f032858b88b0bdaa",
+    "sold_out": false
   },
   {
     "id": "LIB-030",
@@ -911,7 +940,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "5980b3f3cc61ff6d00396dbd6d7131417acef4d960a44f59ba8c512c94d2e88c"
+    "gemini_fingerprint": "5980b3f3cc61ff6d00396dbd6d7131417acef4d960a44f59ba8c512c94d2e88c",
+    "sold_out": false
   },
   {
     "id": "LIB-031",
@@ -944,7 +974,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "cd396ab56a8b6668f77af5cc40effc5594f7d6849fd22a7f48d2622135de42ba"
+    "gemini_fingerprint": "cd396ab56a8b6668f77af5cc40effc5594f7d6849fd22a7f48d2622135de42ba",
+    "sold_out": false
   },
   {
     "id": "LIB-032",
@@ -979,7 +1010,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "2d44985f8105671d4b83e55c09ccdd6f544f1bd6846d165ba65e8e7c93cc4c71"
+    "gemini_fingerprint": "2d44985f8105671d4b83e55c09ccdd6f544f1bd6846d165ba65e8e7c93cc4c71",
+    "sold_out": false
   },
   {
     "id": "LIB-033",
@@ -1013,7 +1045,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "1c5657e107a92d02306fc7163285b072083ea746d0a650b11f3970cf0aa3fb05"
+    "gemini_fingerprint": "1c5657e107a92d02306fc7163285b072083ea746d0a650b11f3970cf0aa3fb05",
+    "sold_out": false
   },
   {
     "id": "LIB-034",
@@ -1043,7 +1076,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "299e06890a82ae23fe5580aa92bb6108aef7ecc59671398f5d4fe424380a5720"
+    "gemini_fingerprint": "299e06890a82ae23fe5580aa92bb6108aef7ecc59671398f5d4fe424380a5720",
+    "sold_out": false
   },
   {
     "id": "LIB-035",
@@ -1076,7 +1110,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "5f37059e5bd9c5bb1ce4f3983b7f8eb29a384ff31bb6a1bfd076e9a9c8d3fda3"
+    "gemini_fingerprint": "5f37059e5bd9c5bb1ce4f3983b7f8eb29a384ff31bb6a1bfd076e9a9c8d3fda3",
+    "sold_out": false
   },
   {
     "id": "LIB-036",
@@ -1106,7 +1141,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "2856acec72f93bfd7ca3ffea9b247a4bd98a85e85069321c5fd03733a9f0753d"
+    "gemini_fingerprint": "2856acec72f93bfd7ca3ffea9b247a4bd98a85e85069321c5fd03733a9f0753d",
+    "sold_out": false
   },
   {
     "id": "LIB-037",
@@ -1140,7 +1176,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "5cea61f627ed02d812b79e0b8432671cec08c62f6711593ed688380ce9e075ee"
+    "gemini_fingerprint": "5cea61f627ed02d812b79e0b8432671cec08c62f6711593ed688380ce9e075ee",
+    "sold_out": false
   },
   {
     "id": "LIB-038",
@@ -1173,7 +1210,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "22973a5779966f9afa0e9a5fa068462421c40744e52f204346258cced85914a1"
+    "gemini_fingerprint": "22973a5779966f9afa0e9a5fa068462421c40744e52f204346258cced85914a1",
+    "sold_out": false
   },
   {
     "id": "LIB-039",
@@ -1205,7 +1243,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "7b7d0faba88907a9e43fb9ba1d5112c578b155c0b0724e1b0cb5ee20ebc476c8"
+    "gemini_fingerprint": "7b7d0faba88907a9e43fb9ba1d5112c578b155c0b0724e1b0cb5ee20ebc476c8",
+    "sold_out": false
   },
   {
     "id": "LIB-040",
@@ -1239,7 +1278,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "96adf6c492441b3f7edd5cbe28cc8464ad89e86423abfdad41de5124f18364a9"
+    "gemini_fingerprint": "96adf6c492441b3f7edd5cbe28cc8464ad89e86423abfdad41de5124f18364a9",
+    "sold_out": false
   },
   {
     "id": "LIB-041",
@@ -1270,7 +1310,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "3a08ec61f514e2496e73c4a35dd22efcb9a6ace30cead37d2909b2160d6d06fe"
+    "gemini_fingerprint": "3a08ec61f514e2496e73c4a35dd22efcb9a6ace30cead37d2909b2160d6d06fe",
+    "sold_out": false
   },
   {
     "id": "LIB-042",
@@ -1303,7 +1344,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "6866de482e66eda0db58fdd30d52e83064aaf0a0af9febb8cf32422760ca667e"
+    "gemini_fingerprint": "6866de482e66eda0db58fdd30d52e83064aaf0a0af9febb8cf32422760ca667e",
+    "sold_out": false
   },
   {
     "id": "LIB-043",
@@ -1334,7 +1376,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-22",
     "source": "gemini_extension",
-    "gemini_fingerprint": "8bbf6239b381cdc80d2ef0d7f9b6554c78f2accb56cff4a49c3abfed6851f559"
+    "gemini_fingerprint": "8bbf6239b381cdc80d2ef0d7f9b6554c78f2accb56cff4a49c3abfed6851f559",
+    "sold_out": false
   },
   {
     "id": "LIB-044",
@@ -1368,7 +1411,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "bb436ebe83f27a464a56b6eba81b26184feff15963d5e3e9c3883c3d1cfedfa4"
+    "gemini_fingerprint": "bb436ebe83f27a464a56b6eba81b26184feff15963d5e3e9c3883c3d1cfedfa4",
+    "sold_out": false
   },
   {
     "id": "LIB-045",
@@ -1402,7 +1446,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "c150c41ca623bf57b0c93fa3083ea66f7e6fccca2de236ac02ea2a2963370229"
+    "gemini_fingerprint": "c150c41ca623bf57b0c93fa3083ea66f7e6fccca2de236ac02ea2a2963370229",
+    "sold_out": false
   },
   {
     "id": "LIB-046",
@@ -1435,7 +1480,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "880a15b5894cfdda1c5372d0a432849dc956dddbd3814e545caa8e92044d6b7f"
+    "gemini_fingerprint": "880a15b5894cfdda1c5372d0a432849dc956dddbd3814e545caa8e92044d6b7f",
+    "sold_out": false
   },
   {
     "id": "LIB-047",
@@ -1470,7 +1516,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "ff29e51b5ee5735229f31e3f5b4f62eda99311db01805210835387d41f45bc95"
+    "gemini_fingerprint": "ff29e51b5ee5735229f31e3f5b4f62eda99311db01805210835387d41f45bc95",
+    "sold_out": false
   },
   {
     "id": "LIB-048",
@@ -1503,7 +1550,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "8aed1e44d93cb0f8a625eb593010e8a0cdb4e0e9ef7903c351b57fdb82a8031d"
+    "gemini_fingerprint": "8aed1e44d93cb0f8a625eb593010e8a0cdb4e0e9ef7903c351b57fdb82a8031d",
+    "sold_out": false
   },
   {
     "id": "LIB-049",
@@ -1537,7 +1585,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "0ce57c0803aedf0a127c0403cf065b076113e0d4b06ff625dce91db6219b349e"
+    "gemini_fingerprint": "0ce57c0803aedf0a127c0403cf065b076113e0d4b06ff625dce91db6219b349e",
+    "sold_out": false
   },
   {
     "id": "LIB-050",
@@ -1572,7 +1621,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "2c3304f99a150a7a047ca08185a7f866e6f6838b37215f45f2f31b8ffe45ae65"
+    "gemini_fingerprint": "2c3304f99a150a7a047ca08185a7f866e6f6838b37215f45f2f31b8ffe45ae65",
+    "sold_out": false
   },
   {
     "id": "LIB-051",
@@ -1603,7 +1653,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "8010e935a9a4a75d729d919ea10ecc01eaff10b1935be42baacbfae90e703c56"
+    "gemini_fingerprint": "8010e935a9a4a75d729d919ea10ecc01eaff10b1935be42baacbfae90e703c56",
+    "sold_out": false
   },
   {
     "id": "LIB-052",
@@ -1635,7 +1686,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "824d1d3c8427953eae2292c52b78e08ace46f8651f8ef74dc4857d24c03ab560"
+    "gemini_fingerprint": "824d1d3c8427953eae2292c52b78e08ace46f8651f8ef74dc4857d24c03ab560",
+    "sold_out": false
   },
   {
     "id": "LIB-053",
@@ -1668,7 +1720,8 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "9173af3993edc8ac04619a5afc52a428a9f0ee4fff4493bfcfa85b9054953cfa"
+    "gemini_fingerprint": "9173af3993edc8ac04619a5afc52a428a9f0ee4fff4493bfcfa85b9054953cfa",
+    "sold_out": false
   },
   {
     "id": "LIB-054",
@@ -1701,6 +1754,88 @@
     "ig_shortcode": null,
     "date_added": "2026-10-23",
     "source": "gemini_extension",
-    "gemini_fingerprint": "0a85c5c3039157afc2f50b10363926a73dd8d38d1d36962a8ae14a499654fa9b"
+    "gemini_fingerprint": "0a85c5c3039157afc2f50b10363926a73dd8d38d1d36962a8ae14a499654fa9b",
+    "sold_out": false
+  },
+  {
+    "id": "LIB-055",
+    "title": "ONE HUNDRED YEARS OF SOLITUDE",
+    "author": "Gabriel García Márquez.",
+    "year": 1970,
+    "publisher": "Harper & Row, Publishers, New York.",
+    "price": 0,
+    "sold_out": false,
+    "category": "General",
+    "description": "EDICIÓN HISTÓRICA EN INGLÉS (década de 1970)\r\n\"ONE HUNDRED YEARS OF SOLITUDE\" - GABRIEL GARCÍA MÁRQUEZ\r\nTraducción de Gregory Rabassa.\r\nEditorial: Harper & Row, Publishers, New York.\r\n\r\nObra maestra indiscutida de la literatura universal y del Realismo Mágico, en la célebre traducción al inglés de Gregory Rabassa publicada por Harper & Row.\r\n\r\nDETALLES DE LA EDICIÓN:\r\n- Autor: Gabriel García Márquez.\r\n- Traductor: Gregory Rabassa.\r\n- Editorial: Harper & Row, Publishers, New York.\r\n- Año de copyright: 1970.\r\n- Idioma: Inglés.\r\n- Encuadernación: Tapa dura en tela verde bosque original de editorial con letras doradas en el lomo.\r\n- Impreso en los Estados Unidos de América.\r\n\r\nESTADO DE CONSERVACIÓN:\r\nExcelente estado de conservación estructural e interior. Encuadernación firme, páginas muy limpias, completas y bien preservadas. Conserva la vivacidad de los tonos dorados en el lomo y la elegancia de la tela original.\r\n\r\nPieza clave e imprescindible para coleccionistas de literatura universal, bibliófilos y decoración de bibliotecas de categoría.\r\n\r\nEnvíos a todo el país a través de Mercado Envíos.",
+    "language": "Inglés",
+    "edition": "",
+    "binding": "Tapa dura",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado",
+    "identification_notes": [],
+    "uncertain_fields": [],
+    "images": [
+      "imagenes/ig_De3A5RlINrd_1.webp",
+      "imagenes/ig_De3A5RlINrd_2.webp",
+      "imagenes/ig_De3A5RlINrd_3.webp",
+      "imagenes/ig_De3A5RlINrd_4.webp"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-10-24"
+  },
+  {
+    "id": "LIB-056",
+    "title": "THE CRUISE OF THE FALCON\" (Vol. II)",
+    "author": "Edward F. Knight.",
+    "year": 1967,
+    "publisher": "Arno Press / Abercrombie & Fitch Co., New York.",
+    "price": 0,
+    "sold_out": false,
+    "category": "General",
+    "description": "EDICIÓN DE COLECCIÓN NÁUTICA Y VIAJES POR SUDAMÉRICA (1967)\r\n\"THE CRUISE OF THE FALCON\" (Vol. II) - EDWARD F. KNIGHT\r\nColección: The Abercrombie & Fitch Library\r\nEditorial: Arno Press / Abercrombie & Fitch Co., New York.\r\n\r\nMemorable crónica de navegación y expedición decimonónica escrita por el marinero y escritor británico Edward Frederick Knight, detallando su célebre viaje de 30.000 millas a bordo del velero \"Falcon\" a través de los mares y ríos de Sudamérica (incluyendo Brasil, Argentina, Uruguay y Paraguay).\r\n\r\nDETALLES DE LA EDICIÓN:\r\n- Autor: Edward F. Knight.\r\n- Colección: The Abercrombie & Fitch Library.\r\n- Editorial: Arno Press / Abercrombie & Fitch Co., New York.\r\n- Año de publicación: 1967.\r\n- Idioma: Inglés.\r\n- Encuadernación: Tapa dura de lujo en tela verde inglés con lomo beige, tejuelo negro, letras en dorado y el icónico monograma grabado en rojo de Abercrombie & Fitch (A&F).\r\n- Impreso en los Estados Unidos de América.\r\n\r\nESTADO DE CONSERVACIÓN:\r\nExcelente estado de conservación estético y estructural. Encuadernación e interiores impecables, páginas muy limpias, completas y encuadernación de gran solidez.\r\n\r\nPieza codiciada por coleccionistas de literatura náutica, historia del Río de la Plata y Sudamérica, viajeros y bibliotecas de categoría.\r\n\r\nEnvíos a todo el país a través de Mercado Envíos.",
+    "language": "Inglés",
+    "edition": "",
+    "binding": "Tapa dura",
+    "pages": 0,
+    "isbn": "",
+    "condition": "",
+    "identification_notes": [],
+    "uncertain_fields": [],
+    "images": [
+      "imagenes/ig_De2-fdwoIuJ_1.webp",
+      "imagenes/ig_De2-fdwoIuJ_2.webp",
+      "imagenes/ig_De2-fdwoIuJ_3.webp",
+      "imagenes/ig_De2-fdwoIuJ_4.webp"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-10-24"
+  },
+  {
+    "id": "LIB-057",
+    "title": "THE ENGLISH PATIENT",
+    "author": "Michael Ondaatje.",
+    "year": 1992,
+    "publisher": "Alfred A. Knopf, New York.",
+    "price": 0,
+    "sold_out": false,
+    "category": "General",
+    "description": "OBRA CUMBRE GANADORA DEL BOOKER PRIZE (1992)\r\n\"THE ENGLISH PATIENT\" - MICHAEL ONDAATJE\r\nEditorial: Alfred A. Knopf, New York.\r\n\r\nMagistral novela de la literatura contemporánea internacional, galardonada con el Booker Prize de 1992 e inspiradora de la icónica película ganadora del Premio Óscar.\r\n\r\nDETALLES DE LA EDICIÓN:\r\n- Autor: Michael Ondaatje.\r\n- Editorial: Alfred A. Knopf, Inc., New York (A Borzoi Book).\r\n- Año de publicación: 1992 (Edición de año de lanzamiento original).\r\n- ISBN: 0-679-41678-1.\r\n- Idioma: Inglés.\r\n- Encuadernación: Tapa dura en tela textil clara de editorial con grabado dorado en el lomo.\r\n- Impreso en los Estados Unidos de América.\r\n\r\nESTADO DE CONSERVACIÓN:\r\nExcelente estado de conservación estético y estructural. Encuadernación e interiores firmes, páginas de gran blancura, limpias y completas. Presenta un acabado estético de colección impecable.\r\n\r\nPieza imprescindible para amantes de la narrativa contemporánea, coleccionistas de ediciones de gala o decoración de bibliotecas.\r\n\r\nEnvíos a todo el país a través de Mercado Envíos.",
+    "language": "Inglés",
+    "edition": "",
+    "binding": "Tapa dura",
+    "pages": 0,
+    "isbn": "",
+    "condition": "",
+    "identification_notes": [],
+    "uncertain_fields": [],
+    "images": [
+      "imagenes/ig_De2qRCWIBj4_1.webp",
+      "imagenes/ig_De2qRCWIBj4_2.webp",
+      "imagenes/ig_De2qRCWIBj4_3.webp",
+      "imagenes/ig_De2qRCWIBj4_4.webp"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-10-24"
   }
 ]
