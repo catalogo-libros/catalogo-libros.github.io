@@ -102,6 +102,8 @@ def load_books():
         b["pages"] = num(b.get("pages"))
         b["isbn"] = b.get("isbn") or ""
         b["condition"] = b.get("condition") or ""
+        for k in ("series", "translator", "illustrator", "format", "printer", "printing_place"):
+            b[k] = b.get(k) or ""
         sold_value = b.get("sold_out", False)
         if isinstance(sold_value, str):
             b["sold_out"] = sold_value.strip().lower() in {"1", "true", "yes", "si", "sí", "on", "agotado"}
@@ -193,6 +195,12 @@ def make_book(d, books):
         "pages": num(d.get("pages")),
         "isbn": (d.get("isbn") or "").strip(),
         "condition": (d.get("condition") or "").strip(),
+        "series": (d.get("series") or "").strip(),
+        "translator": (d.get("translator") or "").strip(),
+        "illustrator": (d.get("illustrator") or "").strip(),
+        "format": (d.get("format") or "").strip(),
+        "printer": (d.get("printer") or "").strip(),
+        "printing_place": (d.get("printing_place") or "").strip(),
         "identification_notes": normalize_lines(d.get("identification_notes")),
         "uncertain_fields": normalize_lines(d.get("uncertain_fields")),
         "images": d.get("images", []),
@@ -367,6 +375,8 @@ def apply_form(book):
     book["pages"] = num(f.get("pages"))
     book["isbn"] = f.get("isbn", "").strip()
     book["condition"] = f.get("condition", "").strip()
+    for k in ("series", "translator", "illustrator", "format", "printer", "printing_place"):
+        book[k] = f.get(k, "").strip()
     book["identification_notes"] = normalize_lines(f.get("identification_notes", ""))
     book["uncertain_fields"] = normalize_lines(f.get("uncertain_fields", ""))
 
@@ -651,12 +661,11 @@ def publish_site():
             shutil.copy2(source, target)
             referenced.add(source)
 
-    # Evita acumular en el directorio de trabajo archivos sin ficha asociada.
-    for image_file in IMG_DIR.rglob("*"):
-        if image_file.is_file() and image_file.resolve() not in referenced:
-            image_file.unlink(missing_ok=True)
-
-    books_json = json.dumps(books, ensure_ascii=False).replace("</", "<\\/")
+    # No se borran imágenes fuente que no estén referenciadas en este JSON:
+    # pueden pertenecer a borradores u otras fichas que todavía no se publicaron.
+    private_fields = {"source", "gemini_fingerprint", "uncertain_fields", "date_added", "ig_shortcode"}
+    public_books = [{k: v for k, v in book.items() if k not in private_fields} for book in books]
+    books_json = json.dumps(public_books, ensure_ascii=False).replace("</", "<\\/")
     html = PUBLIC_HTML.replace("__BOOKS__", books_json).replace("__PHONE__", WHATSAPP)
     (SITE_DIR / "index.html").write_text(html, encoding="utf-8")
 
@@ -713,14 +722,20 @@ ADMIN_HTML = r"""<!DOCTYPE html>
       </label>
       <label class="sm:col-span-2 text-sm">Categoría<input id="f-category" list="cats" placeholder="Clásicos, Infantil, Historia..." class="w-full px-3 py-2 border rounded"></label>
       <datalist id="cats"></datalist>
-      <label class="sm:col-span-2 text-sm">Descripción<textarea id="f-description" rows="5" class="w-full px-3 py-2 border rounded"></textarea></label>
+      <label class="sm:col-span-2 text-sm">Descripción de la obra<textarea id="f-description" rows="5" placeholder="Resumen claro de la obra y su contenido. Evitá repetir año, editorial, precio o estado: esos datos tienen campos propios." class="w-full px-3 py-2 border rounded"></textarea></label>
       <label class="text-sm">Idioma<input id="f-language" class="w-full px-3 py-2 border rounded"></label>
       <label class="text-sm">Edición<input id="f-edition" class="w-full px-3 py-2 border rounded"></label>
       <label class="text-sm">Encuadernación<input id="f-binding" class="w-full px-3 py-2 border rounded" placeholder="Tapa dura, rústica..."></label>
       <label class="text-sm">Páginas<input id="f-pages" type="number" min="0" class="w-full px-3 py-2 border rounded"></label>
       <label class="text-sm">ISBN<input id="f-isbn" class="w-full px-3 py-2 border rounded"></label>
-      <label class="text-sm">Estado de conservación<input id="f-condition" class="w-full px-3 py-2 border rounded"></label>
-      <label class="sm:col-span-2 text-sm">Notas para identificar la edición (una por línea)<textarea id="f-identification_notes" rows="2" class="w-full px-3 py-2 border rounded"></textarea></label>
+      <label class="text-sm">Estado de conservación<input id="f-condition" placeholder="Bueno; foxing en páginas preliminares..." class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Colección / serie<input id="f-series" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Traductor<input id="f-translator" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Ilustrador<input id="f-illustrator" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Formato físico<input id="f-format" placeholder="Folio, 8vo, gran formato..." class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Impresor / imprenta<input id="f-printer" class="w-full px-3 py-2 border rounded"></label>
+      <label class="text-sm">Lugar de impresión<input id="f-printing_place" class="w-full px-3 py-2 border rounded"></label>
+      <label class="sm:col-span-2 text-sm">Detalles bibliográficos y del ejemplar (uno por línea)<textarea id="f-identification_notes" rows="3" placeholder="Mapas, láminas, dedicatorias, sellos de biblioteca, procedencia, sobrecubierta..." class="w-full px-3 py-2 border rounded"></textarea></label>
       <label class="sm:col-span-2 text-sm">Datos que faltan verificar (uno por línea)<textarea id="f-uncertain_fields" rows="2" class="w-full px-3 py-2 border rounded"></textarea></label>
     </div>
 
@@ -746,7 +761,7 @@ let books = [], editingId = null, existing = [], newFiles = [];
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es');
-const FIELDS = ['title','author','year','publisher','price','category','description','language','edition','binding','pages','isbn','condition','identification_notes','uncertain_fields'];
+const FIELDS = ['title','author','year','publisher','price','category','description','language','edition','binding','pages','isbn','condition','series','translator','illustrator','format','printer','printing_place','identification_notes','uncertain_fields'];
 const ARRAY_FIELDS = ['identification_notes','uncertain_fields'];
 
 async function load() { books = await (await fetch('/api/books')).json(); render(); }
@@ -867,6 +882,9 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
   .category-strip::-webkit-scrollbar { display: none; }
   .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
   button, select, input { touch-action: manipulation; }
+  .gallery-arrow { display:flex; align-items:center; justify-content:center; width:2.6rem; height:2.6rem; border-radius:9999px; background:rgba(28,25,23,.72); color:#fff; font-size:1.1rem; box-shadow:0 2px 12px rgba(0,0,0,.22); transition:background .15s, transform .15s; }
+  .gallery-arrow:hover { background:rgba(120,53,15,.95); }
+  .gallery-arrow:focus-visible { outline:3px solid #fbbf24; outline-offset:2px; }
   @media (max-width: 639px) {
     .catalog-card { border-radius: .65rem; }
     .catalog-card .cover-area { aspect-ratio: 3 / 3.5; }
@@ -878,7 +896,7 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:px-4 sm:py-4">
     <div class="min-w-0">
       <h1 class="truncate font-serif text-base font-bold tracking-wide sm:text-xl md:text-2xl">Libros Británicos &amp; Americanos</h1>
-      <p class="hidden text-xs text-stone-300 sm:block">Libros de colección</p>
+      <p class="hidden text-xs text-stone-300 sm:block">Catálogo bibliográfico · Ejemplares antiguos y de colección</p>
     </div>
     <button onclick="toggleCart()" class="shrink-0 rounded-lg bg-amber-700 px-3 py-2.5 text-sm font-semibold hover:bg-amber-600 sm:px-4" aria-label="Abrir carrito">
       <span aria-hidden="true">🛒</span> <span class="hidden sm:inline">Carrito</span> <span class="rounded-full bg-stone-900/30 px-1.5 py-0.5"><span id="cart-count">0</span></span>
@@ -887,6 +905,10 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
 </header>
 
 <main class="mx-auto max-w-7xl px-3 pb-24 pt-4 sm:px-4 sm:py-7">
+  <section aria-label="Presentación del catálogo" class="mb-4 border-b border-stone-200 pb-4 sm:mb-6 sm:pb-5">
+    <h2 class="font-serif text-xl font-semibold text-stone-900 sm:text-2xl">Biblioteca y libros de colección</h2>
+    <p class="mt-1 max-w-3xl text-sm leading-relaxed text-stone-600">Explorá las obras disponibles, consultá sus datos bibliográficos y revisá las fotografías de cada ejemplar.</p>
+  </section>
   <section aria-label="Buscar y filtrar libros" class="mb-4 sm:mb-6">
     <label for="search" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-500 sm:text-sm">Encontrá tu próximo libro</label>
     <div class="relative">
@@ -924,10 +946,13 @@ PUBLIC_HTML = r"""<!DOCTYPE html>
 <div id="image-lightbox" class="fixed inset-0 z-[80] hidden items-center justify-center bg-black/95 p-3 sm:p-6"
      role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="if(event.target===this)closeLightbox()">
   <button type="button" onclick="closeLightbox()" aria-label="Cerrar imagen ampliada"
-          class="absolute right-3 top-2 rounded-full bg-white/10 px-3 py-1 text-4xl leading-none text-white sm:right-6 sm:top-5">&times;</button>
-  <div class="flex h-full w-full flex-col items-center justify-center gap-3">
-    <img id="lightbox-img" src="" alt="" class="max-h-[84dvh] max-w-full cursor-zoom-out object-contain sm:max-h-[88vh]" onclick="closeLightbox()">
+          class="absolute right-3 top-2 z-10 rounded-full bg-white/10 px-3 py-1 text-4xl leading-none text-white sm:right-6 sm:top-5">&times;</button>
+  <div class="relative flex h-full w-full flex-col items-center justify-center gap-3" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event)">
+    <img id="lightbox-img" src="" alt="" class="max-h-[84dvh] max-w-full object-contain sm:max-h-[88vh]">
     <p id="lightbox-caption" class="max-w-full break-words text-center text-sm text-white"></p>
+    <p id="lightbox-counter" class="rounded-full bg-white/10 px-3 py-1 text-xs text-white"></p>
+    <button id="lightbox-prev" type="button" onclick="moveGallery(-1)" aria-label="Foto anterior" class="gallery-arrow absolute left-1 top-1/2 -translate-y-1/2 sm:left-4">&#10094;</button>
+    <button id="lightbox-next" type="button" onclick="moveGallery(1)" aria-label="Foto siguiente" class="gallery-arrow absolute right-1 top-1/2 -translate-y-1/2 sm:right-4">&#10095;</button>
   </div>
 </div>
 
@@ -958,6 +983,8 @@ const books = __BOOKS__;
 const PHONE = "__PHONE__";
 let cart = [];
 let selectedCategory = 'Todos';
+let activeGallery = { bookId: null, images: [], index: 0, title: '' };
+let galleryTouchX = null;
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').trim();
@@ -1002,7 +1029,7 @@ function filterBooks() {
   });
   const sort = $('sort').value;
   if (sort === 'title') list.sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'es', { sensitivity: 'base' }));
-  if (sort === 'price-asc') list.sort((a, b) => (Number(a.price) || Number.MAX_SAFE_INTEGER) - (Number(b.price) || Number.MAX_SAFE_INTEGER));
+  if (sort === 'price-asc') list.sort((a, b) => (Number(a.price) > 0 ? Number(a.price) : Number.MAX_SAFE_INTEGER) - (Number(b.price) > 0 ? Number(b.price) : Number.MAX_SAFE_INTEGER));
   if (sort === 'price-desc') list.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
   if (sort === 'year-desc') list.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
   if (sort === 'year-asc') list.sort((a, b) => (Number(a.year) || Number.MAX_SAFE_INTEGER) - (Number(b.year) || Number.MAX_SAFE_INTEGER));
@@ -1023,7 +1050,7 @@ function renderBooks(list) {
         ${b.year ? `<span class="absolute right-1.5 top-1.5 rounded-md bg-stone-900/90 px-1.5 py-1 text-[10px] font-medium text-white sm:right-2 sm:top-2 sm:px-2 sm:text-xs">${esc(b.year)}</span>` : ''}
       </button>
       <div class="flex flex-1 flex-col p-2.5 sm:p-3.5">
-        <div class="mb-1 text-[9px] font-bold uppercase tracking-wide text-amber-800 sm:text-[11px]">${esc(b.category || 'General')}</div>
+        <div class="mb-1 text-[9px] font-bold uppercase tracking-wide text-amber-800 sm:text-[11px]">${esc(categoryGroup(b))}</div>
         <button type="button" onclick="openDetail('${esc(b.id)}')" class="text-left font-serif text-sm font-bold text-stone-900 hover:text-amber-800 sm:text-base"><span class="book-title">${esc(b.title)}</span></button>
         <p class="book-author mt-1 text-[11px] leading-snug text-stone-500 sm:text-sm">${esc(b.author || 'Autor no indicado')}</p>
         <div class="mt-auto pt-2.5 sm:pt-3">
@@ -1041,32 +1068,31 @@ function openDetail(id) {
   const b = books.find(x => x.id === id);
   if (!b) return;
   const images = Array.isArray(b.images) ? b.images : [];
+  activeGallery = { bookId: b.id, images: images, index: 0, title: b.title || 'Libro' };
   $('detail-body').innerHTML = `
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
       <div class="min-w-0">
-        ${images[0]
-          ? `<button type="button" class="block w-full cursor-zoom-in rounded-lg bg-stone-100" onclick="openLightbox(document.getElementById('main-img').src, document.getElementById('main-img').alt)" aria-label="Ampliar foto del libro"><img id="main-img" src="${esc(images[0])}" alt="${esc(b.title)}" class="max-h-[42vh] w-full rounded-lg object-contain sm:max-h-96"></button>`
-          : `<div class="flex min-h-48 w-full flex-col items-center justify-center rounded-lg bg-stone-100 text-stone-500 sm:min-h-64"><span class="text-5xl" aria-hidden="true">📚</span><span class="mt-2 font-medium">Sin foto</span></div>`}
-        <div class="mt-2 flex flex-wrap gap-2">${images.map((s, i) => `<button type="button" aria-label="Ver foto ${i + 1}" onclick="changeMainImage('${esc(s)}')" class="h-14 w-14 overflow-hidden rounded-md border bg-stone-50 sm:h-16 sm:w-16"><img src="${esc(s)}" alt="" loading="lazy" class="h-full w-full object-contain"></button>`).join('')}</div>
-        ${images.length ? `<p class="mt-2 text-xs text-stone-500">Tocá la foto para ampliarla.</p>` : ''}
+        ${images.length
+          ? `<div class="relative overflow-hidden rounded-lg bg-stone-100" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event)">
+              <button type="button" class="block w-full cursor-zoom-in" onclick="openLightbox()" aria-label="Ampliar foto del libro"><img id="main-img" src="${esc(images[0])}" alt="${esc(b.title)}" class="max-h-[42vh] min-h-56 w-full rounded-lg object-contain sm:max-h-96"></button>
+              ${images.length > 1 ? `<button type="button" onclick="moveGallery(-1)" aria-label="Foto anterior" class="gallery-arrow absolute left-2 top-1/2 -translate-y-1/2">&#10094;</button><button type="button" onclick="moveGallery(1)" aria-label="Foto siguiente" class="gallery-arrow absolute right-2 top-1/2 -translate-y-1/2">&#10095;</button>` : ''}
+              <span id="gallery-counter" class="absolute bottom-2 right-2 rounded-full bg-black/65 px-2.5 py-1 text-xs font-medium text-white">1 / ${images.length}</span>
+            </div>
+            <div id="gallery-thumbs" class="mt-2 flex flex-wrap gap-2">${images.map((s, i) => `<button type="button" data-thumb-index="${i}" aria-label="Ver foto ${i + 1}" onclick="setGalleryImage(${i})" class="h-14 w-14 overflow-hidden rounded-md border-2 ${i === 0 ? 'border-amber-700' : 'border-stone-200'} bg-stone-50 sm:h-16 sm:w-16"><img src="${esc(s)}" alt="${esc(b.title)} · foto ${i + 1}" loading="lazy" class="h-full w-full object-contain"></button>`).join('')}</div>
+            <p class="mt-2 text-xs text-stone-500">Usá las flechas o las miniaturas para recorrer las fotos. Tocá la imagen para ampliarla.</p>`
+          : `<div class="flex min-h-48 w-full flex-col items-center justify-center rounded-lg bg-stone-100 text-stone-500 sm:min-h-64"><span class="text-5xl" aria-hidden="true">📚</span><span class="mt-2 font-medium">Sin fotografías disponibles</span></div>`}
       </div>
       <div class="flex min-w-0 flex-col">
         <button onclick="closeDetail()" class="-mr-1 -mt-2 self-end rounded-lg px-3 py-1 text-3xl leading-none text-stone-500" aria-label="Cerrar detalle">&times;</button>
-        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">${esc(b.category || 'General')}</span>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">${esc(categoryGroup(b))}</span>
         ${b.sold_out ? `<span class="mt-2 self-start rounded-md bg-red-700 px-2.5 py-1 text-xs font-bold tracking-wide text-white">AGOTADO · EJEMPLAR VENDIDO</span>` : ''}
         <h2 class="mt-1 break-words font-serif text-xl font-bold sm:text-2xl">${esc(b.title)}</h2>
-        <p class="mt-1 text-sm text-stone-600">${esc(b.author)}</p>
-        <p class="mb-3 mt-1 text-xs text-stone-500 sm:text-sm">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
-        <div class="mb-3 space-y-1 text-sm text-stone-600">${[
-          b.language ? 'Idioma: ' + esc(b.language) : '',
-          b.edition ? 'Edición: ' + esc(b.edition) : '',
-          b.binding ? 'Encuadernación: ' + esc(b.binding) : '',
-          b.pages ? 'Páginas: ' + esc(b.pages) : '',
-          b.isbn ? 'ISBN: ' + esc(b.isbn) : '',
-          b.condition ? 'Estado: ' + esc(b.condition) : ''
-        ].filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div>
-        ${b.description ? `<p class="whitespace-pre-line text-sm leading-relaxed text-stone-700">${esc(b.description)}</p>` : ''}
-        ${(b.identification_notes || []).length ? `<div class="mt-3 text-sm"><strong>Notas de identificación</strong><ul class="ml-5 list-disc">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}
+        <p class="mt-1 text-sm text-stone-600">${esc(b.author || 'Autor no indicado')}</p>
+        <p class="mb-4 mt-1 text-xs text-stone-500 sm:text-sm">${[b.publisher, b.year || ''].filter(Boolean).map(esc).join(' · ')}</p>
+        ${(() => { const rows = [['Edición', b.edition], ['Idioma', b.language], ['Encuadernación', b.binding], ['Formato', b.format], ['Páginas', b.pages ? String(b.pages) : ''], ['ISBN / SBN', b.isbn], ['Colección / serie', b.series], ['Traductor', b.translator], ['Ilustrador', b.illustrator], ['Impresor', b.printer], ['Lugar de impresión', b.printing_place]] .filter(x => x[1]); return rows.length ? `<section class="mb-4"><h3 class="mb-2 text-xs font-bold uppercase tracking-wider text-stone-500">Datos de la edición</h3><dl class="grid grid-cols-1 gap-x-4 gap-y-2 rounded-lg border border-stone-200 bg-stone-50 p-3 sm:grid-cols-2">${rows.map(([k,v]) => `<div class="min-w-0"><dt class="text-[11px] font-semibold uppercase tracking-wide text-stone-500">${esc(k)}</dt><dd class="break-words text-sm text-stone-800">${esc(v)}</dd></div>`).join('')}</dl></section>` : ''; })()}
+        ${b.description ? `<section class="mt-2"><h3 class="mb-2 text-xs font-bold uppercase tracking-wider text-stone-500">Sobre esta obra</h3><div class="space-y-2 text-sm leading-relaxed text-stone-700">${esc(b.description).split(/\n\s*\n/).filter(Boolean).map(p => `<p>${p.replace(/\n/g, ' ')}</p>`).join('')}</div></section>` : ''}
+        ${b.condition ? `<section class="mt-4 rounded-lg border border-stone-200 p-3"><h3 class="mb-1 text-xs font-bold uppercase tracking-wider text-stone-500">Estado de conservación</h3><p class="text-sm leading-relaxed text-stone-700">${esc(b.condition)}</p></section>` : ''}
+        ${(b.identification_notes || []).length ? `<section class="mt-4 text-sm"><h3 class="mb-2 text-xs font-bold uppercase tracking-wider text-stone-500">Particularidades del ejemplar</h3><ul class="ml-5 list-disc space-y-1 text-stone-700">${b.identification_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>` : ''}
         <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-stone-100 pt-4">
           <span class="text-xl font-bold ${b.sold_out ? 'text-red-700' : ''}">${b.sold_out ? 'Agotado' : (Number(b.price) > 0 ? money(b.price) : 'Consultar')}</span>
           ${b.sold_out ? `<span class="rounded-xl bg-red-100 px-4 py-3 font-semibold text-red-700">No disponible</span>` : (cart.some(i => i.id === b.id) ? `<button disabled class="cursor-not-allowed rounded-xl bg-stone-200 px-4 py-3 font-semibold text-stone-500">En carrito</button>` : `<button onclick="addToCart('${esc(b.id)}');closeDetail()" class="rounded-xl bg-stone-900 px-5 py-3 font-semibold text-white hover:bg-amber-800">Agregar al carrito</button>`)}
@@ -1081,17 +1107,46 @@ function closeDetail() {
   $('detail').classList.replace('flex', 'hidden');
   if ($('image-lightbox').classList.contains('hidden') && $('cart-modal').classList.contains('hidden')) document.body.style.overflow = '';
 }
-function changeMainImage(src) {
-  const img = $('main-img');
-  if (!img) return;
-  img.src = src;
+function setGalleryImage(index) {
+  if (!activeGallery.images.length) return;
+  const total = activeGallery.images.length;
+  activeGallery.index = (index + total) % total;
+  const src = activeGallery.images[activeGallery.index];
+  const main = $('main-img');
+  if (main) main.src = src;
+  const counter = $('gallery-counter');
+  if (counter) counter.textContent = `${activeGallery.index + 1} / ${total}`;
+  const thumbs = $('gallery-thumbs');
+  if (thumbs) thumbs.querySelectorAll('[data-thumb-index]').forEach(button => {
+    const active = Number(button.dataset.thumbIndex) === activeGallery.index;
+    button.classList.toggle('border-amber-700', active);
+    button.classList.toggle('border-stone-200', !active);
+  });
+  const lightbox = $('image-lightbox');
+  if (lightbox && !lightbox.classList.contains('hidden')) {
+    $('lightbox-img').src = src;
+    $('lightbox-img').alt = `${activeGallery.title} · foto ${activeGallery.index + 1}`;
+    $('lightbox-caption').textContent = activeGallery.title;
+    $('lightbox-counter').textContent = `${activeGallery.index + 1} / ${total}`;
+  }
 }
-function openLightbox(src, caption = '') {
-  if (!src) return;
-  $('lightbox-img').src = src;
-  $('lightbox-img').alt = caption;
-  $('lightbox-caption').textContent = caption;
+function moveGallery(delta) { setGalleryImage(activeGallery.index + delta); }
+function galleryTouchStart(event) {
+  if (event.touches && event.touches.length) galleryTouchX = event.touches[0].clientX;
+}
+function galleryTouchEnd(event) {
+  if (galleryTouchX === null || !event.changedTouches || !event.changedTouches.length) return;
+  const dx = event.changedTouches[0].clientX - galleryTouchX;
+  galleryTouchX = null;
+  if (Math.abs(dx) > 45 && activeGallery.images.length > 1) moveGallery(dx < 0 ? 1 : -1);
+}
+function openLightbox() {
+  if (!activeGallery.images.length) return;
   $('image-lightbox').classList.replace('hidden', 'flex');
+  const hasMultiple = activeGallery.images.length > 1;
+  $('lightbox-prev').classList.toggle('hidden', !hasMultiple);
+  $('lightbox-next').classList.toggle('hidden', !hasMultiple);
+  setGalleryImage(activeGallery.index);
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
@@ -1104,6 +1159,15 @@ document.addEventListener('keydown', event => {
     closeLightbox();
     closeDetail();
     if (!$('cart-modal').classList.contains('hidden')) toggleCart();
+    return;
+  }
+  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    const detailOpen = !$('detail').classList.contains('hidden');
+    const lightboxOpen = !$('image-lightbox').classList.contains('hidden');
+    if ((detailOpen || lightboxOpen) && activeGallery.images.length > 1) {
+      event.preventDefault();
+      moveGallery(event.key === 'ArrowRight' ? 1 : -1);
+    }
   }
 });
 
