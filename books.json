@@ -10249,7 +10249,12 @@
       "pages",
       "isbn"
     ],
-    "images": [],
+    "images": [
+      "imagenes/gemini_a22e77110c22.jpg",
+      "imagenes/gemini_fce0fa856a9e.jpg",
+      "imagenes/gemini_b08dc6e15f79.jpg",
+      "imagenes/gemini_54674f312798.jpg"
+    ],
     "ig_shortcode": null,
     "date_added": "2026-11-02",
     "source": "gemini_extension",
@@ -10374,10 +10379,10 @@
       "isbn"
     ],
     "images": [
-      "imagenes/7351293b41.jpg",
-      "imagenes/97bb14aa76.jpg",
-      "imagenes/a49439f872.jpg",
-      "imagenes/69546b42d7.jpg"
+      "imagenes/12ad1acca4.jpg",
+      "imagenes/61e54f3d66.jpg",
+      "imagenes/b4379066c5.jpg",
+      "imagenes/580c2b4d59.jpg"
     ],
     "ig_shortcode": null,
     "date_added": "2026-11-03",
@@ -10501,10 +10506,10 @@
       "isbn"
     ],
     "images": [
-      "imagenes/202db7464b.jpg",
-      "imagenes/f4a3646aa4.jpg",
-      "imagenes/e1548d1b7b.jpg",
-      "imagenes/cad6b3b5a0.jpg"
+      "imagenes/5a5c590cb3.jpg",
+      "imagenes/463ea8f7a8.jpg",
+      "imagenes/0bfea1be2e.jpg",
+      "imagenes/1c819c6a26.jpg"
     ],
     "ig_shortcode": null,
     "date_added": "2026-11-03",
@@ -10854,5 +10859,762 @@
     "date_added": "2026-11-03",
     "source": "gemini_extension",
     "gemini_fingerprint": "841372e22c6272a1a847a463dcaf180210d537860ad1a371c2dac763aa1731f2"
+  },
+  {
+    "id": "LIB-285",
+    "title": "TOP SECRET",
+    "author": "RALPH INGERSOLL",
+    "year": 1946,
+    "publisher": "Harcourt, Brace and Company, New York",
+    "price": 15000,
+    "sold_out": false,
+    "category": "Memorias de Guerra / Historia Militar / Espionaje - Segunda Guerra Mundial",
+    "description": "Memorias críticas y detalladas de la planificación de la invasión aliada de Europa (Día D) por Ralph Ingersoll, oficial de inteligencia del personal del General Omar Bradley during World War II.",
+    "language": "Inglés",
+    "edition": "First edition (1946)",
+    "binding": "Tapa dura en tela roja desgastada",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado regular. Las cubiertas de tela roja están muy desgastadas, manchadas y descoloridas, con desgaste significativo en bordes y esquinas. El lomo está particularmente deteriorado, con la tela rota en la parte superior e inferior, y la rotulación dorada desgastada pero legible. Las páginas interiores están ligeramente amarillentas pero limpias, excepto por un sello de biblioteca y una dedicatoria manuscrita en la página de título.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright, 1946, por Ralph Ingersoll.",
+      "Página de título con dedicatoria manuscrita ('Presented by A.O. Puleston') y sello de biblioteca ('St. Michael's School Library - La Plata').",
+      "Página de dedicatoria impresa ('To My Wife')."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_efbab09a9d7c.jpg",
+      "imagenes/gemini_236dd6336efc.jpg",
+      "imagenes/gemini_067aa3b01f21.jpg",
+      "imagenes/gemini_6d5ffb2a4e94.jpg",
+      "imagenes/gemini_7b6cbf64a19c.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "5bc25b40b3a3aae3702eb502997dc7498cf426aafa301bb44607c55517f20fa1",
+    "source_hashes": [
+      "82a0191bacccec0023cb191a650c13d91de8099e68128d4800e2e9ab39b02182",
+      "514dddf977cc76a14d86a56a0d9d40586321c6d12da8c158beade12e17a05004",
+      "1f1c9453ee7d23e3645af3046fc5796dad592ccd71911d535f816aa52158bf05",
+      "7a86a3c84e8964e0f13f3bf82930200d20dc3c0b4fbff61a93a98c58ffa96fc0",
+      "e2f1c44fd1a34171bcc3462a1722a4e2d6e8c5b604b5566bdfec7d186cf9f073"
+    ]
+  },
+  {
+    "id": "LIB-286",
+    "title": "LANGUAGE, TRUTH AND LOGIC",
+    "author": "ALFRED JULES AYER",
+    "year": 1954,
+    "publisher": "Victor Gollancz Ltd, London",
+    "price": 18000,
+    "sold_out": false,
+    "category": "Filosofía / Filosofía Analítica / Lógica",
+    "description": "Una de las obras más influyentes de la filosofía analítica del siglo XX, en la que A. J. Ayer populariza y defiende los principios del positivismo lógico del Círculo de Viena, argumentando que las únicas proposiciones literalmente significativas son las tautologías analíticas y las afirmaciones empíricamente verificables.",
+    "language": "Inglés",
+    "edition": "Tenth impression of the second edition (1954; First published 1936)",
+    "binding": "Tapa dura en tela azul claro con rotulación en azul en el lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en muy buen estado general de conservación. Las cubiertas de tela azul presentan un aspecto limpio y cuidado, con mínimos signos de manipulación en los bordes. El lomo mantiene su estructura firme y la rotulación perfectamente legible. El interior se encuentra en excelente estado, con páginas claras y limpias, luciendo un ex libris y un sello institucional de biblioteca en la página de título.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Camelot Press Ltd., London and Southampton",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published January 1936; Tenth impression of the second edition January 1954.",
+      "Victor Gollancz Ltd, London, 1954.",
+      "Printed in Great Britain by The Camelot Press Ltd., London and Southampton.",
+      "Incluye ex libris manuscrito y sello institucional de la biblioteca ('St. Michael's La Plata Library')."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_1558efc494d5.jpg",
+      "imagenes/gemini_c3781d0ecee1.jpg",
+      "imagenes/gemini_a1dbc9ab273f.jpg",
+      "imagenes/gemini_e60cc8d16c44.jpg",
+      "imagenes/gemini_70e214eee8c9.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "1ac6f6b5ae135610c92478a1dfbc7e8872af7ea3fd674feb10c4f2de1369d034",
+    "source_hashes": [
+      "553fed48843cfc29f4d0bd6d7519f1759b38072eff69630dd26be68f001db9dc",
+      "6ef7e3b45adf2c773a2cc83338990993625027dfbda2884e990336e3a09fae01",
+      "eba7f1d26d9976c21232023ce3b3db996a48ac6c9deb67d7514820325f67d354",
+      "3b2f561c2e96c9af103cbb6a785c04affe7ac3ef8acf1b28b66bf885480b6434",
+      "671e1528b6a2c844ea881a84da266e05b144e016c857b8b5ea4ce1e5a33a76b2"
+    ]
+  },
+  {
+    "id": "LIB-287",
+    "title": "THE TWO NUNS",
+    "author": "ANNE HURÉ",
+    "year": 1964,
+    "publisher": "Macdonald & Co. (Publishers) Ltd., London",
+    "price": 10000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Francesa Traducida",
+    "description": "Una intensa y profunda novela de la autora francesa Anne Huré que explora los conflictos espirituales, morales e institucionales dentro de la vida monástica, abordando las complejas relaciones y tensiones ideológicas entre dos monjas.",
+    "language": "Inglés",
+    "edition": "First published in Great Britain in 1964 (Translated from the French original Les Deux Moniales, 1962)",
+    "binding": "Tapa dura en tela gris oscura con rotulación en blanco y plateado en el lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en muy buen estado general de conservación. Las cubiertas de tela presentan una textura firme con ligeras señales de desgaste en las esquinas inferiores. El lomo se encuentra sólido y legible, con el título y la editorial perfectamente claros. El interior está limpio y sin anotaciones significativas, conservando una excelente integridad estructural.",
+    "series": "",
+    "translator": "Emma Craufurd",
+    "illustrator": "",
+    "format": "",
+    "printer": "Purnell and Sons, Ltd., Paulton (Somerset) and London",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published in the French language in 1962 under the title Les Deux Moniales by René Julliard, Paris.",
+      "This translation first published in Great Britain in 1964 by Macdonald & Co. (Publishers) Ltd., London.",
+      "Translated from the French by Emma Craufurd.",
+      "Made and printed in Great Britain by Purnell and Sons, Ltd. Paulton (Somerset) and London."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_2d753cc4736a.jpg",
+      "imagenes/gemini_b6acf919e74c.jpg",
+      "imagenes/gemini_051dfc0ff221.jpg",
+      "imagenes/gemini_25664d241ef9.jpg",
+      "imagenes/gemini_ec2bcb2b603f.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "856523951c895f45c7eb81b8ccd79557684fe3c931b59029931cd894d44d2d46",
+    "source_hashes": [
+      "f97a8f167f67323e98e714e8e08ae9935243d84b9a7b03cc9d577f2af8323aff",
+      "9c8d248e0dcee95842f9809468b2be332c374a8f124829a3d1e949163a3dee30",
+      "cf769c730ba1b9aaffce06793b9b04940185f6664d1d9d47de29a57c48393719",
+      "f0dc032c604ce99f10751d1471e1fcc838fac66d4da639435fe5d4d06f302ed4",
+      "876e9d68574230e95ee5ad337456f7cb1952c099fd2913fb2fd34a7b532432be"
+    ]
+  },
+  {
+    "id": "LIB-288",
+    "title": "THE WAY OF LIFE: A STUDY IN CHRISTIAN ETHICS",
+    "author": "C. J. BARKER",
+    "year": 1946,
+    "publisher": "Lutterworth Press, London and Redhill",
+    "price": 7000,
+    "sold_out": false,
+    "category": "Filosofía / Teología / Ética Cristiana",
+    "description": "Un profundo estudio sobre la ética cristiana y los fundamentos morales de la vida espiritual escrito por C. J. Barker, vicario de Great Torrington y antiguo becario de Christ Church, Oxford, que analiza la relación entre la doctrina religiosa y la conducta humana.",
+    "language": "Inglés",
+    "edition": "First published 1946",
+    "binding": "Tapa dura en tela de color marrón rojizo con rotulación en dorado en el lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en muy buen estado general de conservación. Las cubiertas de tela presentan una textura uniforme y firme con ligeras señales de desgaste natural en los extremos del lomo. La estructura es sólida, y el interior se mantiene limpio y claro, luciendo una anotación manuscrita de propiedad anterior y una etiqueta decorativa en las páginas preliminares.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Unwin Brothers Limited, London and Woking",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published 1946 by Lutterworth Press, London and Redhill.",
+      "Printed in Great Britain by Unwin Brothers Limited, London and Woking.",
+      "Incluye anotación manuscrita antigua de propiedad en la guarda ('E. W. S. Broadbent, The Starcross Vicarage, Bolton').",
+      "Con sello de conformidad de estándares de economía de guerra ('Book Production War Economy Standard')."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_61fb8184b7dd.jpg",
+      "imagenes/gemini_9eda7d9ba5c2.jpg",
+      "imagenes/gemini_1bcf430eb245.jpg",
+      "imagenes/gemini_bd7434da8d1b.jpg",
+      "imagenes/gemini_44c4b3db4437.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "118369784b9560680175b63e353c6c31e476fc6d2de42d59862b3ea800eeb917",
+    "source_hashes": [
+      "bc0397be5eedaefc12d8152b9be96e27155aab737e131d3ec33f9532798a3da5",
+      "9f43d0d33d819080504ade3ebb42ba841ef7782b359faeaa63b4a43dbd1b84ba",
+      "8c5f2428a66388aa8e12cdd0c3efb3d3264f89f6fd6e6dd2539e3979bada2bc4",
+      "e02bf6ce208350a9f029244152910be361fb1f28421ecd8d8c0e18a900df60d2",
+      "c35d99bf7ddf815f8dba7a97b9f9ae765a80c2bd90b12b52800e02936a688514"
+    ]
+  },
+  {
+    "id": "LIB-289",
+    "title": "WHEELER'S GRADED ARITHMETICS: PRIMARY BOOK",
+    "author": "FREDERICK H. SOMERVILLE AND ELLIS U. GRAFF",
+    "year": 1919,
+    "publisher": "W. H. Wheeler & Company, Chicago",
+    "price": 10000,
+    "sold_out": false,
+    "category": "Educación / Libros de Texto / Matemáticas / Aritmética",
+    "description": "Un libro de texto clásico de aritmética elemental diseñado para los primeros años escolares, que combina ejercicios prácticos, juegos didácticos y fundamentos matemáticos adaptados al desarrollo infantil.",
+    "language": "Inglés",
+    "edition": "First edition (1919)",
+    "binding": "Tapa dura en tela marrón con impresión y diseño geométrico en la cubierta",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable a bueno. Las cubiertas de tela presentan desgaste visible en los bordes y esquinas, y el lomo muestra roturas y pérdida parcial de tela en los extremos superior e inferior, con la rotulación oscurecida pero legible. El interior se mantiene en buenas condiciones generales, con páginas limpias y sólidas, aunque con algunas marcas de uso y ligeras manchas de foxing.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright, 1919, by William H. Wheeler.",
+      "W. H. Wheeler & Company, Chicago.",
+      "Autores: Frederick H. Somerville (antiguamente de Lawrenceville School y William Penn Charter School, Filadelfia) y Ellis U. Graff (Superintendente de Escuelas, Indianápolis)."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_e7196fde85c3.jpg",
+      "imagenes/gemini_53f2213ca30d.jpg",
+      "imagenes/gemini_7ef98dcaf55c.jpg",
+      "imagenes/gemini_2ffd33fbd1fd.jpg",
+      "imagenes/gemini_c90b0fc67574.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "12d179765c394a4918e8e5c4763c48acc634641279a0cedf5f8d1572de4a5c92",
+    "source_hashes": [
+      "b5d7fe86ddff592f9965fff4f404da4b56dfaefbacb4f8ace6ba7072aabecaf9",
+      "69494fe53053d0060e2c014e4c4b8b682bc119c547c21acc28cacdae89d705c5",
+      "0a58779a25d8c7dedde2498df4cdae86471b956e2660e6624c10be829ce07598",
+      "0be6ce43edd82094253aa58d3d633aafd50c387c755f7f5fd2b130e1c894a6cb",
+      "9c6d1c046e14fe8706e862b16e07b1648ead04309024ff96dc5286ab96cf7cf2"
+    ]
+  },
+  {
+    "id": "LIB-290",
+    "title": "MOTHER AND QUEEN: THE STORY OF QUEEN MARY",
+    "author": "MARION CRAWFORD",
+    "year": 1951,
+    "publisher": "Prentice-Hall, Inc., New York",
+    "price": 8000,
+    "sold_out": false,
+    "category": "Biografías / Historia / Realeza Británica",
+    "description": "Una biografía íntima y detallada de la Reina María (Mary of Teck) escrita por Marion Crawford, la famosa institutriz de la realeza británica, que recorre su vida desde su juventud hasta su rol como pilar de la monarquía británica.",
+    "language": "Inglés",
+    "edition": "First American Edition (First printing, October 1951)",
+    "binding": "Tapa dura en tela de color rojo uniforme con lomo rotulado en tonos oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Las cubiertas de tela roja se mantienen limpias y firmes, con mínimos roces en los extremos. El lomo muestra un leve desgaste en la parte superior e inferior, pero la tipografía y el título se conservan legibles y completos. El interior está impecable, con páginas limpias, encuadernación sólida y sin marcas de lectura significativas.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright, 1951, by Prentice-Hall, Inc., 70 Fifth Avenue, New York 11, N.Y.",
+      "First American Edition, First printing... October, 1951.",
+      "Designed by Stefan Salter.",
+      "Autora: Marion Crawford."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_adf29e5da502.jpg",
+      "imagenes/gemini_ef3e527c73b5.jpg",
+      "imagenes/gemini_94554b06e789.jpg",
+      "imagenes/gemini_f2c393e752ed.jpg",
+      "imagenes/gemini_6a6be9f7d2bb.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "151241fdea7e64b854a2d641e22915868c332030fcfd5147513ec858df9a21db",
+    "source_hashes": [
+      "b6ca0216550f8754bb375a384d8c2b3c6621eafb62643d1795563b6cbb58d1f6",
+      "f75d3991d56646ca18641fe1e1edfbdffdde06b9382fbdce0010d4c8450e289d",
+      "3d68253ef4bf271e08353c702394c4bd7c05dc9cbf665df90d0fb1a197cfda42",
+      "2ca67425fdccd6f47187c82beaf1b62ab41fbdf40687e24327bba2f37e4e40b6",
+      "932c30dc5b6c2cfdb015a2e68953e678ca300660e206cf771c0da884968aab36"
+    ]
+  },
+  {
+    "id": "LIB-291",
+    "title": "THREE O'CLOCK DINNER",
+    "author": "JOSEPHINE PINCKNEY",
+    "year": 1945,
+    "publisher": "The Viking Press, New York",
+    "price": 13000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Norteamericana",
+    "description": "Una magistral novela de costumbres ambientada en Charleston, Carolina del Sur, que explora el agudo choque generacional y cultural entre la aristocracia sureña tradicional y la modernidad de mediados del siglo XX, detonado por un inesperado y escandaloso romance familiar.",
+    "language": "Inglés",
+    "edition": "First Edition (First published in September 1945)",
+    "binding": "Tapa dura en tela verde oscuro con etiqueta rotulada en el frente y lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela con ligeros roces y desgaste menor en los bordes del lomo. Interior limpio, firme y bien conservado.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright 1945 by Josephine Pinckney",
+      "First published by The Viking Press in September 1945",
+      "Published on the same day in the Dominion of Canada by The Macmillan Company of Canada Limited",
+      "This edition is produced in full compliance with all War Production Board conservation orders"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_0cdccff1bae3.jpg",
+      "imagenes/gemini_9b2333447bce.jpg",
+      "imagenes/gemini_e4cc52987ee6.jpg",
+      "imagenes/gemini_2dd0390282aa.jpg",
+      "imagenes/gemini_2425919589ff.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "b6f5e5ebcd090b2e4bf7baf92bd850c006e1b1058afdf8f86686ea23cf7cb6c2",
+    "source_hashes": [
+      "d2f034c710d84e57c0f071fca632327f461436d44583f6526a35b1c4c14e7ff9",
+      "21da514d47dd79db21322717177dd411b7f1c2d1ed4354a7139ed17e305e28ed",
+      "477cdfc55cddbe661968dad429bd00a986422ebba4cb24dec370eef951246fc5",
+      "21156166539892cbcffd5235fad2fd5f08b2d556c56d1d50521062c4b9c71342",
+      "dc1553f80b8fe1d6d19b654769c9f280bea5ee835b55dd73251abdbbd53490e8"
+    ]
+  },
+  {
+    "id": "LIB-292",
+    "title": "A WANDERER IN LONDON",
+    "author": "E. V. LUCAS",
+    "year": 1922,
+    "publisher": "The Macmillan Company, New York / Methuen & Co., London",
+    "price": 9000,
+    "sold_out": false,
+    "category": "Literatura de Viajes / Guías y Ensayos / Londres",
+    "description": "Una fascinante y evocadora crónica de viajes en la que E. V. Lucas recorre las calles, galerías de arte, monumentos y rincones históricos de Londres, combinando la mirada del viajero curioso con una profunda apreciación por la cultura y el espíritu de la capital británica a principios del siglo XX.",
+    "language": "Inglés",
+    "edition": "Edición de 1922",
+    "binding": "Tapa dura en tela azul con diseño estampado de una rosa en relieve en la cubierta y lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela azul firmes con ligeros desgastes en los bordes. Interior limpio y sólido.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Norwood Press",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright, 1906, by The Macmillan Company.",
+      "Published September, 1906. Reprinted multiple times through 1915.",
+      "New York: The Macmillan Company. London: Methuen & Co. 1922.",
+      "With forty-four illustrations."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_ea3a59a42554.jpg",
+      "imagenes/gemini_fda81c4fb552.jpg",
+      "imagenes/gemini_899c5a4c17da.jpg",
+      "imagenes/gemini_9e9536a5573b.jpg",
+      "imagenes/gemini_25da800792da.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "271c96522b300c45b84d78510b93c11683d27074a7d389a075c6a5dc85df4169",
+    "source_hashes": [
+      "e645631215e407d18c6b4bbfaefbe1d142e71f078f7dba5bae0ab14249d9a5ea",
+      "283363cb4d896c9e9a3cf2522c7da1d75b88fa2f35ed82141841bdf005c1e052",
+      "d5a6a3c5546774e6a930e607673177023e2528d8607e3344cd2c0fad7185f5c9",
+      "677b2da38818f0d174424a8c45fcf92182eba28ad3b8b4193d306e0dbdb8bf47",
+      "ae5822e22ed1a19f07f9fdc26f738c9f6726588a0dcddd27422bcc0a205bc2fa"
+    ]
+  },
+  {
+    "id": "LIB-293",
+    "title": "THE ESSENTIAL RICHARD JEFFERIES",
+    "author": "RICHARD JEFFERIES (SELECTED AND WITH AN INTRODUCTION BY MALCOLM ELWIN)",
+    "year": 1948,
+    "publisher": "Jonathan Cape, London",
+    "price": 12000,
+    "sold_out": false,
+    "category": "Literatura Inglesa / Ensayos / Naturaleza",
+    "description": "Una cuidadosa antología seleccionada por Malcolm Elwin que recopila lo mejor de la obra de Richard Jefferies, célebre escritor y naturalista británico, explorando con una prosa lírica y detallada la vida rural, el paisaje campestre y la profunda conexión entre el hombre y la naturaleza en la Inglaterra victoriana.",
+    "language": "Inglés",
+    "edition": "First Edition (First published 1948)",
+    "binding": "Tapa dura en tela marrón uniforme con lomo rotulado en tonos claros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela con ligeras marcas y desgaste menor en los extremos del lomo. Interior limpio, con sello de biblioteca en la portadilla y encuadernación firme.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Alden Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published 1948",
+      "Jonathan Cape Thirty Bedford Square London",
+      "Selected, with an Introduction by Malcolm Elwin",
+      "Bound by A. W. Bain & Co. Ltd., London"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_a3d922a3a91f.jpg",
+      "imagenes/gemini_0916d31b616f.jpg",
+      "imagenes/gemini_8beb0a6990a8.jpg",
+      "imagenes/gemini_9a7fbfc67ee9.jpg",
+      "imagenes/gemini_70c705f5c330.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "2f765447757167b54952f4298aae2c1d70beae398f997d5fdfb4951397301f29",
+    "source_hashes": [
+      "d013584f3abe15a91659745c244e22db9fc3ee8324b1f1f56c705abac42828a7",
+      "e63f04596531b6b8dfe27ce1554ccf6e4f2d416874968bbef2dafc87e0bfb1b7",
+      "8622fcde1170ba7e214031c934a042e7c0c0c86ec3a77feb0c4af331ec85e96c",
+      "44d2c6674e2bd0f8e5a328a319152b788481d76eefa1235fdd8734d419485557",
+      "a2c7f94722e52e06990612d1b72836f5135798a833a12dbe190a86a76c52a2df"
+    ]
+  },
+  {
+    "id": "LIB-294",
+    "title": "SELECTIONS FROM THE OLD ENGLISH BEDE",
+    "author": "W. J. SEDGEFIELD",
+    "year": 1917,
+    "publisher": "The University Press, Manchester / Longmans, Green & Co.",
+    "price": 12000,
+    "sold_out": false,
+    "category": "Lingüística / Filología / Inglés Antiguo",
+    "description": "Una cuidada edición académica de fragmentos de la obra histórica de Beda el Venerable en su versión original en inglés antiguo (anglosajón), recopilada y editada por W. J. Sedgefield con textos, vocabulario y un esquema de la accidencia gramatical del sajón occidental temprano para estudiantes avanzados.",
+    "language": "Inglés / Inglés Antiguo",
+    "edition": "First Edition (1917)",
+    "binding": "Tapa dura en tela verde con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela con ligeras marcas y desgaste menor en los extremos del lomo. Interior limpio y sólido.",
+    "series": "Publications of the University of Manchester, No. CX",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The University Press, Manchester",
+    "printing_place": "Reino Unido",
+    "identification_notes": [
+      "Publications of the University of Manchester No. CX.",
+      "At the University Press, Manchester. Longmans, Green & Co., London, New York, Bombay, etc. 1917.",
+      "Edited with text and vocabulary on an early West Saxon basis, and a skeleton outline of Old English accidence by W. J. Sedgefield, Litt.D., Professor of English Language in the University."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_93dbea9503b5.jpg",
+      "imagenes/gemini_f9302407626f.jpg",
+      "imagenes/gemini_f1dfc1b22a7a.jpg",
+      "imagenes/gemini_2444422af1a1.jpg",
+      "imagenes/gemini_cbfc194f7e3b.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "796436f1f14d405ce1c742c4672648b3dac2f8cc510d940ad0f802dd2ca098ff",
+    "source_hashes": [
+      "8b91a0567fca813b319a09e7d325652e79e3917f02766adc52444ba8e3ed81c5",
+      "f0724e396685989b46008d732f08e141ab2ff564e88e09e44db34f037b781176",
+      "3bcc73d8bd1c9bfe04837768ce7291bfb4b524f024ac09ec7050f8ceb7b2f466",
+      "a6fe04a23858e255a2a809cf8588e0ec91b06759233560d26cc409bfe66b7ef1",
+      "0b2655c56bc40e4f882e5621066453695911e906ff5a69fbb05dd7b83e631457"
+    ]
+  },
+  {
+    "id": "LIB-295",
+    "title": "THE GOLDEN ARROW",
+    "author": "MARY WEBB",
+    "year": 1948,
+    "publisher": "Jonathan Cape, London",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Ficción / Literatura Inglesa / Novela Romántica y de Costumbres",
+    "description": "Una apasionante novela ambientada en los agrestes y místicos paisajes de Shropshire, que narra la intensa historia de amor entre Deborah Arden y Roderick Serocold, explorando las complejidades de la pasión, el sacrificio humano y la profunda influencia de la naturaleza en el alma.",
+    "language": "Inglés",
+    "edition": "Collected Edition (Re-issued by Jonathan Cape May 1928, reprinted 1948)",
+    "binding": "Tapa dura en tela de color claro con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela con ligeras marcas y desgaste menor. Interior limpio, con sello de biblioteca en la portadilla y encuadernación firme.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Butler & Tanner Ltd.",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published 1916, Re-issued by Jonathan Cape May 1928, Collected edition reprinted 1948",
+      "Jonathan Cape 30 Bedford Square London",
+      "With an introduction by G. K. Chesterton",
+      "Printed and bound in Great Britain by Butler & Tanner Ltd., Frome"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_24de85e19d55.jpg",
+      "imagenes/gemini_cc456caf41d8.jpg",
+      "imagenes/gemini_916f92e6bea5.jpg",
+      "imagenes/gemini_a9220574de5e.jpg",
+      "imagenes/gemini_333af1c54ae9.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "ee0750d0d8035fabf5a1622f2680c2ee68d00c0b50cc465bf3d63726f85e130b",
+    "source_hashes": [
+      "310bd39b9dfb621406c6a5ace95c29bec8b50b695794d3b05f9c2b2f832e3f9e",
+      "f92cef3bcf9f110c12fbbed4dc8fd7db7455f11f59c9bbd179c2a9aed4a0149e",
+      "8e0a0ec90cbbdd9154bfb6ce4dff1d6d88f1ebca4e32d3242d1165cfca7a92fb",
+      "bb4aa6286cfc7b86331ab89ac1cac5e1edf86d5c0f893d281e1e051437612e78",
+      "2e741c3d987ec612e6d427f361cbdb3af4d359d141901312afee0e5bfe467655"
+    ]
+  },
+  {
+    "id": "LIB-296",
+    "title": "ZOTZ!",
+    "author": "WALTER KARIG",
+    "year": 1947,
+    "publisher": "Rinehart & Company, Inc., New York / Toronto",
+    "price": 7000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Sátira y Humor",
+    "description": "Una ingeniosa y divertida novela satírica que relata la historia de un humilde profesor de lenguas clásicas dotado repentinamente por un dios antiguo con el poder letal de fulminar con un simple gesto y la palabra 'Zotz!', desencadenando una hilarante y caótica comedia de enredos a nivel global.",
+    "language": "Inglés",
+    "edition": "First Edition (1947)",
+    "binding": "Tapa dura en tela azul con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable a bueno. Cubiertas de tela azul con desgaste y roces visibles, especialmente en el lomo que presenta roturas y pérdida parcial en los extremos superior e inferior. Interior limpio y sólido.",
+    "series": "",
+    "translator": "",
+    "illustrator": "Walter Karig",
+    "format": "",
+    "printer": "The Haddon Craftsmen",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Copyright, 1947, by Walter Karig",
+      "Printed in the United States of America by The Haddon Craftsmen, Scranton, Pa.",
+      "With drawings by the author"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_b5e130106bb9.jpg",
+      "imagenes/gemini_6e0b85d53eb8.jpg",
+      "imagenes/gemini_e2b5e03d45a4.jpg",
+      "imagenes/gemini_39ee5c0dd0c8.jpg",
+      "imagenes/gemini_4e9e5e74af3e.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "aa7cb85f6be7eca0ce48fc5338b5e12ae11d4ed8bcc25b24182e86ee12dabfed",
+    "source_hashes": [
+      "3dc0513ff907f18ffb196399b8e4f4f84644ccefac314ff257c67dbf83313b06",
+      "c1a09825bc5fb7891e18f43a041a2d1fc28696b16851bb44106d05d4c9e70272",
+      "4ded0ed25cffc937122966faa5b8049f162ebc506f70bf6c854c7d9855c966cf",
+      "e0e3952a1af2c8697c0a0a6b60db5446000fcd8aaa6b889de6ac499203f157be",
+      "ab4f7d07c2f4dc309c0652a48b8355a432b60900f2598840c70d9ec514b85865"
+    ]
+  },
+  {
+    "id": "LIB-297",
+    "title": "NEW ISLANDS AND OTHER STORIES",
+    "author": "MARÍA LUISA BOMBAL",
+    "year": 1982,
+    "publisher": "Farrar, Straus and Giroux, New York",
+    "price": 14000,
+    "sold_out": false,
+    "category": "Ficción / Literatura Latinoamericana / Cuentos",
+    "description": "Una excepcional antología de relatos de la destacada escritora chilena María Luisa Bombal, traducida al inglés por Richard y Lucia Cunningham[cite: 39], que incluye un prólogo escrito por Jorge Luis Borges[cite: 40]. La obra reúne piezas fundamentales de su narrativa breve —como 'New Islands', 'The Final Mist' y 'The Tree'— caracterizadas por una atmósfera onírica, lírica y precursora del realismo mágico que explora la psicología y el mundo interior femenino.",
+    "language": "Inglés",
+    "edition": "First printing (1982)[cite: 40]",
+    "binding": "Tapa dura con lomo en tela azul y cubiertas en tono grisáceo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas firmes con ligeros roces. Interior limpio y sólido.",
+    "series": "",
+    "translator": "Richard and Lucia Cunningham[cite: 39]",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América[cite: 40]",
+    "identification_notes": [
+      "Translation copyright © 1982 by Farrar, Straus and Giroux, Inc.[cite: 40]",
+      "Preface copyright © 1982 by Jorge Luis Borges[cite: 40]",
+      "First printing, 1982[cite: 40]",
+      "Translated by Richard and Lucia Cunningham[cite: 39]"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_be960ada5bbf.jpg",
+      "imagenes/gemini_dda68ff48a62.jpg",
+      "imagenes/gemini_d06a0e0fcf8e.jpg",
+      "imagenes/gemini_17ce8242c0bc.jpg",
+      "imagenes/gemini_8cfb32310fbd.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "efbc72540a24820e553096f5f5c5aff8ad9d52afe6c43c923aff5803ad89c5db",
+    "source_hashes": [
+      "e6f0144d78bebdf6e75731261a141e1b2fc6997c7e4ab877080a7830bdbdc99e",
+      "f371d31a736c318b6db97f8b4d9454ae44227541bc321cbf7518d0880a8cadb9",
+      "64ccf0aa91438ca995a5b91a498978e71814fc5999cfb22263d8d4de573372f1",
+      "d3e641bd52c2d22b02da4351684b463fc7da7a79c3f36e8f1c16ca6903a93856",
+      "61e41e2331bee88bd6b7fa163a5a24ce3a70b64e44d133f5fbcc58af1ad5089f"
+    ]
+  },
+  {
+    "id": "LIB-298",
+    "title": "THE YOUNG MANHOOD OF STUDS LONIGAN",
+    "author": "JAMES T. FARRELL",
+    "year": 1945,
+    "publisher": "The World Publishing Company, Cleveland and New York[cite: 44]",
+    "price": 7000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Norteamericana",
+    "description": "La segunda y demoledora entrega de la aclamada trilogía de Studs Lonigan de James T. Farrell, que retrata con crudeza y realismo la juventud de un joven irlandés-americano en el Chicago de los años veinte, atrapado entre las expectativas sociales, las calles de la gran ciudad y su propia decadencia moral.",
+    "language": "Inglés",
+    "edition": "Tower Books Edition (Fifth Printing, November 1945)[cite: 45]",
+    "binding": "Tapa dura en tela de color verde con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Cubiertas de tela firme con ligeros roces. Interior limpio, con sello de biblioteca y encuadernación sólida.",
+    "series": "The Studs Lonigan Trilogy (Tower Books Edition)[cite: 44, 45]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos de América[cite: 45]",
+    "identification_notes": [
+      "Published by The World Publishing Company, Cleveland and New York[cite: 44]",
+      "Tower Books Edition, Fifth Printing November 1945[cite: 45]",
+      "Copyright 1934, 1944 by The Vanguard Press, Inc.[cite: 45]"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_52bfa4ef735c.jpg",
+      "imagenes/gemini_77c9b5381504.jpg",
+      "imagenes/gemini_733911d0314b.jpg",
+      "imagenes/gemini_592642efef88.jpg",
+      "imagenes/gemini_ad50f579d989.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "da987e917cbd4996c36e9c9f60273d408f134ab25945b05ce1586bb21c76c114",
+    "source_hashes": [
+      "5aa7a22148fe57f14c80f3d634231f3cea2ede4d828445ff4670d5bf8fc77652",
+      "aaf04b06abe5db04df47ef5423454a3c916dfe56b321585ab4f8011754eafbcf",
+      "60231400cd430385090d5a4e3c463dc80ef668de43aec2cd0413f91521f70454",
+      "3bf9e191945036267c6a8f8ca26177aa25b99758af3cbed080ce0b1afdec754c",
+      "d5a83c9d9d8b4f9d31b3d1ba5eb028279069330074364bd0403e080989fe36b3"
+    ]
+  },
+  {
+    "id": "LIB-299",
+    "title": "LANGUAGE TEACHING ANALYSIS",
+    "author": "WILLIAM FRANCIS MACKEY",
+    "year": 1978,
+    "publisher": "Longman Group Ltd, London",
+    "price": 9000,
+    "sold_out": false,
+    "category": "Lingüística / Educación / Enseñanza de Lenguas",
+    "description": "Una obra de referencia fundamental en lingüística aplicada y pedagogía, escrita por William Francis Mackey[cite: 48], que ofrece un análisis sistemático y exhaustivo de los métodos, materiales y técnicas en la enseñanza de idiomas, descomponiendo los problemas complejos del aprendizaje lingüístico en herramientas metodológicas prácticas para docentes e investigadores.",
+    "language": "Inglés",
+    "edition": "Sixth impression (First published 1965)[cite: 49]",
+    "binding": "Tapa dura en tela oscura con etiqueta rotulada en el frente y el lomo",
+    "pages": 0,
+    "isbn": "0582525721",
+    "condition": "Usado, en buen estado general. Cubiertas firmes con ligeros roces. Interior limpio y sólido, con sello de biblioteca en la portadilla.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Bright Sun Printing Press Co. Ltd.[cite: 49]",
+    "printing_place": "Hong Kong[cite: 49]",
+    "identification_notes": [
+      "First published 1965, Sixth impression 1978[cite: 49]",
+      "ISBN 0 582 52572 1[cite: 49]",
+      "Longman Group Ltd London[cite: 49]",
+      "Autor: William Francis Mackey, B.A., M.A., A.M., D.Litt., Director, International Center for Research on Bilingualism, Laval University[cite: 48]"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_f7c87097ba87.jpg",
+      "imagenes/gemini_59fbd8d4b6a1.jpg",
+      "imagenes/gemini_485f7424c67b.jpg",
+      "imagenes/gemini_9e9718882293.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-05",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "3b926aff005204cb89ee85e2e8efdfd53cdee7bc8ee6d302bfe4603c01464480",
+    "source_hashes": [
+      "46742bfca130d0322e6104cc30093d57988800a9212ce507a207ff4c7c6890d7",
+      "f17a59771771d011652ebdb9d602f7f70091284bf1a72dc0f6802f77f3d00084",
+      "04bfd2aad9668adc507a84d62cb4f096dea69ce3992a246003fc52849eddb1cc",
+      "185bfd8d7b08f0905b5bd13a07513f6875e7720e47056b682af58e1ae332fdc3"
+    ]
   }
 ]
