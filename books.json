@@ -10854,11 +10854,24 @@
       "pages",
       "isbn"
     ],
-    "images": [],
+    "images": [
+      "imagenes/gemini_40b249a4865d.jpg",
+      "imagenes/gemini_69eb88821467.jpg",
+      "imagenes/gemini_7571ef6b0bba.jpg",
+      "imagenes/gemini_261eedaf67c4.jpg",
+      "imagenes/gemini_9f46ec64a63d.jpg"
+    ],
     "ig_shortcode": null,
     "date_added": "2026-11-03",
     "source": "gemini_extension",
-    "gemini_fingerprint": "841372e22c6272a1a847a463dcaf180210d537860ad1a371c2dac763aa1731f2"
+    "gemini_fingerprint": "841372e22c6272a1a847a463dcaf180210d537860ad1a371c2dac763aa1731f2",
+    "source_hashes": [
+      "1b90ad813acb924589414c6f92a050a784ca729e5ace9d54bb518ccb1b7b582f",
+      "62e47e99bce81c5a7b13beac0a1dad6a2a25f209b11bcbab0d2da1f3f7c95168",
+      "e2781b4f03bcddd2d08d5d5d5781ba22b72a4df147354babdec98571910e4ce3",
+      "a19d9295963b7649c825ceecae498b1492a63858feaead67deb019374b5ffc3a",
+      "253ba4f613a25693836a217984f07f6cdf3cb685e0d9e41093b067039b210d6f"
+    ]
   },
   {
     "id": "LIB-285",
@@ -11615,6 +11628,1624 @@
       "f17a59771771d011652ebdb9d602f7f70091284bf1a72dc0f6802f77f3d00084",
       "04bfd2aad9668adc507a84d62cb4f096dea69ce3992a246003fc52849eddb1cc",
       "185bfd8d7b08f0905b5bd13a07513f6875e7720e47056b682af58e1ae332fdc3"
+    ]
+  },
+  {
+    "id": "LIB-300",
+    "title": "REYNOLDS",
+    "author": "ELLIS WATERHOUSE",
+    "year": 1973,
+    "publisher": "Phaidon Press Limited, London / Praeger Publishers, New York",
+    "price": 18000,
+    "sold_out": false,
+    "category": "Arte / Historia del Arte / Pintura Británica",
+    "description": "Una monografía autorizada y exhaustiva escrita por el reconocido historiador del arte Sir Ellis Waterhouse, que examina la vida, la técnica y la brillante trayectoria pictórica de Sir Joshua Reynolds, uno de los retratistas más influyentes del siglo XVIII británico y primer presidente de la Royal Academy.",
+    "language": "Inglés",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color verde con lomo rotulado en tonos dorados",
+    "pages": 0,
+    "isbn": "0714815195",
+    "condition": "Usado, en muy buen estado general. Encuadernación firme en tela verde, interior limpio y sólido.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "W. S. Cowell Ltd",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published 1973 © 1973 by Phaidon Press Limited",
+      "Phaidon Press Limited, 5 Cromwell Place, London SW7",
+      "ISBN 0 7148 1519 5",
+      "Printed in Great Britain by W. S. Cowell Ltd, Ipswich",
+      "Autor: Ellis Waterhouse"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_54f0f28865fa.jpg",
+      "imagenes/gemini_2f852b0885c7.jpg",
+      "imagenes/gemini_d592128dd080.jpg",
+      "imagenes/gemini_94b58c2256c8.jpg",
+      "imagenes/gemini_22b390b1022a.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "2705f5a64a88af2acce73fa76442c1fc8d73fe4d4a2ecd0f2963e6242c32e977",
+    "source_hashes": [
+      "0f2f78170bd5a1cf7b20bc92063904382e9c218e7673a1a73d39ea631403d1db",
+      "b920bf16e9cc8c09aa812fc73aa604c9c1196c1c5965f32a2b9d03e6fd75fa92",
+      "a3611a88530263985d48056863a5a657e605591d1f77d154f916539502b0a955",
+      "7ecce4f55f0f0cbc9c089d8e5b27acbdd6c503e53035761d26b13bc9defe5e0d",
+      "db29442c47d4e6a8e874f5e875767e64bcab1d7422cd0d0675805c0a38ecc475"
+    ]
+  },
+  {
+    "id": "LIB-301",
+    "title": "THE KING'S THEATRE COLLECTION: ITALIAN OPERA IN LONDON 1706-1883",
+    "author": "MORRIS S. LEVY AND JOHN MILTON WARD",
+    "year": 2006,
+    "publisher": "Houghton Library of the Harvard College Library / Distributed by Harvard University Press",
+    "price": 50000,
+    "sold_out": false,
+    "category": "Música / Ópera / Artes Escénicas",
+    "description": "Un catálogo monumental y ricamente ilustrado de la colección de John Milton y Ruth Neils Ward, que documenta minuciosamente con 1,402 entradas la historia de la ópera italiana en Londres entre 1706 y 1883, abarcando partituras, libretos, grabados y documentos históricos de una era dorada del teatro lírico.",
+    "language": "Inglés",
+    "edition": "First Edition (2006)",
+    "binding": "Tapa dura con sobrecubierta ilustrada",
+    "pages": 0,
+    "isbn": "0976547228",
+    "condition": "Usado, en excelente estado general. Sobrecubierta y encuadernación firmes, con interior limpio y muy bien conservado.",
+    "series": "The King's Theatre Collection",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Flagship Press",
+    "printing_place": "Estados Unidos de América",
+    "identification_notes": [
+      "Published by Houghton Library of the Harvard College Library 2006, Cambridge, Massachusetts",
+      "Distributed by Harvard University Press",
+      "A catalogue by Morris S. Levy and John Milton Ward",
+      "From the John Milton and Ruth Neils Ward Collection, 1,402 entries",
+      "With an introduction by Curtis Price"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_526baa36b7d2.jpg",
+      "imagenes/gemini_07247599d209.jpg",
+      "imagenes/gemini_f62184dde0bb.jpg",
+      "imagenes/gemini_f889b60bfd67.jpg",
+      "imagenes/gemini_1fb7c884ff87.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "09859b10bb9a8691acf5a96131f8c6d374abd7206c28ad131d27910c8328e265",
+    "source_hashes": [
+      "0dfd7ef573d110424003227d80b594fa6a98bb058c67c58fbb6c295481e9fee0",
+      "4ea99a99365295e8ec99829d3b36d4ad4832b592b5590efe21847798fdc1d883",
+      "f42370fb411898254b119323ab3b0d2afd37942c8472084e7e81024010d4aa5e",
+      "f9ba0b6ba6f715b647f187e9072184563ad219634761c2496c838732b97a39eb",
+      "1288aba1f40ba4dbb77dbb8305da3c30bf58b055a75286f2d1c2e5d41137856c"
+    ]
+  },
+  {
+    "id": "LIB-302",
+    "title": "THE FALL OF THE SPARROW",
+    "author": "NIGEL BALCHIN",
+    "year": 0,
+    "publisher": "The Companion Book Club, London",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una absorbente y psicológica novela del aclamado autor británico Nigel Balchin que explora la compleja vida, los conflictos internos y la inadaptación social de su protagonista, Jason Pellew, a través de una mirada incisiva sobre la moralidad, la ley y la naturaleza humana.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color marrón/ocre con lomo rotulado en recuadros verdes",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela con manchas de decoloración y desgaste visible por el paso del tiempo. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "The Companion Book Club, London",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts",
+      "Autor: Nigel Balchin"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_d3a96d3742fc.jpg",
+      "imagenes/gemini_da973c6358fe.jpg",
+      "imagenes/gemini_1aec34d9da8f.jpg",
+      "imagenes/gemini_cc481c16de0c.jpg",
+      "imagenes/gemini_d2d0cd1b5021.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "b149b93a035ed538ef7f8db40801a272fa94286fd60a2c1a4a243c95584fcaf0",
+    "source_hashes": [
+      "a6adca8b52cf0569ff9550a969e5546625f8eaab5410b9e62a21acdb71fc7658",
+      "8303877d4d303f1dc4fbe90d2b3c3b853c6d199b97a781ea9a8f946fb12dc7be",
+      "53b88041e2224761474dfb0ba600cf1e17be377a8d291ced29720032323603de",
+      "2c9346aec1104fe87f4143011a1d0e3eb14e4f9c06c09b17d3bc2662dcbc9b01",
+      "237b92e3021275b1ff54147549c2a46fd5a5ed441d32501e3e566ed55a17eb82"
+    ]
+  },
+  {
+    "id": "LIB-303",
+    "title": "THE SEA SHALL NOT HAVE THEM",
+    "author": "JOHN HARRIS",
+    "year": 0,
+    "publisher": "The Companion Book Club, London[cite: 61]",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Bélica e Histórica",
+    "description": "Una intensa y emotiva novela de guerra basada en las peligrosas y vitales operaciones de rescate marítimo de la Real Fuerza Aérea Británica (Air-Sea Rescue), que narra los desesperados esfuerzos por salvar a las tripulaciones derribadas en el mar bajo el fuego enemigo.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros rojizos",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con desgaste por decoloración y manchas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club[cite: 61]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited[cite: 60]",
+    "printing_place": "Gran Bretaña[cite: 60]",
+    "identification_notes": [
+      "The Companion Book Club, London[cite: 61]",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts[cite: 60]",
+      "Autor: John Harris[cite: 61]"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_46e35451a241.jpg",
+      "imagenes/gemini_3f6ca1b26fcc.jpg",
+      "imagenes/gemini_240040f1b013.jpg",
+      "imagenes/gemini_8f6a7b189788.jpg",
+      "imagenes/gemini_46de2b9aadc0.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "6ca707decccee235ee1c0ea71448a424afec67165c8cecc1062e064dea1bb4f1",
+    "source_hashes": [
+      "e9ab037ea92b57abfc0df13fe1fb03af5955739fc03e307659117c9dd88b0047",
+      "4e79f5ea7a351c38d11ec923addd17649e3de770e689d897380eac28f98784b3",
+      "7824e94181f18613159d5c6194514e050b40c757dc4f2b1bbcbe2136f63011d9",
+      "9f34af6183067d0f98c69ff477c92b2f47691e2d7335470c80a3b2c178e57952",
+      "8f9566db7691b838cc7cc04018cdb2ec9e29ef9754514c550a2fd65bc1098fcc"
+    ]
+  },
+  {
+    "id": "LIB-304",
+    "title": "THE SIXTH OF JUNE",
+    "author": "LIONEL SHAPIRO",
+    "year": 0,
+    "publisher": "The Companion Book Club, London[cite: 66]",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Bélica e Histórica",
+    "description": "Una apasionante y conmovedora novela ambientada en los preparativos de la Segunda Guerra Mundial y el histórico desembarco del Día D (6 de junio de 1944), que entrelaza con maestría el drama bélico, las tensiones militares y un profundo conflicto romántico entre oficiales y civiles en la Inglaterra de la época.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color ocre/marrón claro con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela con desgaste visible, rozaduras y pequeñas marcas. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club[cite: 66]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited[cite: 65]",
+    "printing_place": "Gran Bretaña[cite: 65]",
+    "identification_notes": [
+      "The Companion Book Club, London[cite: 66]",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts[cite: 65]",
+      "Autor: Lionel Shapiro[cite: 66]"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_747973d04c7f.jpg",
+      "imagenes/gemini_c68e32cf35f2.jpg",
+      "imagenes/gemini_9ad52e7424b9.jpg",
+      "imagenes/gemini_b2522e0762d6.jpg",
+      "imagenes/gemini_4018945c6b0d.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "d1936ebb98c333f827e39b87ba5c9ffbdc2a0b2ecf31d79bf6d771c261f37ea8",
+    "source_hashes": [
+      "0610eecb90ff457f3f1d992796005c245ac3e5aaea4d111df29a44f176b7fece",
+      "c007a01a3549aac0c99df1e02d8c90f4b3d367ac1dadf65884fe1824713d585b",
+      "89e367e4282002dd86fe7aa7837acae0d1924b206d84f854b57682f1680bb739",
+      "43254642b646e644e313d7a356caa6c3273ce9a9978a35d58b88640193f8ed01",
+      "94bf84b1c68196da6a371aade412176513920297802d322d2f6b0e4bc7bf2064"
+    ]
+  },
+  {
+    "id": "LIB-305",
+    "title": "THE MARY DEARE",
+    "author": "HAMMOND INNES",
+    "year": 0,
+    "publisher": "The Companion Book Club, London[cite: 71]",
+    "price": 4000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Suspenso y Aventuras Marítimas",
+    "description": "Una emocionante y tensa novela de misterio y supervivencia en el mar, escrita por el maestro de la aventura Hammond Innes, que sigue al solitario navegante John Sands al abordar un misterioso carguero abandonado a la deriva en medio de una tormenta, destapando una compleja red de intriga y fraude marítimo.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con marcas de decoloración y desgaste visible por el paso del tiempo. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club[cite: 71]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited[cite: 70]",
+    "printing_place": "Gran Bretaña[cite: 70]",
+    "identification_notes": [
+      "The Companion Book Club, London[cite: 71]",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts[cite: 70]",
+      "Autor: Hammond Innes[cite: 71]"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_f4cf14bd89fd.jpg",
+      "imagenes/gemini_5c2278864557.jpg",
+      "imagenes/gemini_5518200d40a9.jpg",
+      "imagenes/gemini_be19463481d4.jpg",
+      "imagenes/gemini_e70a0ce88638.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "0a57de2dccc07bd8af82b948b0dc1c5f11f95561d6da906d916cc043a1e904e8",
+    "source_hashes": [
+      "1e741a174fb8047a0e4a4551c073dd28afaef9ab8058449f6dfad4e53e762641",
+      "42b12e535b3d3424734db016b90fbe882148a6e7e48b5c9a35b1e53d751eaa87",
+      "ed8c3974f40fa0e979227c72ccf8b3d57a999ab5122f40d402ceb68077039b3d",
+      "33b1f939e7523497631d35c3b3c167be968ed3917dcf54ef70e5f4cba62c08e5",
+      "3a1829b971ea09f16f1b7158b85d42ee211bc9be11f3754a4aee7ce8d2af782b"
+    ]
+  },
+  {
+    "id": "LIB-306",
+    "title": "FLY FOR YOUR LIFE",
+    "author": "LARRY FORRESTER",
+    "year": 0,
+    "publisher": "The Companion Book Club, London[cite: 76]",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Biografías / Historia / Aviación y Segunda Guerra Mundial",
+    "description": "Una emocionante y aclamada biografía de Robert Stanford Tuck, uno de los ases de la aviación británica más célebres de la Real Fuerza Aérea (RAF) durante la Segunda Guerra Mundial, que relata sus audaces combates aéreos a los mandos del Spitfire, sus misiones de alto riesgo y su supervivencia en tiempos de conflicto.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros rojizos",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con desgaste visible por decoloración y marcas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club[cite: 76]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited[cite: 75]",
+    "printing_place": "Gran Bretaña[cite: 75]",
+    "identification_notes": [
+      "The Companion Book Club, London[cite: 76]",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts[cite: 75]",
+      "Autor: Larry Forrester[cite: 76]",
+      "Protagonista: R. R. Stanford Tuck, D.S.O., D.F.C. and two bars[cite: 76]"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_dbefe5e7d4c5.jpg",
+      "imagenes/gemini_d80305c931ad.jpg",
+      "imagenes/gemini_072da924fa6e.jpg",
+      "imagenes/gemini_e8e10e938f07.jpg",
+      "imagenes/gemini_557f292041ca.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "bf424749a5e06355afdaa8014cf138e990c318396bcddb4505af71afa9575216",
+    "source_hashes": [
+      "610b177498969a45a506e8f6c123bf1975d8afc711a30265d42c2ea679706e76",
+      "c012f8e85d74971735022ab69238b9c16daf25676170315190cdfbfe5476aad9",
+      "5307e3249842ec0645004ade307c19e9516edee78d2e8f7593efbd2fd4e2d98f",
+      "28ffd7d666662a79fee51a1bcacdd31404dab73e07ae3fe829d40bb50520ced4",
+      "913da232b3c5861ef936ddd0b233640e444044d4b57bd100e1a6e7ed3f67afd3"
+    ]
+  },
+  {
+    "id": "LIB-307",
+    "title": "FIRST OVERLAND: THE STORY OF THE OXFORD AND CAMBRIDGE FAR EASTERN EXPEDITION",
+    "author": "TIM SLESSOR",
+    "year": 1957,
+    "publisher": "The Companion Book Club, London[cite: 83]",
+    "price": 8000,
+    "sold_out": false,
+    "category": "Literatura de Viajes / Exploración / Automovilismo",
+    "description": "Una fascinante y legendaria crónica de viajes escrita por Tim Slessor que narra la épica expedición automovilística realizada en 1955 por seis estudiantes de las universidades de Oxford y Cambridge, quienes condujeron dos vehículos Land Rover desde Londres hasta Singapur cubriendo más de 32,000 millas a través de veintiún países.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con marcas de decoloración y desgaste visible por el almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club[cite: 83]",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited[cite: 84]",
+    "printing_place": "Gran Bretaña[cite: 84]",
+    "identification_notes": [
+      "The Companion Book Club, London[cite: 83]",
+      "Copyright © 1957 by Tim Slessor[cite: 84]",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts[cite: 84]",
+      "Autor: Tim Slessor[cite: 83]"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_11bd14e6984e.jpg",
+      "imagenes/gemini_2e61ce5122ec.jpg",
+      "imagenes/gemini_2db364606fcf.jpg",
+      "imagenes/gemini_5b45b70f6650.jpg",
+      "imagenes/gemini_6d9d86629610.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "78e11e97036e9db2c67e266b4de9893a6bca382e834743c8927ac04f0a583552",
+    "source_hashes": [
+      "45c2e0aec750bb56161da8ae97fd00d8bddb2dce4f431ad075800f6e8bf81463",
+      "a95e656bebeeb35a9f2814ac09777d6f2ef43ea06942dbc62c2434aa2337a967",
+      "19eedead4dd3215f090dabd138f9e91db55bff730f83266970700b98ed16a82e",
+      "0aab1234cc6b7e47d4a75acf8f916967b8c015345d17876dffcaf691feb7c4b2",
+      "ad5ce7a2bd3e265226ca59ad6de775baa1261f356ddb35c962689024909f4ccb"
+    ]
+  },
+  {
+    "id": "LIB-308",
+    "title": "THE DAM BUSTERS",
+    "author": "PAUL BRICKHILL",
+    "year": 1952,
+    "publisher": "The Companion Book Club, London",
+    "price": 8000,
+    "sold_out": false,
+    "category": "Historia / Aviación / Segunda Guerra Mundial",
+    "description": "Una emocionante y clásica crónica histórica de Paul Brickhill que relata la extraordinaria hazaña de la Fuerza Aérea Real (RAF) durante la Segunda Guerra Mundial, específicamente la audaz operación de bombardeo contra las presas del Ruhr utilizando la innovadora mina rebotadora diseñada por Barnes Wallis.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition (issued in 1952)",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros rojizos",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con desgaste visible por decoloración y marcas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Villefield Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "This edition, issued in 1952, is for members of The Companion Book Club, 8 Long Acre, London, W.C.2",
+      "Published by arrangement with the original publishers, Evans Bros., Ltd.",
+      "Made and Printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by the Villefield Press, Bishopbriggs, Glasgow",
+      "With a foreword by Marshal of the Royal Air Force The Lord Tedder, G.C.B.",
+      "Autor: Paul Brickhill"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_d63b23ed4a80.jpg",
+      "imagenes/gemini_7bfc5241535f.jpg",
+      "imagenes/gemini_b432a20e566d.jpg",
+      "imagenes/gemini_a7f3e5fc6ceb.jpg",
+      "imagenes/gemini_6a4d9d5adff7.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "8ffaf1fc883a91180e28ff1f17ccb886703ad305114615c493974a8c07167cfa",
+    "source_hashes": [
+      "be16537880e15b10d92d0a3e6d26a1f0898174a0513bd30ff595a30a01071efc",
+      "c4dc9234e603ca509f2684e08dc7e2400d75adff81a78c4e21023fc666571a73",
+      "2de22c12a9351dc1af5fadadde2bafed80f79a724dedd3160cdc162b00eec5e8",
+      "0b5a381e396b05eb1d9fc5f9030d532cd2a2512ce34f527b8ceac9554132b202",
+      "28168bd2d672200ff901946760f5239beb9be04180ef1dcf1a73077f860a84ca"
+    ]
+  },
+  {
+    "id": "LIB-309",
+    "title": "GREEN AND PLEASANT LAND",
+    "author": "DUDLEY BARKER",
+    "year": 0,
+    "publisher": "The Companion Book Club, London",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una sugestiva y reflexiva novela de Dudley Barker que examina las profundas transformaciones sociales, culturales y políticas en la Inglaterra rural de mediados del siglo XX, cuestionando las tensiones entre la tradición campestre y la modernidad industrial.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color verde con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela verde con desgaste por decoloración y manchas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "The Companion Book Club, London",
+      "Made and Printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts",
+      "Autor: Dudley Barker"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_c2c80c058211.jpg",
+      "imagenes/gemini_4a16ebe9ed28.jpg",
+      "imagenes/gemini_eed31b59d281.jpg",
+      "imagenes/gemini_f7f7a4ca453e.jpg",
+      "imagenes/gemini_ba630d2937fb.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "7b33434fc512f4b5f6c919fd7bfb6c3b698cd4fd4669dbea440dbe42cabc1a3e",
+    "source_hashes": [
+      "f039a46aa8eb461e9ef8b05e070f7154561770a1eea928e92105e12939822c92",
+      "1b6d97e0c76184e86f59084bed3a0956cdd08ed7d24a728e86e45d38c649c0b1",
+      "3121c31af70e1740340b8086fe6c8b8c00d3617f4de5cf85a41a572c8a504c3a",
+      "21cfedfa30b00a014747c4174d2ca91c3e248748188e4ded001ad12a20b3ab53",
+      "4b77ee1886b366aa1b16570613e704786c41a7d7d10ca96b80a781ff50dd3595"
+    ]
+  },
+  {
+    "id": "LIB-310",
+    "title": "SEPTEMBER MOON",
+    "author": "JOHN MOORE",
+    "year": 0,
+    "publisher": "The Companion Book Club, London",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una cautivadora novela campestre de John Moore ambientada en los idílicos paisajes de Worcestershire, que retrata con calidez, humor y realismo la vida rural inglesa, las tradiciones agrícolas y las vivencias de sus personajes durante la época de la cosecha del lúpulo.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color claro con lomo rotulado en recuadros verdes",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela clara con manchas de decoloración y desgaste visible por el paso del tiempo. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "The Companion Book Club, London",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts",
+      "Autor: John Moore"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_d8b32140ecf4.jpg",
+      "imagenes/gemini_13b0785d2137.jpg",
+      "imagenes/gemini_fc3880443e4b.jpg",
+      "imagenes/gemini_043c4db14094.jpg",
+      "imagenes/gemini_f41829586153.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "c0ceb77df13a9562902a0df02dc240d5563d9fd66a9c2e0fbad10400ec26b4ae",
+    "source_hashes": [
+      "61881c57197ed084933da85225620cf014b331b53afe9586f05c97fa32a85f49",
+      "01f605ef190228e6e1ab8175996cdac2fe1bcf44d337322d9ecf8388a18388b3",
+      "b8f5a8d9f537ee2bd1a32b96684c396571bc2114e4ef48eb1eba241a2ef48306",
+      "4e382a1629e761b3ad13df4939cea97efcba3641dfdd77cd3073e81918df3bc5",
+      "ce88400dc3432ba00f5cabf9f1eeb5554027b158aaef1a96b7b665128b4d4802"
+    ]
+  },
+  {
+    "id": "LIB-311",
+    "title": "THE EPIC VOYAGE OF THE SEVEN LITTLE SISTERS",
+    "author": "WILLIAM WILLIS",
+    "year": 0,
+    "publisher": "The Companion Book Club, London",
+    "price": 4000,
+    "sold_out": false,
+    "category": "Literatura de Viajes / Aventura / Exploración Marítima",
+    "description": "Una impresionante y arriesgada crónica de supervivencia y navegación en solitario escrita por William Willis, quien a los 61 años cruzó con éxito el Océano Pacífico a lo largo de 6,700 millas a bordo de una pequeña balsa de madera bautizada como 'Seven Little Sisters'.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con desgaste visible por decoloración y marcas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "The Companion Book Club, London",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts",
+      "Autor: William Willis",
+      "Subtítulo: A 6,700-mile voyage alone across the Pacific"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_cf2ed7786cbe.jpg",
+      "imagenes/gemini_e2ffc7cbefb4.jpg",
+      "imagenes/gemini_76498f4818f8.jpg",
+      "imagenes/gemini_479c025b7ec0.jpg",
+      "imagenes/gemini_5ac5e5b597ad.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "65054a805720dd12e770c87c6bcfeb773633192289ca2c0b0d4b93d6c7377ca8",
+    "source_hashes": [
+      "456f82e7aba11e90f5b4bf3f4eb981114f9afc4cf6580b350bb023025130ea48",
+      "9a29c7fe9f0216a113552ad29b0793807287150ecf17e1ec362b0b77aed10d28",
+      "05cb79e56dd707b08c99d9ded055dbeb474f344f06c9518478f2f32e6677f57c",
+      "691948da5a075c5f463531f31e4a2e3d980a4626f83a5114fdaabd7cf4b823f0",
+      "1b8963b61382cc8fa0eb2bcfda038ec45efbdcbb29b74bbd78421e2466c7759e"
+    ]
+  },
+  {
+    "id": "LIB-312",
+    "title": "BOLDNESS BE MY FRIEND",
+    "author": "RICHARD PAPE",
+    "year": 1954,
+    "publisher": "The Companion Book Club, London",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Biografías / Historia / Segunda Guerra Mundial y Supervivencia",
+    "description": "Una impactante y heroica autobiografía de Richard Pape, un navegante de la RAF que fue derribado sobre Alemania durante la Segunda Guerra Mundial, capturado por la Gestapo y sometido a brutales interrogatorios, seguido de una serie de audaces y arriesgados intentos de fuga a través de Polonia, Hungría y Suecia en su desesperado camino hacia la libertad.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition (issued in 1954)",
+    "binding": "Tapa dura en tela de color ocre con lomo rotulado en recuadros oscuros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela ocre con desgaste superficial y marcas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "This edition, issued in 1954, is for members of The Companion Book Club, 8 Long Acre, London, W.C.2",
+      "Published by arrangement with the original publishers, Elek Books Ltd.",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited, Watford, Herts",
+      "Foreword by Marshal of the Royal Air Force Lord Tedder, G.C.B.",
+      "Introduction by Sir Archibald McIndoe, C.B.E."
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_ab7e278bec9e.jpg",
+      "imagenes/gemini_b56dd99b75ce.jpg",
+      "imagenes/gemini_2a997407425c.jpg",
+      "imagenes/gemini_10a771f4ab42.jpg",
+      "imagenes/gemini_df4d05bb9415.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "95b9a3b46dad8d8a05b67fbf6a5597a7b8b98a06298016d503020ac90d227d5c",
+    "source_hashes": [
+      "a6557344cedf9ffa0c462deedcd4b25e004a38be861510a49c3b28f89fc5e97f",
+      "159bcf9356753a52a46de6d8b4325dc00cff95998e62c142e128d09596f2dbcb",
+      "a581a0f3eae11833a1208019cbd35c0f1b65376823d3080510933d7fb7e4c83e",
+      "bd428fadf0509bbc0315ace6e3c227841e661e552d411ff9f1058ca77bf1f821",
+      "b5c32f175b25ac633cd56d4f9ad0428e21fffba8945f8b823bb41171ee775542"
+    ]
+  },
+  {
+    "id": "LIB-313",
+    "title": "THE ONE THAT GOT AWAY",
+    "author": "KENDAL BURT AND JAMES LEASOR",
+    "year": 0,
+    "publisher": "The Companion Book Club, London",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Biografías / Historia / Segunda Guerra Mundial y Fuga",
+    "description": "Una fascinante y célebre crónica biográfica de Kendal Burt y James Leasor que narra la extraordinaria historia real de Franz von Werra, un piloto de caza alemán derribado en Inglaterra durante la Segunda Guerra Mundial, quien se convirtió en el único prisionero de guerra del Eje en lograr escapar con éxito de Gran Bretaña y regresar a Alemania.",
+    "language": "Inglés",
+    "edition": "Companion Book Club Edition",
+    "binding": "Tapa dura en tela de color amarillo/ocre con lomo rotulado en recuadros rojizos",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela con desgaste superficial y manchas de almacenamiento. Interior limpio y sólido, con sello de biblioteca en la portadilla y dedicatoria manuscrita.",
+    "series": "The Companion Book Club",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Odhams (Watford) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "The Companion Book Club, London",
+      "Made and printed in Great Britain for The Companion Book Club (Odhams Press Ltd.) by Odhams (Watford) Limited",
+      "Autores: Kendal Burt y James Leasor"
+    ],
+    "uncertain_fields": [
+      "year",
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_39f59623ab92.jpg",
+      "imagenes/gemini_79c2122755a9.jpg",
+      "imagenes/gemini_1d5e47920b7e.jpg",
+      "imagenes/gemini_1eee9a5cb984.jpg",
+      "imagenes/gemini_78e9c37abcf3.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "ce426289bf6aca9d5300c0fd9e89ca83c4012ea9050dcb8ce3c1c20ee5c917ba",
+    "source_hashes": [
+      "a8250023551e920c4241a5eae5be3eac4dda1293d5309b6937f66509217de2b9",
+      "4b9b0a934a0eb30e51dc6d8864f4cc43afff30f563d65899b6214d763b01c5d7",
+      "5053678305950317405c3f4e742581b05f204cf9a4f9b4a373934dcff8af9485",
+      "e85f7b61dab043b439406c3c5c19d03a18291d79f179426228a29159f6e7fde4",
+      "b8ab7873889b91bf91ccd912689c5148e3bdd39cfefc037b45ae686f9b1acaf0"
+    ]
+  },
+  {
+    "id": "LIB-314",
+    "title": "WILLIAM BLAKE RICHMOND: THE LAST OF THE OLYMPIANS - AN ARTIST'S LIFE 1842-1921",
+    "author": "SIMON REYNOLDS",
+    "year": 1995,
+    "publisher": "Michael Russell (Publishing) Ltd., Wilby[cite: 77]",
+    "price": 25000,
+    "sold_out": false,
+    "category": "Biografías / Arte / Pintura y Escultura",
+    "description": "Una biografía definitiva y ricamente ilustrada de Sir William Blake Richmond (1842-1921), destacado pintor, escultor y figura clave del arte victoriano tardío, que detalla su trayectoria creativa, sus impresiones de viajes por el Mediterráneo y su profundo legado en la pintura y escultura británicas.",
+    "language": "Inglés",
+    "edition": "First Edition (1995)[cite: 77]",
+    "binding": "Tapa dura en tela de color rojizo/terracota con lomo rotulado en tonos dorados",
+    "pages": 0,
+    "isbn": "0859552144",
+    "condition": "Usado, en excelente estado general. Encuadernación firme y sólida, interior limpio.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Biddles Ltd[cite: 77]",
+    "printing_place": "Gran Bretaña[cite: 77]",
+    "identification_notes": [
+      "First published in Great Britain 1995 by Michael Russell (Publishing) Ltd.[cite: 77]",
+      "ISBN 0 85955 214 4[cite: 77]",
+      "Printed and bound in Great Britain by Biddles Ltd, Guildford and King's Lynn[cite: 77]"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_fcd91a8e032d.jpg",
+      "imagenes/gemini_e9a1f3da3340.jpg",
+      "imagenes/gemini_c8145c7e4ae3.jpg",
+      "imagenes/gemini_a57cce7f0189.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "74b6b761d96ec319c19610fe882583388d7c8f0606ea9ff94b8722dd511c165f",
+    "source_hashes": [
+      "7678f9276507221e136e59513d028c5f12a67228d054ca44b4b056f0f6acfee9",
+      "be7fb5b11a8bee0e9c7b506240e1b5b663c1cad476ad9fd4e0d515901e003f5a",
+      "43a8283bdb25138f939a888b283ef367800946bf2e47a2511280450773dc3995",
+      "c53a6fbcd4e3adde94f78504a351e0cb33c4ca5aab7c467216668ae6b05af6e6"
+    ]
+  },
+  {
+    "id": "LIB-315",
+    "title": "DISCOURSE ANALYSIS",
+    "author": "GILLIAN BROWN AND GEORGE YULE",
+    "year": 1983,
+    "publisher": "Cambridge University Press",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Lingüística / Análisis del Discurso / Educación",
+    "description": "Un manual clásico y fundamental de lingüística y análisis del discurso escrito por Gillian Brown y George Yule, que explora cómo se utiliza la lengua en contextos comunicativos reales, abarcando desde la estructura del discurso hablado y escrito hasta la pragmática y la interpretación del significado.",
+    "language": "Inglés",
+    "edition": "First Published 1983 (Reprinted 1984)",
+    "binding": "Tapa blanda de color rojo (Paperback)",
+    "pages": 302,
+    "isbn": "0521284759",
+    "condition": "Usado, en muy buen estado general. Cubiertas limpias y encuadernación firme, interior en excelente estado.",
+    "series": "Cambridge Textbooks in Linguistics",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Pitman Press, Bath",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "Cambridge Textbooks in Linguistics",
+      "Cambridge University Press, 1983",
+      "Autores: Gillian Brown y George Yule",
+      "ISBN 0 521 28475 9 paperback"
+    ],
+    "uncertain_fields": [],
+    "images": [
+      "imagenes/gemini_d25165163a50.jpg",
+      "imagenes/gemini_39bef51457a0.jpg",
+      "imagenes/gemini_b903cc58e036.jpg",
+      "imagenes/gemini_a1e45c1de3f1.jpg",
+      "imagenes/gemini_61e4198747b6.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "f86a790e406efcada11ff8f67104933f530618a870014b1ad93c555654028f3f",
+    "source_hashes": [
+      "f9464b6449e3fc51ff60f8bd906f84abbda574e46b003480faeacd82bbf1c6c6",
+      "aefffdbc0e6058fc1faf6e5fe24268a718e041c5615655d142b3150d485b1951",
+      "a068d496942cc9a85db0ce971ccde399a8130aec151a8f4235fc87e7e2f668be",
+      "8e213f5f28f523b8c7fa0a57d26b404dfded93334602269d639762ce3fd72b1a",
+      "bd9c191565d6ecbf22c468a0cc3097f6e4672f10ca087de1067d3963c95b16d0"
+    ]
+  },
+  {
+    "id": "LIB-316",
+    "title": "ART IN ROME IN THE EIGHTEENTH CENTURY",
+    "author": "EDGAR PETERS BOWRON AND JOSEPH J. RISHEL (EDITORS)",
+    "year": 2000,
+    "publisher": "Merrell Publishers Limited, London / Philadelphia Museum of Art",
+    "price": 30000,
+    "sold_out": false,
+    "category": "Arte / Historia del Arte / Pintura y Escultura",
+    "description": "Un magnífico y exhaustivo catálogo de exposición editado por Edgar Peters Bowron y Joseph J. Rishel, que explora la espléndida producción artística, la pintura, la escultura y la arquitectura en la Roma del siglo XVIII, reuniendo obras maestras de artistas italianos e internacionales de la época.",
+    "language": "Inglés",
+    "edition": "First Hardback Edition",
+    "binding": "Tapa dura en tela de color verde con lomo rotulado en tonos claros",
+    "pages": 0,
+    "isbn": "1858940982",
+    "condition": "Usado, en muy buen estado general. Encuadernación firme en tela verde, interior limpio con firma de anterior propietario en la portadilla.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Italia",
+    "identification_notes": [
+      "Edited by Edgar Peters Bowron and Joseph J. Rishel",
+      "Philadelphia Museum of Art / Merrell Publishers Limited, 2000",
+      "ISBN 1-85894-098-2 (cloth)",
+      "Printed and bound in Italy"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_bcb51fa72b14.jpg",
+      "imagenes/gemini_ca7c50d8cc22.jpg",
+      "imagenes/gemini_fefe6e0f75dc.jpg",
+      "imagenes/gemini_a093b5f1c954.jpg",
+      "imagenes/gemini_4cb383e743a0.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "d4bcd83fda85a5a612fbb57bb00381fcb6328add40082d15ecfc3668f8ae81fb",
+    "source_hashes": [
+      "6ffb1e215b70d8315766367fb44fbb60226043141bfad0ccfb6fdfe00ae30764",
+      "cdd70033086dba4187f9f9af74ca251e4eb9d0dfd5ec28164e012000e20ec3af",
+      "9b15d8959ff8a2b57bd40d3e6b8b7fa793c9f3918729b5521aff1ca762fb77dd",
+      "43a7492c257a9736e4acd5118341180b8ef577e7bd9d8e27b9829a9771687edd",
+      "effb58fde22a84e174127fd6c70a0f362c0d9ec85a0a72b99cfec84204cac9bb"
+    ]
+  },
+  {
+    "id": "LIB-317",
+    "title": "CELLINI",
+    "author": "JOHN POPE-HENNESSY",
+    "year": 1985,
+    "publisher": "Abbeville Press, New York[cite: 81]",
+    "price": 15000,
+    "sold_out": false,
+    "category": "Arte / Escultura / Renacimiento y Manierismo",
+    "description": "Una magnífica y detallada monografía escrita por el célebre historiador del arte Sir John Pope-Hennessy, que explora la extraordinaria vida y obra de Benvenuto Cellini, maestro indiscutible de la orfebrería, la escultura y el manierismo renacentista italiano, analizando sus obras maestras como el Perseo y el salero de Francisco I.",
+    "language": "Inglés[cite: 81]",
+    "edition": "Second Edition[cite: 81]",
+    "binding": "Tapa dura en tela azul oscura con sobrecubierta ilustrada[cite: 82, 84, 85]",
+    "pages": 324,
+    "isbn": "089659453X[cite: 81]",
+    "condition": "Usado, en muy buen estado general. Encuadernación firme en tela, interior limpio y sólido con sobrecubierta bien conservada.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Grafiche Milani[cite: 81]",
+    "printing_place": "Italia[cite: 81]",
+    "identification_notes": [
+      "First published in the United States of America in 1985 by Abbeville Press, Inc.[cite: 81]",
+      "Printed and bound in Italy by Grafiche Milani[cite: 81]",
+      "Autor: John Pope-Hennessy[cite: 81]"
+    ],
+    "uncertain_fields": [],
+    "images": [
+      "imagenes/gemini_b8e4b1bdf3fe.jpg",
+      "imagenes/gemini_33f22457b7fb.jpg",
+      "imagenes/gemini_acc0e72242cd.jpg",
+      "imagenes/gemini_4192881c4a2d.jpg",
+      "imagenes/gemini_3f068ce42853.jpg",
+      "imagenes/gemini_57dbcf19d06b.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "e50580d8f2372e55d03b38ff2d1c0e8a10fbe734e60eb4f82cae316e85b3aba1",
+    "source_hashes": [
+      "36050a4ab852b420b87002eb74a174c78056f02f2f506033c9554674dbcbc6e3",
+      "e3976a7ba3712a90ee43b956d00f69fc4fbf727f2a35a6b61c8888cce4ab35f7",
+      "05a707c1c6082fcc0002c33f31108bfddd5b14982264cec8c02d8c998dd60199",
+      "1a325239e3153122720b22a3ff8d9816bdbec67bad9c93766ac5b6b0766313e4",
+      "de0ca7692cd31f97be4cbd3fa081f13238b378a504f16f6abafd06f5fdfb68a8",
+      "f08cde59e7988eddbd05534bf69cf6836796db1e2577877cebd58533ca404e5e"
+    ]
+  },
+  {
+    "id": "LIB-318",
+    "title": "ITALIAN PAINTING",
+    "author": "KEITH CHRISTIANSEN",
+    "year": 1992,
+    "publisher": "Hugh Lauter Levin Associates, Inc.[cite: 72]",
+    "price": 12000,
+    "sold_out": false,
+    "category": "Arte / Historia del Arte / Pintura Italiana",
+    "description": "Un magnífico y exhaustivo volumen sobre la pintura italiana escrito por Keith Christiansen, que examina la evolución estilística, histórica y estética del arte pictórico en Italia desde la Edad Media hasta el Renacimiento y épocas posteriores, profusamente ilustrado con reproducciones a todo color.",
+    "language": "Inglés",
+    "edition": "Hugh Lauter Levin Associates Edition",
+    "binding": "Tapa dura en tela de color verde oscuro con título estampado en el lomo y cubierta",
+    "pages": 0,
+    "isbn": "0883639718",
+    "condition": "Usado, en muy buen estado general. Encuadernación firme en tela verde, interior limpio y sólido.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "China[cite: 72]",
+    "identification_notes": [
+      "Copyright © 1992, Hugh Lauter Levin Associates, Inc.[cite: 72]",
+      "ISBN 0-88363-971-8[cite: 72]",
+      "Printed in China[cite: 72]",
+      "Autor: Keith Christiansen[cite: 73]"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_b0dc24251ef5.jpg",
+      "imagenes/gemini_157fe0a3d1c5.jpg",
+      "imagenes/gemini_b26d154e2110.jpg",
+      "imagenes/gemini_39287531a923.jpg",
+      "imagenes/gemini_7d4551e3c1d3.jpg",
+      "imagenes/gemini_74ecf9d09633.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "0777893d45747ecb8de476398fada8094245438e44a1fe54553823f4c3faa4a3",
+    "source_hashes": [
+      "bf94c29efed836e47bd47dd7d1f144f6ec5c6ce571dfd28d686780bd77ca055a",
+      "888af74537cb54d8784f0338c16d03139cb0ee7ec1ea22e2e68d93b5a3baa657",
+      "8a8ace9164c6a4ffa95813bfe4abe21c59924cac94866f609770a6134e69e9a5",
+      "7e43b9220a6b842a22e7273b6ea9386cabe12e403ad1cde4a54da48b62b6d96a",
+      "136cdf61aa0d4e38b3dbdd1d8917f0d5816addd74b1dc88d4f4ea9f0b5417f4f",
+      "d725d5da6c114aec695e81f59c8e393568d9d151c2c9fbaed7228041000e32f9"
+    ]
+  },
+  {
+    "id": "LIB-319",
+    "title": "VILLAS OF THE VENETO",
+    "author": "PETER LAURITZEN / REINHARD WOLF",
+    "year": 1988,
+    "publisher": "Harry N. Abrams, Inc., New York[cite: 78] / Arnoldo Mondadori Editore, Milan[cite: 77]",
+    "price": 22000,
+    "sold_out": false,
+    "category": "Arquitectura / Arte / Historia / Arquitectura Italiana",
+    "description": "Un magnífico y monumental volumen fotográfico dedicado a las extraordinarias villas del Véneto, que documenta la arquitectura palladiana y renacentista de la región nororiental de Italia a través de impresionantes imágenes a todo color y rigurosos textos históricos.",
+    "language": "Inglés",
+    "edition": "First Abrams Edition",
+    "binding": "Tapa dura en tela de color gris claro con sobrecubierta ilustrada",
+    "pages": 0,
+    "isbn": "0810917440",
+    "condition": "Usado, en buen estado general. Encuadernación firme, interior limpio y sólido, con firma manuscrita en la portadilla.",
+    "series": "",
+    "translator": "",
+    "illustrator": "Reinhard Wolf (Photographer)[cite: 78]",
+    "format": "",
+    "printer": "Arnoldo Mondadori Editore, Verona, Italy[cite: 77]",
+    "printing_place": "Italia[cite: 77]",
+    "identification_notes": [
+      "Photographs by Reinhard Wolf, text by Peter Lauritzen, introduction by Sir Harold Acton[cite: 78]",
+      "Published in 1988 by Harry N. Abrams, Incorporated, New York[cite: 78]",
+      "Copyright © 1987 Arnoldo Mondadori Editore S.p.A., Milan[cite: 77]",
+      "ISBN 0-8109-1744-0[cite: 77]"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_9c4481c7fe67.jpg",
+      "imagenes/gemini_342e278fac44.jpg",
+      "imagenes/gemini_f777ecf04ac0.jpg",
+      "imagenes/gemini_788b6c774645.jpg",
+      "imagenes/gemini_31da8888e8c1.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "ca3c8594119da6e46ce8ff8c74ca80614506cd5afbb09ca7222d79162c33fbe0",
+    "source_hashes": [
+      "5b2f380e17c97c04ec0da84b8d65de1ef666bc11b1896325739891040582e552",
+      "fccb23e633191a2016eb1e082f5476319f0f5365d16862015f25c3660a670b3a",
+      "b54aa89617d66357b839d89a5585a9ab615543b666aadbe5b80aae08ef4bc80c",
+      "6187d4a9b495edaa20e2a568a54c82e5f24aa99b455579b8c8c8c12551e48b98",
+      "ae1c5b043a9b84b2a4da329b4ba7c046e768ebea43849bec515ed7f676c2aa9e"
+    ]
+  },
+  {
+    "id": "LIB-320",
+    "title": "DONATELLO",
+    "author": "BONNIE A. BENNETT AND DAVID G. WILKINS",
+    "year": 1984,
+    "publisher": "Moyer Bell Limited, Mt. Kisco, NY / Phaidon Press",
+    "price": 18000,
+    "sold_out": false,
+    "category": "Arte / Escultura / Renacimiento Italiano",
+    "description": "Una completa y rigurosa monografía académica sobre Donatello, escrita por Bonnie A. Bennett y David G. Wilkins, que analiza en profundidad la vida, la técnica, el contexto social y las revolucionarias esculturas y relieves del maestro del Renacimiento italiano.",
+    "language": "Inglés",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color oscuro con lomo rotulado en tonos dorados",
+    "pages": 244,
+    "isbn": "",
+    "condition": "Usado, en muy buen estado general. Encuadernación firme en tela oscura, interior limpio y sólido.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Jolly and Barber Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "First published 1984",
+      "© Phaidon Press Limited 1984",
+      "Published by Moyer Bell Limited, Colonial Hill/RFD 1, Mt. Kisco, NY 10549",
+      "Printed in England by Jolly and Barber Limited, Rugby, Warks",
+      "Autores: Bonnie A. Bennett y David G. Wilkins"
+    ],
+    "uncertain_fields": [
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_807047176244.jpg",
+      "imagenes/gemini_ec060493aa07.jpg",
+      "imagenes/gemini_759a61bd9879.jpg",
+      "imagenes/gemini_a4e017cb6fba.jpg",
+      "imagenes/gemini_1675216a7113.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "bd11efc534b8847de489673c51b48d1494850a3dfe1b9d04ccbc422cfbb6c1a6",
+    "source_hashes": [
+      "28c61d4f9e60df2144892e9568f2804fe56aa76491c4f953aedae20bcd70cdb4",
+      "a3ecfb5cc24d3f20a3d730966164e4acd41312df7a84ed5cfc06da01d604a93f",
+      "a715acfbd936f279777eef91181cc81cb3843088736ed6d0a9803d7a1e353ca1",
+      "17b197e337165813eb234b4a4d0495de3c1b41b0b5482444114f310f2aae6997",
+      "098d18e7c702b7f411c1a8c5abce91ac3b92e4fc27474232b34b07ef8d89c379"
+    ]
+  },
+  {
+    "id": "LIB-321",
+    "title": "ART AND LOVE IN RENAISSANCE ITALY",
+    "author": "ANDREA BAYER (EDITOR)",
+    "year": 2008,
+    "publisher": "The Metropolitan Museum of Art, New York / Yale University Press, New Haven and London",
+    "price": 30000,
+    "sold_out": false,
+    "category": "Arte / Historia del Arte / Renacimiento Italiano",
+    "description": "Un magnífico y exhaustivo catálogo de exposición editado por Andrea Bayer, publicado por The Metropolitan Museum of Art y Yale University Press, que examina el papel del arte en las relaciones amorosas, el cortejo, el matrimonio y la vida doméstica en la Italia renacentista a través de pinturas, esculturas, mayólicas y objetos de dote.",
+    "language": "Inglés",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color granate con lomo rotulado en tonos claros",
+    "pages": 0,
+    "isbn": "9781588393005",
+    "condition": "Usado, en excelente estado general. Encuadernación firme en tela granate, interior limpio y sólido, con firma manuscrita en la portadilla.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Mondadori Printing S.p.A.",
+    "printing_place": "Italia",
+    "identification_notes": [
+      "Edited by Andrea Bayer",
+      "The Metropolitan Museum of Art, New York / Yale University Press, 2008",
+      "ISBN 978-1-58839-300-5",
+      "Printed and bound by Mondadori Printing S.p.A., Verona, Italy"
+    ],
+    "uncertain_fields": [
+      "pages"
+    ],
+    "images": [
+      "imagenes/gemini_fa43d04b35c9.jpg",
+      "imagenes/gemini_eece56340830.jpg",
+      "imagenes/gemini_84b1d31b5068.jpg",
+      "imagenes/gemini_9eb540385f91.jpg",
+      "imagenes/gemini_9de304b3cd44.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "dc1345043239fcfa53b73e6abc5687514eb56c78e117e0523706170f875e5328",
+    "source_hashes": [
+      "5edb9b2368becaef26df659fc6591d777b4aab92762ead1b89e85f06caf097cc",
+      "338c71193b9a9c6d78ef090944b00b692d1049d6d15be60e7acf8dc76c9376d1",
+      "28fc51c51305168b7f045831fdf858faf620bf16ef7a74e2f56adea24ff63187",
+      "61b1b9239795e4d5eef5f3aaa7a0fcb0c118a129cfb7123dad9e8c0dbef085df",
+      "e53aaf3175619837ed0aa19e73d889c6343b70052e4bab45293bd1173aefd338"
+    ]
+  },
+  {
+    "id": "LIB-322",
+    "title": "BELLEZZE D'ITALIA: VILLE E GIARDINI",
+    "author": "SILVANA EDITORIALE D'ARTE",
+    "year": 1956,
+    "publisher": "Silvana Editoriale d'Arte, Milano",
+    "price": 15000,
+    "sold_out": false,
+    "category": "Arte / Arquitectura / Jardines / Italia",
+    "description": "Una magnífica y lujosa publicación editada por Silvana Editoriale d'Arte que celebra las maravillas arquitectónicas y paisajísticas de Italia, explorando con detalle las más bellas villas y jardines históricos de la península a través de textos rigurosos y magníficas láminas fotográficas.",
+    "language": "Italiano",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color azul con estampado dorado en portada y lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Encuadernación firme en tela azul, interior limpio y sólido.",
+    "series": "Bellezze d'Italia",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Italia",
+    "identification_notes": [
+      "Copyright by 1956 - SILVANA EDITORIALE D'ARTE - MILANO",
+      "Printed in Italy",
+      "Título: Bellezze d'Italia: Ville e Giardini"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_7ec675c6d2ba.jpg",
+      "imagenes/gemini_d8de59e18cd7.jpg",
+      "imagenes/gemini_e5b3cf5f8d6b.jpg",
+      "imagenes/gemini_a40ca1fd81da.jpg",
+      "imagenes/gemini_978ea99638fb.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "65338177aecf4dc3616e7fcd55437798a0a8eee050307290bc2ab813558d57c4",
+    "source_hashes": [
+      "4ec8828963f9f12516cee0766dc17e674d7b35f78ddbec4555230300c57ef8d7",
+      "c2531d0bc76cba6dcbc7d28f813e1d7e1eaca1be228db2dfba5e6c6501011a4b",
+      "3f2d82483df625a240d240a409f0343bce77732e469a343d3dae827b82730046",
+      "74e20bd46f8c86e22e9249823860b27e0b96b61c836a9575f4ef6bed51206267",
+      "9296429f882a16d0619f5ea514716f0c5677669bc69c0a46ad8c4de445fb5f0b"
+    ]
+  },
+  {
+    "id": "LIB-323",
+    "title": "SOME MINOR WORKS OF RICHARD ROLLE",
+    "author": "RICHARD ROLLE (ED. GERALDINE E. HODGSON)",
+    "year": 1923,
+    "publisher": "John M. Watkins, London",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Literatura Mística / Religión / Literatura Inglesa Medieval",
+    "description": "Una notable colección de obras menores del místico inglés Richard Rolle, traducidas y editadas por Geraldine E. Hodgson, que incluye además 'The Privity of the Passion' atribuida a San Buenaventura, ofreciendo una valiosa perspectiva de la espiritualidad y devoción medieval.",
+    "language": "Inglés",
+    "edition": "John M. Watkins Edition",
+    "binding": "Tapa dura en tela de color azul con letras doradas en la portada y el lomo",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela azul con desgaste por decoloración y manchas de almacenamiento. Interior limpio y sólido, con sello de biblioteca.",
+    "series": "",
+    "translator": "Geraldine E. Hodgson",
+    "illustrator": "",
+    "format": "",
+    "printer": "John Bellows",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "John M. Watkins, London, 1923",
+      "Translated and Edited by Geraldine E. Hodgson, Litt.D.",
+      "Printed in Great Britain by John Bellows, Gloucester"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_ecff6d895418.jpg",
+      "imagenes/gemini_756e9ab71397.jpg",
+      "imagenes/gemini_dc6bd2f89072.jpg",
+      "imagenes/gemini_082d18067d7a.jpg",
+      "imagenes/gemini_db93c508d023.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "2c15baeb927f3124bfdf3a4141a818ef028063122c7cf74a6fd7f1fff4dbf8c4",
+    "source_hashes": [
+      "41a2fe8f3940755df850328d55de3063b39a6c92314f6ea7781ce3b43300800e",
+      "a8fc33b1a5d44eb17e71e01d236a93c31cb57e3faf2bc165586338672deb1289",
+      "93dc32bc7843779164f210448df2a081128c35f56465b53470eae94228856831",
+      "8e313c7c274b1447579db20f453961d2a87772f062dbaa7ee71d8a40f29a87df",
+      "665eecfa15f92e7003304edca9776cf9f632a218aa0f4c98229381a35d52dd46"
+    ]
+  },
+  {
+    "id": "LIB-324",
+    "title": "THE ROBE",
+    "author": "LLOYD C. DOUGLAS",
+    "year": 1948,
+    "publisher": "Peter Davies, London",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Ficción / Novela Histórica / Literatura Norteamericana",
+    "description": "Una célebre novela histórica y religiosa de Lloyd C. Douglas ambientada en la época de la antigua Roma y los albores del cristianismo, que narra la historia de Marcelo Gallio, el tribuno militar romano que gana la túnica sin costuras de Jesús en un juego de dados tras la crucifixión, un evento que transforma profundamente su vida.",
+    "language": "Inglés",
+    "edition": "Peter Davies Edition",
+    "binding": "Tapa dura en tela de color granate con lomo rotulado en tonos claros",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela con desgaste superficial y marcas de almacenamiento. Interior limpio y sólido, con sello de biblioteca y dedicatoria manuscrita.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Windmill Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "London: Peter Davies",
+      "First published May 1943, this edition July 1948",
+      "Printed in Great Britain for Peter Davies Limited at The Windmill Press, Kingswood, Surrey",
+      "Autor: Lloyd C. Douglas"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_71fffccbf039.jpg",
+      "imagenes/gemini_a93181c9727f.jpg",
+      "imagenes/gemini_2ba012edf046.jpg",
+      "imagenes/gemini_1331af77c528.jpg",
+      "imagenes/gemini_4777647c7c3b.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "79df4ede3aab488ef02d1b1e768741566b4adde1d6b4a7775b47d769d10f3ffd",
+    "source_hashes": [
+      "7808a52da18649ddad6f904acb4abe9a81b803b9bb1a2a8ee533976c0540fac0",
+      "3f43acf5eb2cf02cba9d81a72352aaf5b9a278a63545e21732522084fd18714f",
+      "83c48c2fb22628b58193258163c60057f605a41537a2c6dd79cd23f793bdbd69",
+      "e13b686cbbc6e14961895762b5167fc98ee6407b871c9dc80d2816517ba180cb",
+      "a6dc4831b637c720cc339bb3def04e91c956438859a334bd0f91787de1565999"
+    ]
+  },
+  {
+    "id": "LIB-325",
+    "title": "MAGNOLIA STREET",
+    "author": "LOUIS GOLDING",
+    "year": 1934,
+    "publisher": "Victor Gollancz Ltd, London",
+    "price": 4000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una célebre y entrañable novela de Louis Golding que retrata la vida cotidiana, las tensiones, los lazos comunitarios y los contrastes culturales de los habitantes de una calle dividida en dos mitades (una judía y otra obrera gentil) en una ciudad industrial inglesa.",
+    "language": "Inglés",
+    "edition": "Eleventh Impression",
+    "binding": "Tapa dura en tela de color rojo con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela roja con desgaste y manchas visibles por el paso del tiempo. Interior limpio y sólido, con sello de biblioteca y anotaciones manuscritas.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Camelot Press Ltd.",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "Victor Gollancz Ltd, London",
+      "First published January 8th, 1932, Eleventh impression March 1934",
+      "Printed in Great Britain by The Camelot Press Ltd., London and Southampton",
+      "Autor: Louis Golding"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_ae96b5b64960.jpg",
+      "imagenes/gemini_83d7e72a4a5a.jpg",
+      "imagenes/gemini_9be7b67c7a2c.jpg",
+      "imagenes/gemini_6cee0749573a.jpg",
+      "imagenes/gemini_c60852e06a01.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "35cb642b485c6023952d7470d14d1cc9d1dd4617f21d283a10742f509bff43f2",
+    "source_hashes": [
+      "b7d727d4cb6e7767fc85c118b806ef46e6e16a01990bf3c44c294a4e8c0457a7",
+      "6f032b4400c9b1553648b2f362bcb7a2ce2754dcc2353891ac933cb4e36e0b5a",
+      "e6e1498abc430cedfd4ecea6217ebe0f5f1f325654f2b40e294e725dfe7e8bc3",
+      "db0838e253defae4334db334a01bca52a3276c113867bf22a4e0882b041f1c7c",
+      "eaa378db16d155812b8b60a86af60460c6a65979de902925de0ae4309e162386"
+    ]
+  },
+  {
+    "id": "LIB-326",
+    "title": "RIGHT WORD, WRONG WORD",
+    "author": "V. H. COLLINS",
+    "year": 1956,
+    "publisher": "Longmans, Green and Co Ltd, London",
+    "price": 8000,
+    "sold_out": false,
+    "category": "Lingüística / Idioma Inglés / Guía de Uso",
+    "description": "Una útil y clásica guía práctica de V. H. Collins diseñada para estudiantes y escritores del idioma inglés, que ayuda a distinguir entre palabras frecuentemente confundidas, sinónimos y términos mal empleados para lograr una expresión más precisa y correcta.",
+    "language": "Inglés",
+    "edition": "Fourth Impression",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado",
+    "pages": 151,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Encuadernación firme en tela azul, interior limpio con sello de biblioteca.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Lowe and Brydone (Printers) Limited",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "Longmans, Green and Co Ltd, London",
+      "First published 1956, Fourth Impression 1961",
+      "Autor: V. H. Collins"
+    ],
+    "uncertain_fields": [
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_465f04415343.jpg",
+      "imagenes/gemini_d4b401813459.jpg",
+      "imagenes/gemini_6be89e5b1658.jpg",
+      "imagenes/gemini_49ad26f0d6ee.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "700e6687c27a08c4fba70f392a525ade6fd348b5190834da652dc1ce3c15d6a6",
+    "source_hashes": [
+      "1e1f0cdf12048d61f751fd69c47c57cdff274ac4e07207b5910933f7a367ba81",
+      "4bb51609134cb65562e41509cb20769785b72fadcdea808788155fb919093ee2",
+      "66c12aaca9aeb8d7cafdbc89971d5934ce5e92421f31b13c616d29d9016d0a45",
+      "ee52ea8d2fd555cafc09bb84790fb24d2774ad576f155326ba85aeebcc1faf42"
+    ]
+  },
+  {
+    "id": "LIB-327",
+    "title": "LANGUAGE AND THE STUDY OF LANGUAGES TODAY",
+    "author": "MARGARET SCHLAUCH",
+    "year": 1967,
+    "publisher": "PWN-Polish Scientific Publishers, Warszawa / Oxford University Press, London",
+    "price": 5000,
+    "sold_out": false,
+    "category": "Lingüística / Idiomas / Ciencia del Lenguaje",
+    "description": "Una completa y rigurosa introducción a la lingüística escrita por Margaret Schlauch, que examina el surgimiento de la ciencia lingüística, la clasificación de las familias de lenguas del mundo actual y los fundamentos de la morfología y la formación de palabras.",
+    "language": "Inglés",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color azul con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Encuadernación firme en tela azul, interior limpio.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Polonia",
+    "identification_notes": [
+      "Copyright 1967 by Państwowe Wydawnictwo Naukowe (PWN-Polish Scientific Publishers)",
+      "Warszawa: PWN - Polish Scientific Publishers / London: Oxford University Press",
+      "Printed in Poland (D.R.P.)",
+      "Autor: Margaret Schlauch"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_3fb26b2815f0.jpg",
+      "imagenes/gemini_44dbc69038ea.jpg",
+      "imagenes/gemini_f8aefa361b3a.jpg",
+      "imagenes/gemini_b066f95201a8.jpg",
+      "imagenes/gemini_b04590cf4173.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "3e6460c4d596b95fe71ffc703839a31b3fcc04f3c38b5b88c301814291b8eb23",
+    "source_hashes": [
+      "bf5b8d117513d857a0bae286a1e1f85cee1a5c61a59dae71d22d0de6e4c3fc4f",
+      "71e3cb978d3fb6a1a5d0d42464d0eaf37ffe6bcb522a00c9f68d98c87dd77b2a",
+      "046e29ca26ead90c02d714c775b0361af787f5498612fa17e45bef3c1cc6b59d",
+      "01a0f6a2f5d4f2d2cd32660780015c0d59ffbda3b92ffb32d54dc33a8c293d13",
+      "98684793bdee1797b190ca55ab98d85a0869c8793c3465b9cd1903b9711f5cb5"
+    ]
+  },
+  {
+    "id": "LIB-328",
+    "title": "WITHOUT LOVE",
+    "author": "GERALD HANLEY",
+    "year": 1957,
+    "publisher": "Collins & The Book Society Ltd. / William Collins Sons and Company Ltd.",
+    "price": 8000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una intensa y reflexiva novela de Gerald Hanley que explora complejas cuestiones morales, políticas y religiosas a través de las tensiones y dilemas de sus personajes en un escenario contemporáneo.",
+    "language": "Inglés",
+    "edition": "First Edition (Book Society Edition)",
+    "binding": "Tapa dura en tela de color rosado/rojo con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela con manchas visibles de almacenamiento. Interior limpio y sólido, con sello de biblioteca.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Collins Clear-Type Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "This edition issued on first publication by The Book Society, Ltd., in association with William Collins Sons and Company Ltd, March, 1957",
+      "Printed in Great Britain by Collins Clear-Type Press: London and Glasgow",
+      "Autor: Gerald Hanley"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_55a188cde39a.jpg",
+      "imagenes/gemini_729312570ab3.jpg",
+      "imagenes/gemini_e7308872275a.jpg",
+      "imagenes/gemini_b35fe313b6f9.jpg",
+      "imagenes/gemini_dc87c1a6255b.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "22ee900994ba39dd4112153c5da8e3a9868cb7192d2793f1efa47aba0ac84ad9",
+    "source_hashes": [
+      "46654207e0116041dfecc786d722d406ea259c5ca5d8ebad2ec6f3219c0fc3e5",
+      "5ca71e518906188c20d3a19ea1afc434573db59622af90d9abc533ddd9a0a22e",
+      "8968590ceb9558a7665dbcbcea0cdc38497609c048b42685ef7eb20e7252fd2a",
+      "85834686b629e9f8e16c1a8add95eb36892327c8abc1d22af7f50bba652671c1",
+      "21cdf041ccb988c51e589727d50e76d8fa6e456709581a2d352f2e1725392799"
+    ]
+  },
+  {
+    "id": "LIB-329",
+    "title": "ENGLAND SPEAKS",
+    "author": "PHILIP GIBBS",
+    "year": 1935,
+    "publisher": "William Heinemann Ltd, London :: Toronto",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Historia / Sociología / Literatura de Viajes / Inglaterra",
+    "description": "Una lúcida y fascinante crónica social y política de Inglaterra escrita por Philip Gibbs en 1935, que retrata la vida, opiniones y preocupaciones de diversas clases sociales y profesionales (desde estadistas y lores hasta barrenderos, mineros, actores y gente común) en los años previos a la Segunda Guerra Mundial.",
+    "language": "Inglés",
+    "edition": "First Edition",
+    "binding": "Tapa dura en tela de color granate/rojo con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en estado aceptable. Cubiertas de tela roja con desgaste y marcas de almacenamiento. Interior limpio y sólido, con sellos de biblioteca.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "The Windmill Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "William Heinemann Ltd, London :: Toronto",
+      "First published November 1935",
+      "Printed in Great Britain at The Windmill Press, Kingswood, Surrey",
+      "Autor: Philip Gibbs"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_86aa69bc9297.jpg",
+      "imagenes/gemini_b7508b974cea.jpg",
+      "imagenes/gemini_98cc58c7bba4.jpg",
+      "imagenes/gemini_6a1dbd972877.jpg",
+      "imagenes/gemini_21416ec599e9.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "0b165d8f18f75403ea31ec0d77b9ebed12cd3d09f576cf53b92d1fd5338e2081",
+    "source_hashes": [
+      "fbd8e8bef5abb6dd53380282433023dde9f54fd62bf0a3bf04224cb366bc6941",
+      "7a247854cb50e2ec4edd0a74cffc0ad51174a6870d1084ab1a5144e5a9e5aebd",
+      "476ba46a1232f8f50ab5ab5547888eb0f9d0ace03b8479588d55ea1554496c86",
+      "9ba42e71e1748a2e8d1c68ab12338e8f15991f06aa588cab7816b3b0b8dee4c2",
+      "02c72d602fd7acdbeeb8ed903df463bd9fd43594a9bffbe2f1ed3ddbcdcefef0"
+    ]
+  },
+  {
+    "id": "LIB-330",
+    "title": "KAREN",
+    "author": "MARIE KILLILEA",
+    "year": 1952,
+    "publisher": "Prentice-Hall, Inc., Englewood Cliffs, N. J.",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Biografías / Memorias / Salud / Inspiración",
+    "description": "Una conmovedora y célebre biografía escrita por Marie Killilea que narra la inspiradora y valiente lucha de su hija Karen, diagnosticada con parálisis cerebral, y la incansable batalla familiar por la inclusión, la dignidad y el avance en el tratamiento y comprensión de esta condición.",
+    "language": "Inglés",
+    "edition": "Eleventh Printing (1965)",
+    "binding": "Tapa dura en tela de color verde con lomo rotulado y decorado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Encuadernación firme en tela verde, interior limpio con marcas de catalogación.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "",
+    "printing_place": "Estados Unidos",
+    "identification_notes": [
+      "Copyright, 1952, by Marie Lyons Killilea",
+      "Prentice-Hall, Inc., Englewood Cliffs, N. J.",
+      "Eleventh Printing ....... May, 1965",
+      "L. C. Catalogue Card No. 52-10666"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_535e3c53514e.jpg",
+      "imagenes/gemini_d81726df26f1.jpg",
+      "imagenes/gemini_493a175deab1.jpg",
+      "imagenes/gemini_322ad00b6a4a.jpg",
+      "imagenes/gemini_71d1414c7015.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "5ec920e7a53ede8aa7fcbe786bc086e6c67043f18904464739b9ef4115e33e5d",
+    "source_hashes": [
+      "76cfab875737d6ac005c6f2a09fd4a7a588ea8235694dbecbe6be109e0fd3a04",
+      "3a393ee332a103545bfb4b50edcc37a2a75c50b2ee139cbc5cbfa20a00bca4ba",
+      "761bd1297d4faa1a03aa5c58e6a0c572eaf1b06325841fbb5fa99a96d4613ea5",
+      "a6d0275eafc4375b3e84599d671aecae8642236631815a7b3ce3d72ec59c1f1e",
+      "18201d41123df29ead0c71712092328307c798511e5efbef1280c1e39f3ae518"
+    ]
+  },
+  {
+    "id": "LIB-331",
+    "title": "SOUTH RIDING",
+    "author": "WINIFRED HOLTBY",
+    "year": 1936,
+    "publisher": "Collins, London",
+    "price": 6000,
+    "sold_out": false,
+    "category": "Ficción / Novela / Literatura Inglesa",
+    "description": "Una brillante y aclamada novela social de Winifred Holtby ambientada en el distrito ficticio de South Riding en Yorkshire, que examina la vida pública y privada, la política local, las dificultades económicas y humanas durante la Gran Depresión a través de los ojos de concejales, maestros y habitantes locales.",
+    "language": "Inglés",
+    "edition": "Tenth Impression",
+    "binding": "Tapa dura en tela de color verdoso/grisáceo con lomo rotulado",
+    "pages": 0,
+    "isbn": "",
+    "condition": "Usado, en buen estado general. Encuadernación firme en tela verdosa, interior limpio y sólido, con sello de biblioteca.",
+    "series": "",
+    "translator": "",
+    "illustrator": "",
+    "format": "",
+    "printer": "Collins Clear-Type Press",
+    "printing_place": "Gran Bretaña",
+    "identification_notes": [
+      "Collins, Forty-Eight Pall Mall London, 1936",
+      "First published February 1936, Tenth impression January 1938",
+      "Printed in Great Britain by Collins Clear-Type Press: London and Glasgow",
+      "Autor: Winifred Holtby"
+    ],
+    "uncertain_fields": [
+      "pages",
+      "isbn"
+    ],
+    "images": [
+      "imagenes/gemini_5485de6f1015.jpg",
+      "imagenes/gemini_0048ea6d72d9.jpg",
+      "imagenes/gemini_6ea487e8e946.jpg",
+      "imagenes/gemini_8b86438bab11.jpg",
+      "imagenes/gemini_95283d8a7d73.jpg"
+    ],
+    "ig_shortcode": null,
+    "date_added": "2026-11-09",
+    "source": "gemini_extension",
+    "gemini_fingerprint": "c2df058d4a912a9eefcefb0dd03d0e892e86835a860907d05ff2863af15aacf7",
+    "source_hashes": [
+      "3a25fe209c5d934e05099e457d19c8564cb377d97dbfc47bf3a509841f6e5183",
+      "74dd1588dc46e23c5c8d4d8ca32cba1e30b46b8425d1f1896509b72dba2a355e",
+      "77fa88cecfd17a0503cd7fb7e9e31b85199a14d1487f3d4b3b3e10097d5cac11",
+      "356cf8ef123238c26061e8ddb236c8be2cf750f34d20e66ee496f56e10f63b7f",
+      "ce57bca70381069d6727cab97e67c446bef155f3956d01012c89b1de83f81c27"
     ]
   }
 ]
